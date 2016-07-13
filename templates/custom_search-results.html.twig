@@ -1,0 +1,36 @@
+
+
+<div class="container" style="margin-bottom:100px;">
+
+
+	{% if not items is empty %}
+	
+		<div class="row">
+			    
+		    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 search-item">
+		    	<h1>Search Results</h1>
+		    </div>
+		    
+		</div>
+		
+		{% for item in items %}
+			<div class="search row">
+			    
+			    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 search-item">
+			    	<h3>
+						<a href="{{ item['#result'].link }}">{{ item['#result'].title }}</a>
+				   	</h3>
+			    </div>
+			    
+			</div>
+		{% endfor %}
+    
+	{% else %}
+		<div class="text-center">
+            <h2 class="text-muted">No results found</h2>
+			<p class="text-muted"><em>Try expanding or refining your search keywords or terms.</em></p>
+		</div>
+	{% endif %}
+
+</div>
+

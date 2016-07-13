@@ -1,0 +1,18 @@
+name: History Of Vaccines 2
+type: theme
+description: 'The base theme for History Of Vaccines 2, built on the Stark theme.'
+package: Core
+version: 1.x
+core: 8.x
+base theme: stable
+
+
+# Regions
+regions:
+  primary_menu: 'Primary Menu'
+  footer_menu: 'Footer Menu'
+  mobile_menu: 'Mobile Menu'
+  highlighted: 'Highlighted'
+  featured: 'Featured Slideshow'
+  content: 'Content'
+  search_box: 'Search Box'

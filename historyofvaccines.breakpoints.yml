@@ -1,0 +1,25 @@
+stark.xs:
+  label: xs
+  mediaQuery: '(min-width: 0px)'
+  weight: 0
+  multipliers:
+   - 1x
+stark.sm:
+  label: sm
+  mediaQuery: '(min-width: 768px) and (max-width: 991px)'
+  weight: 1
+  multipliers:
+    - 1x
+stark.md:
+  label: md
+  mediaQuery: '(min-width: 992px) and (max-width: 1199px)'
+  weight: 2
+  multipliers:
+    - 1x
+stark.lg:
+  label: lg
+  mediaQuery: '(min-width: 1200px)'
+  weight: 3
+  multipliers:
+    - 1x
+

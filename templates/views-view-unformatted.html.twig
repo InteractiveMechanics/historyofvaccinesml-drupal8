@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<section class="container-fluid">
+    <div id="homepage-carousel" class="carousel slide" data-interval="8000" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+
+<div class="item active">
+  <div class="carousel-image border" style="background-size:cover; background-image:url(/themes/greatmigration/images/HomepageImage.jpg)">
+  </div>
+  <div class="carousel-details-container">
+      <div class="carousel-details" >
+          <h1 class="first-title">The Great Migration</h1>
+
+            <p class="first-body">
+              {{ view.header.area.options.content.value|raw }}
+            </p>
+        
+          <a href="./node/24" class="btn btn-default btn-lg btn-inverted">Explore the history <span class="arrow">→</span></a>
+      </div>
+  </div>
+</div>
+            {% for row in rows %}
+              {%
+                set row_classes = [
+                  default_row_class ? 'views-row',
+                ]
+              %}
+                <div class="item">
+                    {{ row.content }}
+                </div>
+            {% endfor %}
+        </div>
+        <ol class="carousel-indicators">
+        <li data-target="#homepage-carousel" data-slide-to="0" class="active"></li>
+        {% for row in rows %}
+          {%
+            set row_classes = [
+              default_row_class ? 'views-row',
+            ]
+          %}
+            <li data-target="#homepage-carousel" data-slide-to="{{ loop.index0 + 1}}"></li>
+        {% endfor %}
+        </ol>
+    </div>
+</section>

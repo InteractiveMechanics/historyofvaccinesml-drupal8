@@ -1,0 +1,39 @@
+light-gallery:
+  version: 1.x
+  css:
+    theme:
+      css/lib/lightgallery.min.css: {}
+  js:
+    js/lib/lightgallery/lightgallery-all.min.js: {}
+  dependencies:
+    - core/jquery
+
+bootstrap:
+  version: 3.3.2
+  css:
+    theme:
+      css/lib/bootstrap.min.css: {}
+  js:
+    js/lib/bootstrap.min.js: {}
+  dependencies:
+    - core/jquery
+
+mapbox:
+  version: 2.2.1
+  header: true
+  css:
+    theme:
+      css/lib/mapbox.css: {}
+  js:
+    js/lib/mapbox.js: {}
+
+global-styling:
+  version: 1.x
+  css:
+    theme:
+      https://fonts.googleapis.com/css?family=Oswald:700|PT+Serif:400,400italic,700,700italic: { type: external }
+      css/main.css: {}
+  js:
+    js/main.js: {}
+  dependencies:
+    - core/jquery

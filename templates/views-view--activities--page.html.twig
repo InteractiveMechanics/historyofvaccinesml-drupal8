@@ -1,0 +1,243 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+     Only "getter" methods (method names starting with "get", "has", or "is")
+     and a few common methods such as "id" and "label" are available. Calling
+     other methods (such as node.delete) will result in an exception.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="blocks">
+		<div class="large-block pull-left">
+			<img src="http://www.historyofvaccines.org/sites/default/files/homepage_article_image/000442_edit2.jpg?1458921688" class="img-responsive" />
+		</div>
+		
+		<div class="small-block pull-right dark-blue-block hidden-sm hidden-xs">
+			<p>
+				The <em>History of Vaccines</em> explores the role of immunization in the human experience and examines its continuing contributions to public health
+			</p>
+			<a href="javascript:void(0);">More</a>
+		</div>
+		
+		<div class="small-block pull-right">
+			<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/TIMELINE.jpg" class="img-responsive" width="100%" />
+		</div>
+	</div>
+	
+	<br style="clear:both;" />
+
+<div class="main-content">
+<div class="row">
+	<div class="col-md-3 img-nav">
+		<ul class="list-unstyled">
+					
+			<li>
+				<a href="javascript: void(0);">
+					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/ImgNav_Activities.jpg" class="img-responsive">
+				</a>
+			</li>
+					
+			<li>
+				<a href="javascript: void(0);">
+					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/ImgNav_Gallery.jpg" class="img-responsive">
+				</a>
+			</li>
+					
+			<li>
+				<a href="javascript: void(0);">
+					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/IngNav_Families.jpg" class="img-responsive">
+				</a>
+			</li>
+					
+			<li>
+				<a href="javascript: void(0);">
+					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/ImgNav_Educators.jpg" class="img-responsive">
+				</a>
+			</li>
+					
+		</ul>
+	</div>
+	
+	<div class="col-md-9">
+		
+		<div class="activity-node">
+
+	<div class="related-activities">
+		<div class="row row-eq-height">
+		
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">Illsville: Fight the Disease</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000000_simulation_90.jpg">
+						Play an immersive game that takes you through the historical development of a society as it fights disease and tries to develop
+						vaccines to protect the population
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">How Vaccines Work</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000hwv_90.jpg">
+						Learn about the human immune system’s response to vaccination. Then sequence the steps in the process on your own
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">The Scientific Method</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000sma_90.jpg">
+						You're in the middle of a disease outbreak. Apply the scientific method in an epidemiological setting to pinpoint the source of the illness.
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">Herd Immunity</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000herd_90_0_1.jpg">
+						See how high vaccination rates protect the unvaccinated.
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">History of the Immunization Schedule</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000hist_90_0_1.jpg"">
+						Find out how the U.S. immunization schedule has changed over time.
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">{{ view.title }}</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000sma_90.jpg"">
+						See the steps involved in manufacturing vaccines.
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">Koch’s Postulates</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000koch_90_0.jpg">
+						Learn how scientists identify the cause of an infectious disease
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+				<div class="activity-blrub">
+					<p class="title">
+						<a href="javascript:void(0);">Pioneer Breakthroughs</a>
+					</p>
+					
+					<p>
+						<img style="float:left; margin-right:15px; margin-bottom:5px;" src="http://www.historyofvaccines.org/sites/default/files/000ident_90_0.jpg">
+						Match the scientist to the disease he helped prevent
+					</p>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+
+		
+		
+		
+	</div>
+</div>
+</div>
+
