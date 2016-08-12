@@ -7,6 +7,13 @@ core: 8.x
 base theme: stable
 
 
+# Libraries
+libraries:
+  - historyofvaccines/bootstrap
+  - historyofvaccines/openseadragon
+  - historyofvaccines/global-styling
+
+
 # Regions
 regions:
   primary_menu: 'Primary Menu'
@@ -16,3 +23,5 @@ regions:
   featured: 'Featured Slideshow'
   content: 'Content'
   search_box: 'Search Box'
+  recent_posts: 'Recent Posts'
+  blog_archive: 'Blog Archive'

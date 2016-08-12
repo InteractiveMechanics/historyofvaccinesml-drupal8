@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for a select element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the select tag.
+ * - options: The option element children.
+ *
+ * @see template_preprocess_select()
+ */
+#}
+{% spaceless %}
+  {% for option in options %}
+    <div class="checkbox">
+        <label>
+        {% if option.type == 'optgroup' %}
+            {% for sub_option in option.options %}
+                <input type="checkbox" {{ attributes }} value="{{ sub_option.value }}" {{ sub_option.selected ? ' checked="checked"' }}> {{ sub_option.label }}
+            {% endfor %}
+        {% else %}
+            <input type="checkbox" {{ attributes }} value="{{ option.value }}" {{ option.selected ? ' checked="checked"' }}> {{ option.label }}
+        {% endif %}
+        </label>
+    </div>
+  {% endfor %}
+{% endspaceless %}

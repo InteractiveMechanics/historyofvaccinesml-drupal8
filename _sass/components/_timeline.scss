@@ -1,0 +1,82 @@
+.timeline-modal-date {
+    font-size: 15px;
+    font-weight: bold;
+    color: #889;
+    margin:0;
+}
+
+.timeline-modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #35A;
+    margin:0;
+    margin-bottom:10px;
+}
+
+.timeline-modal-body {
+	font-size:12px;
+}
+
+.timeline-dialog {
+    width:800px;
+}
+
+.timeline-dialog .modal-content{
+    background:#eee;
+    border-radius:0px;
+}
+
+.vis-item {
+    position: absolute;
+    color: #1A1A1A;
+    border-width: 1px;
+	background:none;
+    display: inline-block;
+    border: 0px !important;
+    text-align: left !important;
+    
+}
+
+.vis-item.vis-selected {
+    border: 0px !important;
+    background: none !important;
+    z-index: 2;
+}
+
+.vis-timeline {
+	background: #555;
+}
+
+.vis-timeline .year {
+	color:white;
+	font-weight:bold;
+}
+
+.vis-timeline .timeline-entry {
+	background:white;
+	cursor:pointer;
+}
+
+.vis-timeline .timeline-entry .image {
+	float:left;
+}
+
+.vis-timeline .timeline-entry .image img {
+	height: inherit;
+	width:84px;
+}
+
+.vis-timeline .timeline-entry .title {
+	float:right;
+	padding:10px;
+}
+
+.vis-time-axis .vis-text {
+	color:#ddd !important;
+}
+
+
+.vis-major {
+	font-size:48px;
+	font-weight: 100;
+}

@@ -1,0 +1,60 @@
+.panel-body {
+    ul li {
+    	margin-bottom:10px;
+    	padding:5px 15px;
+    	cursor:pointer;
+
+        &:hover, &:focus, &:active {
+        	background:rgba(255,255,255, .2);
+        }
+    }
+}
+		
+.panel-group {
+    .panel {
+    	border-radius:0px;
+    	margin-bottom:0px;
+		
+        .panel-heading {
+        	border:none;
+        	background-color: #2A594D;
+        	color:#FFF;
+        	border-radius:0px;
+
+            a:hover{
+    			text-decoration:none;
+    		}
+        }
+		.panel-title {
+			margin-top: 0;
+			margin-bottom: 0;
+			font-size: 14px;
+			color: #ddd;
+		}
+		.panel-body {
+			padding:0px;
+			background-color:#36AA6B;
+
+            a {
+    			font-size:13px;
+    			color:white;
+
+                &:hover, &:focus, &:active {
+        			text-decoration:none;
+        		}
+    		}
+		}
+		
+		table tr.selected {
+			
+		}
+    }
+		
+	.panel + .panel {
+		margin-top:0px;
+	}
+		
+	.panel td {
+		border:none;
+	}
+}

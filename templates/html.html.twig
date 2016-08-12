@@ -28,6 +28,10 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
 <head>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+    <script type="text/javascript" src="https://lb88-ttgt.accessdomain.com/drupal/themes/historyofvaccines/js/vis.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,456 +39,44 @@
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
 
-    <css-placeholder token="{{ placeholder_token|raw }}">
-    <js-placeholder token="{{ placeholder_token|raw }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    
-    
-    
-    
-    <style>
-    	body {
-	    	background: url(../images/BG_2014_100.gif) top center no-repeat;
-	    	margin-bottom: 1px;
-    	}
-    	
-    	.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-	    	background:none;
-    	}
-    	
-    	.list-inline.social-icons >li {
-	    	padding:0px;
-    	}
-    	
-    	.main-content {
-	    	background:#e5f2fb;
-	    	padding:15px;
-    	}
-    	
-    	.site-header {
-	    	background-color: #59645f;
-			padding: 10px 40px 20px;
-    	}
-    	
-    	.navbar-default {
-	    	background-color: #606c67 !important;
-			border-radius: 0px !important;
-			color: white;
-			border-color:#606c67 !important;
-    	}
-    	
-    	.navbar {
-	    	border-radius:0px !important;
-    	}
-    	
-    	.navbar-default .navbar-nav>li>a {
-	    	color:white !important;
-    	}
-    	
-    	.navbar {
-	    	margin-bottom:0px;
-    	}
-    	
-    	.large-block {
-	    	width:67%;
-    	}
-    	
-    	.small-block {
-	    	width:33%;
-	    	color:white;
-	    	height: 139px;
-    	}
-    	
-    	.small-block.dark-blue-block {
-	    	background-color: rgba(64,80,95,0.9);
-			box-shadow: inset 0 -30px 18px -20px rgba(0,0,0,0.4);
-			padding:30px;
-			font-size: 13px;
-			
-    	}
-    	
-    	.homepage-item h5 {
-	    	color:maroon;
-	    	text-transform:uppercase;
-	    	font-size:13px;
-	    	letter-spacing:2px;
-    	}
-    	
-    	.header-row h5 {
-	    	color:maroon;
-	    	text-transform:uppercase;
-	    	font-size:13px;
-	    	letter-spacing:2px;
-    	}
-    	
-    	
-    	
-    	.img-nav img {
-	    	width:100%;
-	    	margin-bottom:20px;
-    	}
-    	
-    	.article-blurb p a {
-	    	color: #369;
-	    	font-size:13px;
-	    	font-weight:bold;
-    	}
-    	
-    	.sidebar-blurb a {
-	    	color: #369;
-	    	font-size:13px;
-	    	font-weight:bold;
-    	}
-    	
-    	.article-blurb, .sidebar-blurb {
-	    	color: #333;
-	    	font-size:12px;
-    	}
-    	
-    	footer {
-	    	margin-top:25px;
-	    	font-size:12px;
-	    	color: #888;
-    	}
-    	
-    	footer a {
-	    	color: #888;
-    	}
-    	
-    	footer a:hover {
-	    	color: #888;
-    	}
-    	
-    	/* Small Devices, Tablets */
-		@media only screen and (max-width : 768px) {
-			.large-block {
-				float:none !important; 
-				width:100%;
-			}
-			.small-block {
-				float:none !important; 
-				width:100%;
-				display:none;
-			}
-		}
-		
-		
-		/** article node **/
-		
-		.article-node .article {
-			background:white;
-			padding:20px;
-		}
-		
-		.article-node .article h1 {
-			color: #336699;
-			font-size:4.5rem;
-			font-weight:bold;
-		}
-		
-		.article-node .article h2 {
-			font-size:2rem;
-		}
-		
-		.article-node .article p {
-		    margin: 0 0 10px;
-			line-height: 30px;
-			font-size: 15px;
-			margin-bottom: 20px;
-		}
-		
-		.article .border-box {
-			border: 1px solid #ccc;
-			padding: 20px;
-			margin-bottom:30px;
-		}
-		
-		.article .timeline-entry p {
-			font-size:15px;
-			margin-bottom:15px;
-			line-height:20px;
-		}
-		
-		.article .timeline-entry p.date {
-			font-weight: bold;
-			color: #888899;
-			font-size:16px;
-			margin:0px;
-		}
-		
-		.article .timeline-entry p.title {
-			font-weight: bold;
-			color: #369;
-			margin:0 0 15px;
-			font-size:18px;
-		}
-		
-		.article .assessment ul {
-			margin:0px;
-			padding:0 20px;
-		}
-		
-		.article .assessment p {
-			margin-bottom:0px;
-		}
-		
-		.article .assessment ul li {
-			cursor:pointer;
-			list-style-type:upper-alpha;
-			margin-bottom:6px;
-		}
-		
-		.article .assessment ul li span {
-			display:none;
-		}
-		
-		.article .assessment ul li.correct {
-			color:green;
-			font-weight:bold;
-		}
-		
-		.article .assessment ul li.correct span.correct {
-			display:inline-block;
-		}
-		
-		.article .assessment ul li.incorrect span.incorrect {
-			display:inline-block;
-		}
-		
-		.article .assessment ul li.incorrect {
-			color:red;
-			font-weight:bold;
-		}
-		
-		.article .assessment ul li.correct:hover, .article .assessment ul li.incorrect:hover {
-			background-color:none;
-		}
-		
-		.article .assessment ul li:hover {
-			background-color:#eee;
-		}
-		
-		.panel-group .panel {
-			border-radius:0px;
-			margin-bottom:0px;
-		}
-		
-		.panel-group .panel .panel-heading {
-			border:none;
-			background-color: #4b695b;
-			color:#FFF;
-			border-radius:0px;
-		}
-		
-		.panel-group .panel .panel-body {
-			padding:0px;
-			background-color:#7eaf98;
-		}
-		
-		.panel-group .panel .panel-body a {
-			font-size:13px;
-			color:white;
-		}
-		
-		.panel-group .panel .panel-body a:hover {
-			text-decoration:none;
-		}
-		
-		.panel-group .panel table tr.selected {
-			
-		}
-		
-		.panel-group .panel+.panel {
-			margin-top:0px;
-		}
-		
-		.panel-group .panel td {
-			border:none;
-		}
-		
-		.activity-node .activity {
-			background-color:black;
-			margin-bottom:60px;
-		}
-		
-		.activity-node .activity-blrub {
-			height:150px;
-		}
-		
-		.activity-node.main-page .activity-blrub {
-			height:200px;	
-		}
-		
-		.activity-node .activity-blrub p.title {
-		    font-weight: bold;
-			font-size: 1.3em;
-			color: #336699;
-		}
-		.article .body h3 {
-			font-size: 1.4rem;
-			font-style:italic;
-		}
-		
-		.blog h1 {
-			margin-bottom:5px;
-		}
-		
-		.blog .article img {
-			float:left;
-			margin-bottom:20px; 
-			margin-right:15px;
-		}
-		
-		.blog .article .author {
-			font-size:11px;
-			color: #888;
-			margin-bottom:30px;
-		}
-		
-		.sidebar .sidebar-item {
-			margin-bottom:25px;
-		}
-		
-		.sidebar .sidebar-blurb {
-			margin-bottom:25px;
-		}
-		
-		.sidebar .sidebar-item h5 {
-			color:maroon;
-	    	text-transform:uppercase;
-	    	letter-spacing:1px;
-		}
-		
-		
-		
-		.sidebar .sidebar-item ul {
-			padding-left:0px;	
-			padding-top:0px;
-		}
-		
-		.sidebar .sidebar-item ul li {
-			list-style:none;
-		}
-		
-		.btn-green {
-			text-transform:uppercase;
-			border-radius:0px;
-			font-weight:500;
-			font-size:12px;
-			background-color:#287A54;
-			color:#eee;
-		}
-		
-		.btn-green:hover {
-			background-color:#5F9B7F;
-			color:#fff;
-		}
-		
-		.js-quickedit-page-title {
-			display:none;
-		}
-		
-		/*
- * Row with equal height columns
- * --------------------------------------------------
- */
-.row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-   flex-flow: row wrap;
-}
-
-/** search **/
-
-
-.header-search {
-   width: 350px;
-}
-
-.header-search input {
-	background-position: 316px 4px;
-    background-image: url('http://zulkey.com/mt-static/support/theme_static/rainier/img/search-icon.png');
-    background-repeat: no-repeat;
-    border-color:#313834;
-    background-color:#3e4642;
-    color:#eee;
-}
-
-.header-search input:focus{
-    outline: none !important;
-}
-.header-search #edit-submit {
-	display:none;
-}
-
-.search-page .search-item {
-	padding:20px;
-}
-
-.search-page .search-item .result{
-	border-bottom: 1px dotted #eee;
-	padding:20px 10px;
-	cursor:pointer;
-}
-
-
-.search-page .search-item a {
-	text-decoration:none;
-}
-
-.search-page .search-item .result:hover {
-	background-color:#eee;
-	
-}
-
-.search-page-form {
-	display:none;
-}
-
-.comments p {
-	margin: 0px !important;
-    font-size: 12px !important;
-    line-height: 16px !important;
-}
-
-.comments ul {
-	margin:0px;
-	padding:0px;
-}
-
-.comments li {
-	list-style:none;
-}
-
-.comments #edit-submit {
-	text-transform: uppercase;
-    border-radius: 0px;
-    font-weight: 500;
-    font-size: 15px;
-    background-color: #287A54;
-    color: #eee;
-    border: none;
-    padding: 8px 15px;
-    display: inline-block;
-}
-
-.comments textarea {
-	width:100%;
-	margin-bottom:20px;
-}
-
-.comments .filter-wrapper {
-	display:none;
-}
-    </style>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css">
-    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">   
+        
+    <style>
+        @media(max-width:992px){
+            .navbar {
+            	padding:12px 0;
+            }
+            
+            .navbar .mobile-logo {
+            	display:block;
+            }
+            
+            .container, .container-fluid {
+            	padding:0px !important;
+            }
+            
+            .navbar-default .container, .navbar-default.container {
+            	padding:0 15px !important;
+            }
+            
+            .site-header {
+            	display:none;
+            }
+            
+            footer .pull-right, footer .pull-left {
+            	float:none !important;
+            	text-align:center;
+            }
+            
+            footer .text-right {
+            	text-align:center !important;
+            	margin-top:12px;
+            }	
+        }
+    </style>
 </head>
 <body {{ attributes }} class="fade-in" data-spy="scroll" data-target="#artwork-scrollspy" data-offset="200">
 	<a href="#main-content" class="visually-hidden focusable">
@@ -494,10 +86,12 @@
     {{ page }}
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+    <div id="viewer"><div id="viewer-inner"></div></div>
     
     
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5755a6c926eeffb8"></script>
+	<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-12840640-3','auto');ga('send','pageview');</script>
 
 </body>
 </html>

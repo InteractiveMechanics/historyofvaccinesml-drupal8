@@ -1,0 +1,23 @@
+.activity-node {
+    .activity {
+    	background-color:black;
+    	margin-bottom:60px;
+    	padding:35px 0;
+    }
+
+    .activity-blrub {
+    	height:150px;
+
+        p.title {
+            font-weight: bold;
+        	font-size: 1.3em;
+        	color: #336699;
+        }
+    }
+
+    &.main-page {
+        .activity-blrub {
+        	height:200px;	
+        }
+    }
+}

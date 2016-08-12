@@ -70,48 +70,51 @@
 
 	<div class="blocks">
 		<div class="large-block pull-left">
-			<img src="http://www.historyofvaccines.org/sites/default/files/homepage_article_image/000442_edit2.jpg?1458921688" class="img-responsive" />
+			{#node.field_featured_relative_path[0].value#}
+			<a href="javascript: void(0);"><img src="{{ file_url(node.field_featured_image.entity.fileuri) }}" class="img-responsive" /></a>
 		</div>
 		
 		<div class="small-block pull-right dark-blue-block hidden-sm hidden-xs">
 			<p>
-				The <em>History of Vaccines</em> explores the role of immunization in the human experience and examines its continuing contributions to public health
+				{{node.field_about_text[0].value|raw}}
 			</p>
-			<a href="javascript:void(0);">More</a>
+			<a href="{{front_page}}content/about">More</a>
 		</div>
 		
-		<div class="small-block pull-right">
+		<div class="small-block pull-right hidden-sm hidden-xs">
 			<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/TIMELINE.jpg" class="img-responsive" width="100%" />
 		</div>
 	</div>
 	
-	<br style="clear:both;" />
+	<br style="clear:both; " class="hidden-sm hidden-xs" />
+	
+	
 
 <div class="main-content">
 <div class="row">
-	<div class="col-md-3 img-nav">
+	<div class="col-md-3 img-nav hidden-xs hidden-sm">
 		<ul class="list-unstyled">
 					
 			<li>
-				<a href="javascript: void(0);">
+				<a href="./activities">
 					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/ImgNav_Activities.jpg" class="img-responsive">
 				</a>
 			</li>
 					
 			<li>
-				<a href="javascript: void(0);">
+				<a href="./gallery">
 					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/ImgNav_Gallery.jpg" class="img-responsive">
 				</a>
 			</li>
 					
 			<li>
-				<a href="javascript: void(0);">
+				<a href="./content/parents">
 					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/IngNav_Families.jpg" class="img-responsive">
 				</a>
 			</li>
 					
 			<li>
-				<a href="javascript: void(0);">
+				<a href="./content/educators">
 					<img src="http://www.historyofvaccines.org/sites/all/themes/cop/_images/homepage/ImgNav_Educators.jpg" class="img-responsive">
 				</a>
 			</li>
@@ -123,6 +126,10 @@
 		
 		<div class="homepage-item">
 			<h5>Featured Articles</h5>
+			
+			<ul class="link-list recent-posts">
+				{{ featured_articles }}
+			</ul>
 		</div>
 		
 	</div>
@@ -130,13 +137,86 @@
 	<div class="col-md-3">
 		<div class="homepage-item">
 			<h5>Popular Articles</h5>
+			
+			<ul class="link-list recent-posts">
+				{{ popular_articles }}
+			</ul>
 		</div>
 	</div>
 	
 	<div class="col-md-3">
 		<div class="homepage-item">
 			<h5>Recent Posts</h5>
+			
+			<ul class="link-list recent-posts">
+				{{ recent_post }}
+			</ul>
+		</div>
+		<div class="sidebar">
+			{% if content.field_rel_quiz_question[0] %}
+				<div class="sidebar-item quiz-item">
+					
+					<div class="header">
+						<h4>What do you think?</h4>
+					</div>
+					
+					<div class="questions">
+						<p>
+							{{content.field_rel_quiz_question[0]['#options'].entity.field_question[0].value}}
+						</p>
+					</div>
+					
+					<div class="choices" data-answer="{{content.field_rel_quiz_question[0]['#options'].entity.field_answer.value}}">
+						<ul>
+							{% for answer in content.field_rel_quiz_question[0]['#options'].entity.field_choice %}
+							
+								<li>
+									{{ answer.value }} 
+								</li>
+								
+							{% endfor %}
+						</ul>
+					</div>
+					
+					<div class="more-info">
+					
+						<span class="answer">Correct</span>
+						{{ content.field_rel_quiz_question[0]['#options'].entity.body[0].value|raw }}
+					</div>
+					
+					
+				</div>
+		
+			{% endif %}
 		</div>
 	</div>
 </div>
 </div>
+
+
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('.choices ul li').click(function(){
+			if(!$(this).parent().parent().hasClass('answered')) {
+			
+				var answer = $(this).parent().parent().data('answer');
+				var n = $(this).index();
+				
+				var chr = String.fromCharCode(97 + n);
+				
+				if(chr == answer) {
+					$('span.answer').text('Correct');
+				} else {
+					$('span.answer').text('Incorrect');
+				}
+				$(this).parent().parent().addClass('answered');
+				
+				$('.more-info').show();
+			}
+			
+		});
+	});
+
+</script>

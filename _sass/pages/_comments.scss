@@ -1,0 +1,35 @@
+.comments p {
+	margin: 0px !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+}
+
+.comments ul {
+	margin:0px;
+	padding:0px;
+}
+
+.comments li {
+	list-style:none;
+}
+
+.comments #edit-submit {
+	text-transform: uppercase;
+    border-radius: 0px;
+    font-weight: 500;
+    font-size: 15px;
+    background-color: #287A54;
+    color: #eee;
+    border: none;
+    padding: 8px 15px;
+    display: inline-block;
+}
+
+.comments textarea {
+	width:100%;
+	margin-bottom:20px;
+}
+
+.comments .filter-wrapper {
+	display:none;
+}

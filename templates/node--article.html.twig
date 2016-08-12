@@ -65,6 +65,38 @@
  * @ingroup themeable
  */
 #}
+<script>
+    {% if content.field_related_media[0] %}
+        var data = [];
+        {% for key, related_media in content.field_related_media if key|first != '#' %}
+
+            {% if content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 2 %}
+				{% set orig_filename = '00000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+
+            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 3 %}
+                {% set orig_filename = '0000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+
+            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 4 %}
+                {% set orig_filename = '000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+
+			{% else %}
+				{% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+			{% endif %}
+
+            {% if content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+                {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
+                    data["{{ orig_filename }}"] = {
+                        root: "{{ orig_filename }}",
+                        title: "{{ content.field_related_media[key]['#node'].title.value }}",
+                        description: "{{ content.field_related_media[key]['#node'].body[0].value|e('js') }}",
+                        caption: "{{ content.field_related_media[key]['#node'].field_caption[0].value|striptags }}",
+                        creator: "{{ content.field_related_media[key]['#node'].field_creator[0].title[0].value }}"
+                    };
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</script>
 
 <div class="article-node">
 	<div class="row">
@@ -74,99 +106,66 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Vaccine Science</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                {% if content.langcode['#markup'] == "Español" %}
+                                    La ciencia de las vacunas
+                                {% else %}
+                                    Vaccine Science
+                                {% endif %}
+                                <span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
+                            </a>
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; Articles</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; News</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; Newsletters</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; Comments</a>
-                                </td>
-                                </tr>
-                            </table>
+                        
+                        	<ul class="list-unstyled">
+                        		{{vaccine_science_articles}}
+                        	</ul>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">History and Society</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                {% if content.langcode['#markup'] == "Español" %}
+                                    La historia y la sociedad
+                                {% else %}
+                                    History and Society
+                                {% endif %}
+                            	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
+                            </a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Orders</a> <span class="label label-success">$ 320</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Invoices</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Shipments</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Tex</a>
-                                    </td>
-                                </tr>
-                            </table>
+                            
+                            <ul class="list-unstyled">
+                        		{{ history_society_articles }}
+                        	</ul>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Vaccine Information</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                {% if content.langcode['#markup'] == "Español" %}
+                                    Información sobre las vacunas
+                                {% else %}
+                                    Vaccine Information
+                                {% endif %}
+                            	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
+                            </a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Change Password</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Notifications</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Import/Export</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com" class="text-danger">Delete Account</a>
-                                    </td>
-                                </tr>
-                            </table>
+                        	<ul class="list-unstyled">
+                        		{{vaccine_information_articles}}
+                        	</ul>
                         </div>
                     </div>
                 </div>
@@ -174,18 +173,21 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Vaccine-Preentable Diseases</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                {% if content.langcode['#markup'] == "Español" %}
+                                    Enfermedades que se pueden prevenir con las vacunas
+                                {% else %}
+                                    Vaccine-Preventable Diseases
+                                {% endif %}
+                            	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
+                            </a>
                         </h4>
                     </div>
                     <div id="collapseFour" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td style="background-color:rgba(255,255,255,.25);">
-                                        <a class="active" href="javascript: void(0);">- Rotavirus</a>
-                                    </td>
-                                </tr>
-                            </table>
+                        	<ul class="list-unstyled">
+                        		{{vaccine_preventable_diseases}}
+                        	</ul>
                         </div>
                     </div>
                 </div>
@@ -193,103 +195,335 @@
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Common Questions</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                {% if content.langcode['#markup'] == "Español" %}
+                                    Preguntas comunes
+                                {% else %}
+                                    Common Questions
+                                {% endif %}
+                            	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
+                            </a>
                         </h4>
                     </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
+                    <div id="collapseFive" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
-                                    </td>
-                                </tr>
-                            </table>
+                            <ul class="list-unstyled">
+                        		{{ common_questions_articles }}
+                        	</ul>
                         </div>
                     </div>
                 </div>
                 
             </div>
+            
+            <div class="sidebar">
+            	
+            	{% if content.field_rel_articles[0] %}
+					<div class="sidebar-item">
+					
+						{% if content.langcode['#markup'] == "Español" %}
+							<h5>Artículos Relacionadas</h5>
+						{% else %}
+							<h5>Related Articles</h5>
+						{% endif %}
+						
+						<ul>
+							{% for key, activities in content.field_rel_articles if key|first != '#' %}
+								<li>
+									<div class="sidebar-blurb">
+										<p class="title">
+											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
+										</p>
+										
+										{% if activities['#node'].field_related_media[0] %}
+										
+											
+		
+											{% if activities['#node'].field_related_media[0].entity.field_orig_filename.value|length < 4 %}
+												{% set orig_filename = '000' ~ activities['#node'].field_related_media[0].entity.field_orig_filename.value %}
+											{% else %}
+												{% set orig_filename = activities['#node'].field_related_media[0].entity.field_orig_filename.value %}
+											{% endif %}
+											
+										{% endif %}
+										
+										<p>
+											<img style="float:left; margin-right:15px; margin-bottom:5px; width:65px;" 
+											src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg">
+											{{ activities['#node'].field_synopsis.value|raw   }}
+											<br style="clear:both;" />
+										</p>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}	
+				
+				{% if content.field_rel_blog_posts[0] %}
+					<div class="sidebar-item">
+						{% if content.langcode['#markup'] == "Español" %}
+							<h5>Artículos Relacionados Blog</h5>
+						{% else %}
+							<h5>Related Blog Posts</h5>
+						{% endif %}
+						
+						<ul>
+							{% for key, activities in content.field_rel_blog_posts if key|first != '#' %}
+								<li>
+									<div class="sidebar-blurb">
+										<p class="date" style="margin-bottom:2px;">{{ activities['#node'].created.value|date("m/d/Y") }}</p>
+										<p class="title">
+											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
+										</p>
+										<br style="clear:both;" />
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}	
+				
+				{% if content.field_rel_items[0] %}
+					<div class="sidebar-item">
+						{% if content.langcode['#markup'] == "Español" %}
+							<h5>Enlaces Relacionados</h5>
+						{% else %}
+							<h5>Related Links</h5>
+						{% endif %}
+						
+						<ul>
+							{% for key, activities in content.field_rel_items if key|first != '#' %}
+								<li>
+									<div class="sidebar-blurb">
+										<p class="title">
+											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
+										</p>
+					
+										<p>
+											{{ activities['#node'].field_synopsis.value|raw   }}
+											<br style="clear:both;" />
+										</p>
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endif %}	
+				
+				
+				{% if content.field_rel_quiz_question[0] %}
+					<div class="sidebar-item quiz-item">
+						
+						<div class="header">
+							<h4>{% trans %}What do you think?{% endtrans %}</h4>
+						</div>
+						
+						<div class="questions">
+							<p>
+								{{ content.field_rel_quiz_question[0]['#node'].field_question[0].value }}
+							</p>
+						</div>
+						
+						<div class="choices" data-answer="{{content.field_rel_quiz_question[0]['#node'].field_answer.value}}">
+							<ul>
+								{% for answer in content.field_rel_quiz_question[0]['#node'].field_choice %}
+								
+									<li>
+										{{ answer.value }} 
+									</li>
+									
+								{% endfor %}
+							</ul>
+						</div>
+						
+						<div class="more-info">
+						
+							<span class="answer">Correct</span>
+							{{ content.field_rel_quiz_question[0]['#node'].body[0].value|raw }}
+						</div>
+						
+					</div>
+			
+				{% endif %}
+				
+            </div>
 		
 	
 		</div>
 	
-		<div class="col-md-9 col-sm-12">
-		
+		<div class="col-md-9 col-sm-12">			
 			<div class="article">
+                {{ languageswitcher }}
+
 				<h1>{{ label }}</h1>
 				
 				<div class="body">
 					
+				<div class="body-mediaitem">
+					{% if content.field_related_media[0] %}
+		
+						{% if content.field_related_media[0]['#node'].field_orig_filename[0].value|length < 2 %}
+            				{% set orig_filename = '00000' ~ content.field_related_media[0]['#node'].field_orig_filename[0].value %}
+
+                        {% elseif content.field_related_media[0]['#node'].field_orig_filename[0].value|length < 3 %}
+                            {% set orig_filename = '0000' ~ content.field_related_media[0]['#node'].field_orig_filename[0].value %}
+
+                        {% elseif content.field_related_media[0]['#node'].field_orig_filename[0].value|length < 4 %}
+                            {% set orig_filename = '000' ~ content.field_related_media[0]['#node'].field_orig_filename[0].value %}
+
+                        {% else %}
+							{% set orig_filename = content.field_related_media[0]['#node'].field_orig_filename[0].value %}
+						{% endif %}
+
+                        <div class="gallery-image-container">
+                            <div class="image {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 37 %}hidden{% endif %}">
+                                {% if content.field_related_media[0]['#node'].field_taxonomy.target_id %}
+                                <div 
+                                    class="show-modal" 
+                                    data-filename="{{ orig_filename }}"
+                                    >+</div>
+                                {% endif %}
+                                <img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{ content.field_related_media[0]['#node'].title.value }}" />
+                            </div>
+                            {% if content.field_related_media[0]['#node'].field_taxonomy.target_id %}
+                                <div class="video {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 36 %}hidden{% endif %}">
+                                    <video src="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" poster="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" controls="controls" autoplay="true" width="100%"></video>
+                                </div>
+                            {% endif %}
+                        </div>
+						<p><small>{{ content.field_related_media[0]['#node'].field_caption.value }} <br /><b>{{ content.field_related_media[0]['#node'].field_copyright.value }}</b></small></p>
+
+					{% endif %}
+                    {% if content.field_related_media[1] %}
+                        <div id="body-mediaitem-switcher">
+                        {% for key, related_media in content.field_related_media[1:] if key|first != '#' %}
+
+                            {% if content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 2 %}
+                				{% set filename = '00000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+
+                            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 3 %}
+                                {% set filename = '0000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+
+                            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 4 %}
+                                {% set filename = '000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+
+    						{% else %}
+    							{% set filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+    						{% endif %}
+                            
+                            {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
+                                <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
+    						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
+                                </div>
+                            {% elseif content.field_related_media[key]['#node'].field_taxonomy.target_id == 37 %}
+                                <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="video" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
+    						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+					{% endif %}
+				</div>
+				
 				{{ node.body[0].value|raw  }}
 				
 				</div>
 				
-				<div class="timeline-entry border-box">
-					<p class="date">Timeline Entry: 5/14/2010</p>
-					
-					<p class="title">Rotavirus: FDA Supports Vaccine</p>
-					
-					
-<p>After several weeks of developing news about a pig virus and pig viral DNA in rotavirus vaccines, the U.S. Food and Drug Administration announced that the two U.S. licensed rotavirus vaccines should continue to be used.</p> <p>Scientists using a newly developed tool had discovered a pig virus in GlaxoSmithKline’s Rotarix in March 2010, prompting the FDA to suspend its use.</p> <p>Further studies showed pig virus fragments in Merck’s RotaTeq vaccine.</p> <p>The pig viruses do not infect humans and were almost certainly present in the vaccines during their initial clinical tests and licensure. (They were derived from one of the chemicals used to prepare the cells in which the rotavirus vaccine strains are grown.) No adverse events have been associated with the pig viral materials in the vaccines.</p>
-					
-					<a href="javascript: void(0);" class="btn btn-green">See this item in the timeline</a>
-				</div>
+				{% if content.field_related_timeline_entries[0] %}
+					{% for key, entry in content.field_related_timeline_entries if key|first != '#' %}
+						<div class="timeline-entry border-box">
+							<p class="date">Timeline Entry: {{ entry['#node'].created.value|date("m/d/Y") }}</p>
+						
+							<p class="title">{{ entry['#node'].title.value }}</p>
+						
+							{{ entry['#node'].body.value|raw }}
+						
+							<a href="javascript: void(0);" class="btn btn-green">See this item in the timeline</a>
+						</div>
+					{% endfor %}
+				{% endif %}
 				
-				<div class="assessment border-box">
-					<h2>Assessment Questions</h2>
-					
-					<div class="question">
-						<p>
-							<strong>True or false? No specific treatments exist for rotavirus infections. </strong>
-						</p>
-						<ul>
-							<li>
-								True 
-							</li>
-							<li class="incorrect">
-								False <span class="glyphicon glyphicon-remove incorrect"></span>
-							</li>
-						</ul>
+				{% if content.field_rel_assessment[0] %}
+					<div class="assessment border-box">
+						<h2>Assessment Questions</h2>
+						
+						{% for key, assessment in content.field_rel_assessment if key|first != '#' %}
+						
+						
+							<div class="question" data-answer="{{assessment['#node'].field_answer.value}}">
+								<p>
+									<strong>{{ assessment['#node'].field_question.value }} </strong>
+								</p>
+								<ul>
+									{% for answer in assessment['#node'].field_choice %}
+									
+										<li>
+											{{ answer.value }} 
+										</li>
+										
+									{% endfor %}
+								</ul>
+							</div>
+							
+						{% endfor %}
+						
+						
 					</div>
-					
-					<div class="question">
-						<p>
-							<strong>The most common symptom of rotavirus infection is __________. </strong>
-						</p>
-						<ul>
-							<li>
-								Fever
-							</li>
-							<li>
-								Abdominal Pain
-							</li>
-							<li class="correct">
-								Watery Diarrhea <span class="glyphicon glyphicon-ok correct"></span>
-							</li>
-							<li>
-								Vomiting
-							</li>
-						</ul>
-					</div>
-				</div>
+				{% endif %}
 			</div>
 		
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$('.question ul li').click(function(){
+			
+			if(!$(this).parent().parent().hasClass('answered')) {
+			
+				var answer = $(this).parent().parent().data('answer');
+				var n = $(this).index();
+				
+				var chr = String.fromCharCode(97 + n);
+				
+				if(chr == answer) {
+					$(this).addClass('correct');
+				} else {
+					$(this).addClass('incorrect');
+					
+					var correctIndex = answer.charCodeAt(0) - 97;
+					var value = $(this).parent().parent().find('ul > li:eq(' + correctIndex +')').text();
+					$(this).parent().parent().find('ul > li:eq(' + correctIndex +')').text(value + ' (correct)');
+					$(this).parent().parent().find('ul > li:eq(' + correctIndex +')').addClass('correct');
+				}
+				$(this).parent().parent().addClass('answered')
+			}
+		});
+		
+		$('.choices ul li').click(function(){
+			if(!$(this).parent().parent().hasClass('answered')) {
+			
+				var answer = $(this).parent().parent().data('answer');
+				var n = $(this).index();
+				
+				var chr = String.fromCharCode(97 + n);
+				
+				if(chr == answer) {
+					$('span.answer').text('Correct');
+				} else {
+					$('span.answer').text('Incorrect');
+				}
+				$(this).parent().parent().addClass('answered');
+				
+				$('.more-info').show();
+			}
+			
+		});
+		
+	});
+	
+</script>

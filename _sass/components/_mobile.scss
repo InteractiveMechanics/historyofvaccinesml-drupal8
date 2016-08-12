@@ -1,0 +1,37 @@
+.mobile-panel {
+	margin-bottom:20px;
+
+    .panel-group {
+    	margin:0px;
+    }
+}
+
+.mobile-filter {
+
+    label {
+    	color:white !important;
+    }
+    .panel-body {
+    	padding:10px 20px !important;
+    }
+    .checkbox {
+    	padding-left:15px;
+    }
+}
+
+.mobile-nav {
+	padding:20px 0;
+
+    ul li {
+    	margin:10px 0;
+
+        a {
+        	color:#FFF;
+
+            &:hover, &:focus, &:active {
+            	color:#FFF;
+            	text-decoration:none;
+            }
+        }
+    }
+}

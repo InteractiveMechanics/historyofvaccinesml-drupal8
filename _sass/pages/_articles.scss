@@ -1,0 +1,164 @@
+.article-blurb {	
+    color: #333;
+	font-size:12px;
+
+	p {
+		a {
+			color: #369;
+			font-size:13px;
+			font-weight:bold;	
+		}
+	}
+}
+.sidebar-blurb {
+    color: #333;
+	font-size:12px;
+	
+	a {
+    	color: #369;
+    	font-size:13px;
+    	font-weight:bold;
+	}
+}
+
+
+
+.article-node { 
+    .body {
+        .body-image {
+            margin:0 15px 15px 0;
+            float:left;
+        }
+        ul.activities {
+            padding:0px;
+        }
+        ul.activities li {
+            list-style:none;
+            margin-bottom:15px;
+        }
+        ul.activities .body-image {
+            float: left;
+            margin-right:12px;
+        }
+
+        table{border-collapse:collapse;border-spacing:0;font-size:1.2em; margin-bottom:30px;}
+        table *{font-size:100%;}
+        table tr{}
+        table td{border:1px solid #333; vertical-align: top; padding:10px 0 0 10px;}
+        table td p{margin:0;}
+    }	
+
+	.article {
+		background:white;
+		padding:20px;
+		
+		h1 {
+			color: #336699;
+			font-size:4.5rem;
+			font-weight:bold;
+		}
+		
+		h2 {
+			font-size:2rem;
+		}
+		
+		p {
+			margin: 0 0 10px;
+			line-height: 30px;
+			font-size: 15px;
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.article {
+    .body h3 {
+		font-size: 1.4rem;
+		font-style:italic;
+	}	
+
+	.border-box {
+		border: 1px solid #ccc;
+		padding: 20px;
+		margin-bottom:30px;
+	}
+	
+	.timeline-entry {
+		p {
+			font-size:15px;
+			margin-bottom:15px;
+			line-height:20px;
+			
+			&.date {
+				font-weight: bold;
+				color: #888899;
+				font-size:16px;
+				margin:0px;
+			}
+			
+			&.title {
+				font-weight: bold;
+				color: #369;
+				margin:0 0 15px;
+				font-size:18px;
+			}
+		}
+	}
+	
+	.assessment {
+		ul {
+			margin:0px;
+			padding:0 20px;	
+			
+			li {
+				cursor:pointer;
+				list-style-type:upper-alpha;
+				margin-bottom:6px;
+				
+				&:hover {
+					background-color:#eee;
+				}
+				
+				span {
+					display:none;
+					
+					&.correct {
+						display:inline-block;
+					}
+					
+					&.incorrect {
+						display:inline-block;
+					}
+				}
+				
+				&.correct {
+					color:green;
+					font-weight:bold;
+					
+					&:hover {
+						background-color:none;
+					}
+				}
+				
+				&.incorrect {
+					color:red;
+					font-weight:bold;
+					
+					&:hover {
+						background-color:none;
+					}
+				}
+				
+			}
+		}
+		
+		p {
+			margin-bottom:0px;
+		}
+	}
+}
+.links {
+    .is-active {
+        display: none;
+    }
+}

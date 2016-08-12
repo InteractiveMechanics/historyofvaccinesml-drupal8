@@ -73,36 +73,51 @@
 		
 		
 			<div class="sidebar">
-				<div class="sidebar-item">
-					
+				<div class="sidebar-item" style="margin-bottom:10px;">
+					<div class="rss"><a href="http://feeds.feedburner.com/TheHistoryOfVaccinesBlog" class="rss-link">RSS</a></div>
 				</div>
 				<div class="sidebar-item">
-					
+					<a href="https://feedburner.google.com/fb/a/mailverify?uri=TheHistoryOfVaccinesBlog&amp;loc=en_US" class="feedburner-email-link" rel="external" target="_blank">Subscribe to The History of Vaccines Blog by Email</a>
 				</div>
+				
 				<div class="sidebar-item">
 					<h5>POSTS BY CATEGORY</h5>
 					
-					<ul class="link-list">
-						<li><a href="javascript: void(0);">Cholera</a></li>
-						<li><a href="javascript: void(0);">Diphtheria</a></li>  
-						<li><a href="javascript: void(0);">Ethics</a></li>
+					<ul class="link-list recent-posts blog-categories">
+						{{blog_categories}}
 					</ul>
 				</div>
 				
 				<div class="sidebar-item">
 					<h5>POPULAR POSTS</h5>
+					
+					<ul class="link-list recent-posts">
+						{{ popular_posts }}
+					</ul>
 				</div>
 				
 				<div class="sidebar-item">
 					<h5>RECENT POSTS</h5>
+					
+					<ul class="link-list recent-posts">
+						{{ recent_post }}
+					</ul>
 				</div>
 				
 				<div class="sidebar-item">
 					<h5>ARCHIVES</h5>
+					
+					<ul class="link-list recent-posts">
+						{{blog_archive}}
+					</ul>
 				</div>
 				
 				<div class="sidebar-item">
 					<h5>OTHER BLOGS</h5>
+					
+					<ul class="link-list">
+						{{otherblogs}}
+					</ul>
 				</div>
 			</div>
 		
@@ -111,14 +126,19 @@
 		<div class="col-md-9">
 			
 			<div class="article">
+				
 				<h1>{{ node.title.value }}</h1>
-				<p class="author">May 12, 2016 Karie</p>
+				<div class="author-area">
+					<span class='blog-date'>{{ node.created.value|date("F j, Y") }}</span>
+					<span class='blog-author'>{{username}}</span>
+				</div>
+				
 				<div class="body">
 					{{ node.body[0].value|raw  }}
 				</div>
 				
 				<div class="comments">
-					{{ content }}
+				
 				</div>
 			
 				

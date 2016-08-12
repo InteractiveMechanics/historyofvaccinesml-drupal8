@@ -1,15 +1,6 @@
-light-gallery:
-  version: 1.x
-  css:
-    theme:
-      css/lib/lightgallery.min.css: {}
-  js:
-    js/lib/lightgallery/lightgallery-all.min.js: {}
-  dependencies:
-    - core/jquery
-
 bootstrap:
   version: 3.3.2
+  header: true
   css:
     theme:
       css/lib/bootstrap.min.css: {}
@@ -18,20 +9,15 @@ bootstrap:
   dependencies:
     - core/jquery
 
-mapbox:
+openseadragon:
   version: 2.2.1
-  header: true
-  css:
-    theme:
-      css/lib/mapbox.css: {}
   js:
-    js/lib/mapbox.js: {}
+    js/lib/openseadragon/openseadragon.min.js: {}
 
 global-styling:
   version: 1.x
   css:
     theme:
-      https://fonts.googleapis.com/css?family=Oswald:700|PT+Serif:400,400italic,700,700italic: { type: external }
       css/main.css: {}
   js:
     js/main.js: {}

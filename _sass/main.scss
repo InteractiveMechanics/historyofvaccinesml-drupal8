@@ -6,16 +6,19 @@
 @import "components/layout";
 @import "components/header";
 @import "components/footer";
-@import "components/carousel";
+@import "components/sidebar";
 @import "components/buttons";
-@import "components/pagination";
-@import "components/inputs";
-@import "components/hero";
-@import "components/maps";
 @import "components/media";
+@import "components/viewer";
+@import "components/timeline";
+@import "components/quiz";
+@import "components/panels";
 
 @import "pages/index";
-@import "pages/artwork";
-@import "pages/events";
-@import "pages/resources";
+@import "pages/articles";
+@import "pages/activities";
+@import "pages/gallery";
+@import "pages/glossary";
+@import "pages/blog";
 @import "pages/search";
+@import "pages/comments";

@@ -1,0 +1,17 @@
+.btn-green {
+	text-transform:uppercase;
+	border-radius:0px;
+	font-weight:500;
+	font-size:12px;
+	background-color:#287A54;
+	color:#eee;
+
+    &:hover, &:focus, &:active {
+    	background-color:#5F9B7F;
+    	color:#fff;
+    }
+}
+
+button span.glyphicon {margin-right: 5px !important; font-size: 11px !important;}
+button.collapsed span.glyphicon-remove {display:none;}
+button.collapsed span.glyphicon-menu-hamburger {display:inline-block !important;}

@@ -1,0 +1,17 @@
+ul.link-list {
+    margin:0px;
+    padding:0px;
+    
+    li {
+		list-style:none;
+	}
+}
+    
+ul.recent-posts li {
+	margin-bottom:10px;
+
+    .post-date {
+    	font-size:10px;
+    	color:#555;
+    }
+}

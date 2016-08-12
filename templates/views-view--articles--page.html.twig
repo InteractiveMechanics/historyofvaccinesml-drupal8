@@ -66,6 +66,10 @@
  */
 #}
 
+{% for row in rows %}
+	{{ row.title }}
+{% endfor %}
+
 <div class="article-view-node">
 
 	<div class="row">
@@ -81,28 +85,10 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; Articles</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; News</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; Newsletters</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">&mdash; Comments</a>
-                                </td>
-                                </tr>
-                            </table>
+                        
+                        	<ul class="list-unstyled">
+                        		{{vaccine_science_articles}}
+                        	</ul>
                         </div>
                     </div>
                 </div>
@@ -114,28 +100,11 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Orders</a> <span class="label label-success">$ 320</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Invoices</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Shipments</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Tex</a>
-                                    </td>
-                                </tr>
-                            </table>
+                            
+                            <ul class="list-unstyled">
+                        		{{ history_society_articles }}
+                        	</ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -147,28 +116,9 @@
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Change Password</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Notifications</a> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com">Import/Export</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="http://www.jquery2dotnet.com" class="text-danger">Delete Account</a>
-                                    </td>
-                                </tr>
-                            </table>
+                        	<ul class="list-unstyled">
+                        		{{vaccine_information_articles}}
+                        	</ul>
                         </div>
                     </div>
                 </div>
@@ -176,18 +126,16 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Vaccine-Preentable Diseases</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Vaccine-Preventable Diseases</a>
                         </h4>
                     </div>
                     <div id="collapseFour" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td style="background-color:rgba(255,255,255,.25);">
-                                        <a class="active" href="javascript: void(0);">- Rotavirus</a>
-                                    </td>
-                                </tr>
-                            </table>
+                        
+                        	<ul class="list-unstyled">
+                        		{{vaccine_preventable_diseases}}
+                        	</ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -195,67 +143,74 @@
                  <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Common Questions</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Common Questions</a>
                         </h4>
                     </div>
-                    <div id="collapseFour" class="panel-collapse collapse">
+                    <div id="collapseFive" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
-                                    </td>
-                                </tr>
-                            </table>
+                            <ul class="list-unstyled">
+                        		{{ common_questions_articles }}
+                        	</ul>
                         </div>
                     </div>
                 </div>
                 
             </div>
 		
-		
 		</div>
 		
 		<div class="col-md-9">
 		
-		aaaaa
 			<div class="row">
 			
 				<div class="featured-articles">
-					<div class="col-md-8">
+					<div class="col-md-7">
 						<div class="main-article">
-							<h2>This is a test article</h2>
+							<h2><a href="http://lb88-ttgt.accessdomain.com/drupal/content/different-types-vaccines">Different Types of Vaccines</a></h2>
+							
+							<p>
+								Vaccines are made using several different processes. They may contain live viruses that have been attenuated (weakened or altered so as not to 
+								cause illness); inactivated or killed organisms or viruses; inactivated toxins (for bacterial diseases where toxins generated by the bacteria, 
+								and not the bacteria themselves, cause illness); or merely segments of the pathogen (this includes both subunit and conjugate vaccines).
+							</p>
 						</div>
 					</div>
 				
 				
-					<div class="col-md-4">
-				
+					<div class="col-md-5">
+					
+						<div class="side-articles">
+						
+							<div class="homepage-item">
+								
+								<ul class="link-list recent-posts">
+									{{ popular_articles }}
+								</ul>
+							</div>
+							
+						</div>					
 					</div>
 				</div>
 				
 			</div>
 			
+			<div style="padding:0 20px;">
+				<div class="row">
+					<div class="col-md-12">
+						<hr style="border-color:#ddd;" />
+					</div>
+				</div>
+			</div>
 			
-			<div class="row">
+			
+			<div class="new-articles">
 				
-				<div class="new-articles">
+				<div class="row row-same-height">
 				
+					<ul class="recent-article-list">
+						{{recent_articles}}
+					</ul>
+					
 				</div>
 				
 				

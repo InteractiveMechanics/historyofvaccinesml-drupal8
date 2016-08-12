@@ -1,0 +1,43 @@
+.header-search {
+   width: 350px;
+}
+
+.header-search input {
+	background-position: 316px 4px;
+    background-image: url('http://zulkey.com/mt-static/support/theme_static/rainier/img/search-icon.png');
+    background-repeat: no-repeat;
+    border-color:#313834;
+    background-color:#3e4642;
+    color:#eee;
+}
+
+.header-search input:focus{
+    outline: none !important;
+}
+.header-search #edit-submit {
+	display:none;
+}
+
+.search-page .search-item {
+	padding:20px;
+}
+
+.search-page .search-item .result{
+	border-bottom: 1px dotted #eee;
+	padding:20px 10px;
+	cursor:pointer;
+}
+
+
+.search-page .search-item a {
+	text-decoration:none;
+}
+
+.search-page .search-item .result:hover {
+	background-color:#eee;
+	
+}
+
+.search-page-form {
+	display:none;
+}
