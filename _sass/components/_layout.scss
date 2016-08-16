@@ -24,8 +24,8 @@ body {
 }
 
 .main-content {
-	background:#e5f2fb;
-	padding:15px;
+	background: #e5f2fb;
+	padding: 0 15px;
 }
 .large-block {
 	width:67%;
@@ -58,4 +58,12 @@ body {
 .img-nav img {
 	width:100%;
 	margin-bottom:20px;
+}
+.view-image {
+    float:left;
+    margin:0 10px 5px 0;
+
+    img {
+        max-width: 100px;
+    }
 }

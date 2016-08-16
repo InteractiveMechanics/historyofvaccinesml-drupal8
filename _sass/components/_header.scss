@@ -1,39 +1,55 @@
 .main-nav {
     text-transform:uppercase;
 }
+.list-inline.social-icons {
+    li {
+	    padding:0px;
+        
+        a > img {
+            display: block;
+            width: 22px;
+            height: 22px;
+            top: 4px;
+            position: relative;
+
+            &.facebook { background: #3B5998; }
+            &.twitter { background: #1DA1F2; }
+            &.google { background: #4285F4; }
+        }
+    }
+}
+
 .navbar-default .navbar-nav>.active>a, 
 .navbar-default .navbar-nav>.active>a:focus, 
 .navbar-default .navbar-nav>.active>a:hover {
 	background:#555;
 }
 
-.list-inline.social-icons >li {
-	padding:0px;
-}
 .site-header {
-	    	background-color: #59645f;
-			padding: 10px 40px 20px;
-    	}
-    	
-    	.navbar-default {
-	    	background-color: #606c67 !important;
-			border-radius: 0px !important;
-			color: white;
-			border-color:#606c67 !important;
-    	}
-    	
-    	.navbar {
-	    	border-radius:0px !important;
-	    	border-bottom:1px solid #FFF !important;
-    	}
-    	
-    	.navbar-default .navbar-nav>li>a {
-	    	color:white !important;
-    	}
-    	
-    	.navbar-default .left-menu>li>a:hover {
-	    	background: #555;
-    	}
+	background-color: #59645f;
+	padding: 10px 40px 20px;
+}
+    
+	
+.navbar-default {
+	background-color: #606c67 !important;
+	border-radius: 0px !important;
+	color: white;
+	border-color:#606c67 !important;
+}
+
+.navbar {
+	border-radius:0px !important;
+	border-bottom:1px solid #FFF !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color:white !important;
+}
+
+.navbar-default .left-menu>li>a:hover {
+	background: #555;
+}
     	
     	
 .navbar-default .left-menu li.active:after, .navbar-default .left-menu li.active:before {

@@ -78,7 +78,7 @@
 			<p>
 				{{node.field_about_text[0].value|raw}}
 			</p>
-			<a href="{{front_page}}content/about">More</a>
+			<a href="{{front_page}}content/about" class="view-more inverse">More &#9654;</a>
 		</div>
 		
 		<div class="small-block pull-right hidden-sm hidden-xs">
@@ -151,6 +151,7 @@
 			<ul class="link-list recent-posts">
 				{{ recent_post }}
 			</ul>
+            <a href="{{ front_page }}/drupal/blog" class="view-more">View All &#9654;</a>
 		</div>
 		<div class="sidebar">
 			{% if content.field_rel_quiz_question[0] %}

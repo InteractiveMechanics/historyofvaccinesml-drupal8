@@ -1,52 +1,64 @@
 .quiz-item {
-    background: #88ABC2;
-	border-radius: 10px;
-	
-}
+    background-image: url(../images/poll_btm.png);
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-bottom: 50px;
+    margin-top: 10px;
 
-.quiz-item .questions {
- 	padding: 10px 20px;
- 	color: white;   
-}
+    .header {
+        padding: 5px 20px;
+    	background: #49708A;
+    	color: white;
 
-.quiz-item .answer {
-    font-weight:bold;
-}
+        h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    }
+    .questions {
+     	padding: 10px 20px;
+     	color: white;   
+        background: #6F9DBD;
+    }
+    .answer {
+        font-weight:bold;
+    }
+    .more-info {
+        padding: 15px 20px;
+    	color: white;
+    	border-top:1px dotted white;
+    	background: #6F9DBD;
+    	display:none;
 
-.quiz-item .more-info {
-    padding: 15px 20px;
-	color: white;
-	border-top:1px dotted white;
-	background:#9fbbce;
-	display:none;
-}
+        a {
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .choices {
+        padding: 0 20px;
+        padding-bottom: 20px;
+        background: #6F9DBD;
 
-.quiz-item .choices {
-    padding: 0 20px;
-    margin-bottom:20px;
-    padding-bottom: 20px;
-}
+        ul {
+            margin:0px;
+            padding:0px;
 
-.quiz-item .choices ul {
-    margin:0px;
-    padding:0px;
-}
+            li {
+                color: white;
+            	font-weight: bold;
+            	font-size: 13px;
+            	padding: 8px 10px;
+            	background: #49708A;
+            	cursor: pointer;
+            	margin-bottom: 5px;
 
-.quiz-item .choices ul li {
-    color: white;
-	font-weight: bold;
-	font-size: 13px;
-	padding: 8px 10px;
-	background: #49708A;
-	cursor: pointer;
-	margin-bottom: 5px;
-}
-
-.quiz-item .choice ul li:hover {
-    background:#5b7e95;
-}
-.quiz-item .header {
-    padding: 5px 20px;
-	background: #49708A;
-	color: white;
+                &:hover, &:focus, &:active {
+                    background:#5b7e95;
+                }
+            }
+        }
+    }
 }

@@ -25,16 +25,18 @@
     animation: fadeIn 1s 1 forwards; 
 }
 
-.view-image {
-    float:left;
-    margin:0 10px 5px 0;
-}
-.view-image img {
-    max-width: 100px;
-}
 .js-quickedit-page-title {
-	display:none;
+	display: none;
 }
 .contextual {
     display: none;
+}
+.view-more {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+
+    &.inverse {
+        color: #6B9AB8;
+    }
 }
