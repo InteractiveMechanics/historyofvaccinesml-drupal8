@@ -133,8 +133,6 @@
                 }
                 $images.append($img);
             });
-        } else {
-            console.log('fuck');
         }
     }
     function buildSeadragon(root) {

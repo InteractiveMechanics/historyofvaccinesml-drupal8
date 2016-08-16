@@ -151,29 +151,30 @@
 					{% endif %}
                     {% if content.field_related_media[1] %}
                         <div id="body-mediaitem-switcher">
-                        {% for key, related_media in content.field_related_media[1:] if key|first != '#' %}
-
-                            {% if content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 2 %}
-                				{% set filename = '00000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-
-                            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 3 %}
-                                {% set filename = '0000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-
-                            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 4 %}
-                                {% set filename = '000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-
-    						{% else %}
-    							{% set filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-    						{% endif %}
-                            
-                            {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
-                                <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
-    						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
-                                </div>
-                            {% elseif content.field_related_media[key]['#node'].field_taxonomy.target_id == 37 %}
-                                <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="video" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
-    						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
-                                </div>
+                        {% for key, related_media in content.field_related_media if key|first != '#' %}
+                            {% if loop.index0 > 0 %}
+                                {% if content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 2 %}
+                    				{% set filename = '00000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+    
+                                {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 3 %}
+                                    {% set filename = '0000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+    
+                                {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 4 %}
+                                    {% set filename = '000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+    
+        						{% else %}
+        							{% set filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+        						{% endif %}
+                                
+                                {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
+                                    <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
+        						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
+                                    </div>
+                                {% elseif content.field_related_media[key]['#node'].field_taxonomy.target_id == 37 %}
+                                    <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="video" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
+        						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                         </div>
