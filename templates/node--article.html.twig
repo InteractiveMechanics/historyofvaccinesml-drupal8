@@ -70,18 +70,27 @@
         var data = [];
         {% for key, related_media in content.field_related_media if key|first != '#' %}
 
-            {% if content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 2 %}
-				{% set orig_filename = '00000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-
-            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 3 %}
-                {% set orig_filename = '0000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-
-            {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 4 %}
-                {% set orig_filename = '000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-
-			{% else %}
-				{% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-			{% endif %}
+            {% if content.field_related_media[key]['#node'].field_orig_filename[0].value ends with "m4v" %}
+                {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value|split('.')[0] %}
+            {% else %}
+                {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+            {% endif %}
+        
+            {% if orig_filename|length == 1 %}
+        		{% set orig_filename = '00000' ~ orig_filename %}
+        
+            {% elseif orig_filename|length == 2 %}
+                {% set orig_filename = '0000' ~ orig_filename %}
+        
+            {% elseif orig_filename|length == 3 %}
+                {% set orig_filename = '000' ~ orig_filename %}
+        
+            {% elseif orig_filename|length == 4 %}
+                {% set orig_filename = '00' ~ orig_filename %}
+        
+            {% elseif orig_filename|length == 5 %}
+                {% set orig_filename = '0' ~ orig_filename %}
+        	{% endif %}
 
             {% if content.field_related_media[key]['#node'].field_orig_filename[0].value %}
                 {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
@@ -116,23 +125,31 @@
 					
 				<div class="body-mediaitem">
 					{% if content.field_related_media[0] %}
-		
-						{% if content.field_related_media[0]['#node'].field_orig_filename[0].value|length < 2 %}
-            				{% set orig_filename = '00000' ~ content.field_related_media[0]['#node'].field_orig_filename[0].value %}
-
-                        {% elseif content.field_related_media[0]['#node'].field_orig_filename[0].value|length < 3 %}
-                            {% set orig_filename = '0000' ~ content.field_related_media[0]['#node'].field_orig_filename[0].value %}
-
-                        {% elseif content.field_related_media[0]['#node'].field_orig_filename[0].value|length < 4 %}
-                            {% set orig_filename = '000' ~ content.field_related_media[0]['#node'].field_orig_filename[0].value %}
-
+                        {% if content.field_related_media[0]['#node'].field_orig_filename[0].value ends with "m4v" %}
+                            {% set orig_filename = content.field_related_media[0]['#node'].field_orig_filename[0].value|split('.')[0] %}
                         {% else %}
-							{% set orig_filename = content.field_related_media[0]['#node'].field_orig_filename[0].value %}
-						{% endif %}
+                            {% set orig_filename = content.field_related_media[0]['#node'].field_orig_filename[0].value %}
+                        {% endif %}
+                    
+                        {% if orig_filename|length == 1 %}
+                    		{% set orig_filename = '00000' ~ orig_filename %}
+                    
+                        {% elseif orig_filename|length == 2 %}
+                            {% set orig_filename = '0000' ~ orig_filename %}
+                    
+                        {% elseif orig_filename|length == 3 %}
+                            {% set orig_filename = '000' ~ orig_filename %}
+                    
+                        {% elseif orig_filename|length == 4 %}
+                            {% set orig_filename = '00' ~ orig_filename %}
+                    
+                        {% elseif orig_filename|length == 5 %}
+                            {% set orig_filename = '0' ~ orig_filename %}
+                    	{% endif %}
 
                         <div class="gallery-image-container">
                             <div class="image {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 37 %}hidden{% endif %}">
-                                {% if content.field_related_media[0]['#node'].field_taxonomy.target_id %}
+                                {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 36 %}
                                 <div 
                                     class="show-modal" 
                                     data-filename="{{ orig_filename }}"
@@ -146,25 +163,38 @@
                                 </div>
                             {% endif %}
                         </div>
-						<p><small>{{ content.field_related_media[0]['#node'].field_caption.value }} <br /><b>{{ content.field_related_media[0]['#node'].field_copyright.value }}</b></small></p>
+						<p><small>{{ content.field_related_media[0]['#node'].field_caption.value }}
+                            {% if content.field_related_media[0]['#node'].field_copyright[0]['#node'].title.value %}
+                                <br/><b>{{ content['#node'].title.value|raw }}</b>
+                            {% endif %}
+                        </small></p>
 
 					{% endif %}
                     {% if content.field_related_media[1] %}
                         <div id="body-mediaitem-switcher">
                         {% for key, related_media in content.field_related_media if key|first != '#' %}
                             {% if loop.index0 > 0 %}
-                                {% if content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 2 %}
-                    				{% set filename = '00000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-    
-                                {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 3 %}
-                                    {% set filename = '0000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-    
-                                {% elseif content.field_related_media[key]['#node'].field_orig_filename[0].value|length < 4 %}
-                                    {% set filename = '000' ~ content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-    
-        						{% else %}
-        							{% set filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-        						{% endif %}
+                                {% if content.field_related_media[key]['#node'].field_orig_filename[0].value ends with "m4v" %}
+                                    {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value|split('.')[0] %}
+                                {% else %}
+                                    {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+                                {% endif %}
+                            
+                                {% if orig_filename|length == 1 %}
+                            		{% set orig_filename = '00000' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 2 %}
+                                    {% set orig_filename = '0000' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 3 %}
+                                    {% set orig_filename = '000' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 4 %}
+                                    {% set orig_filename = '00' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 5 %}
+                                    {% set orig_filename = '0' ~ orig_filename %}
+                            	{% endif %}
                                 
                                 {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
                                     <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">

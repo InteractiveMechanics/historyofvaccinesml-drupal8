@@ -11,4 +11,16 @@ footer {
    	&:hover {
 		color: #888;
  	}
+
+    @include screen-ltmd {
+        .pull-right, 
+        .pull-left {
+        	float:none !important;
+        	text-align:center;
+        }
+        .text-right {
+        	text-align:center !important;
+        	margin-top:12px;
+        }
+    }
 }

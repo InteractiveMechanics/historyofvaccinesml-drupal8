@@ -132,20 +132,36 @@
 							</p>
 							
 							{% if activities['#node'].field_related_media[0] %}
-							
-								
 
-								{% if activities['#node'].field_related_media[0].entity.field_orig_filename.value|length < 4 %}
-									{% set orig_filename = '000' ~ activities['#node'].field_related_media[0].entity.field_orig_filename.value %}
-								{% else %}
-									{% set orig_filename = activities['#node'].field_related_media[0].entity.field_orig_filename.value %}
-								{% endif %}
+                                {% if activities['#node'].field_related_media[0].entity.field_orig_filename.value ends with "m4v" %}
+                                    {% set orig_filename = activities['#node'].field_related_media[0].entity.field_orig_filename.value|split('.')[0] %}
+                                {% else %}
+                                    {% set orig_filename = activities['#node'].field_related_media[0].entity.field_orig_filename.value %}
+                                {% endif %}
+                            
+                                {% if orig_filename|length == 1 %}
+                            		{% set orig_filename = '00000' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 2 %}
+                                    {% set orig_filename = '0000' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 3 %}
+                                    {% set orig_filename = '000' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 4 %}
+                                    {% set orig_filename = '00' ~ orig_filename %}
+                            
+                                {% elseif orig_filename|length == 5 %}
+                                    {% set orig_filename = '0' ~ orig_filename %}
+                            	{% endif %}
 								
 							{% endif %}
 							
 							<p>
-								<img style="float:left; margin-right:15px; margin-bottom:5px; width:65px;" 
-								src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg">
+                                {% if orig_filename %}
+								    <img style="float:left; margin-right:15px; margin-bottom:5px; width:65px;" 
+                                        src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg">
+                                {% endif %}
 								{{ activities['#node'].field_synopsis.value|raw   }}
 								<br style="clear:both;" />
 							</p>

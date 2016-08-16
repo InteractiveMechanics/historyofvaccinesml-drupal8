@@ -1,22 +1,9 @@
 .activity-node {
-    margin: -15px 0;
-
-    @media screen and #{$screen-xs} {
-        margin: -15px;
-    }
+    margin: -15px;
 
     .activity {
     	background-color:black;
-    	margin-bottom:60px;
-    	padding: 35px 0;
-
-        @media screen and #{$screen-ltlg} {
-            padding: 15px 0;
-        }
-        @media screen and #{$screen-xs} {
-            padding: 0;
-            margin-bottom: 30px;
-        }
+    	margin-bottom: 30px;
 
         canvas {
             max-height: inherit !important;
@@ -69,5 +56,21 @@
         height: 175px;
         float: left;
         padding: 0 15px;
+    }
+}
+
+#swiffy-wrapper {
+    height: auto;
+    margin: 0 auto;
+}
+#swiffycontainer {
+    height: 596px;
+    width: 100%;
+
+    @include screen-sm {
+        height: 340px;
+    }
+    @include screen-xs {
+        height: 240px;
     }
 }

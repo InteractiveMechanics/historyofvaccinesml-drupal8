@@ -41,6 +41,11 @@ body {
   margin-bottom: 1px;
   background: url(../images/BG_2014_100.gif) top center no-repeat; }
 
+@media (max-width: 991px) {
+  .container,
+  .container-fluid {
+    padding: 0px !important; } }
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
@@ -63,8 +68,20 @@ body {
   padding: 15px; }
 
 .large-block {
-  width: 67%; }
-  @media only screen and (max-width: 768px) {
+  width: 67%;
+  overflow: hidden;
+  height: 340px; }
+  .large-block img {
+    margin: 0;
+    min-height: 300px;
+    width: 100%; }
+    @media (max-width: 1199px) {
+      .large-block img {
+        min-height: 280px; } }
+  @media (max-width: 1199px) {
+    .large-block {
+      height: 280px; } }
+  @media (max-width: 767px) {
     .large-block {
       float: none !important;
       width: 100%; } }
@@ -72,17 +89,28 @@ body {
 .small-block {
   width: 33%;
   color: white;
-  height: 139px; }
-  @media only screen and (max-width: 768px) {
+  height: 170px;
+  overflow: hidden; }
+  @media (max-width: 1199px) {
+    .small-block {
+      height: 140px; } }
+  @media (max-width: 767px) {
     .small-block {
       float: none !important;
       width: 100%;
-      display: none; } }
+      height: auto; } }
+  .small-block img {
+    margin: 0;
+    width: 100%;
+    height: auto !important; }
   .small-block.dark-blue-block {
     background-color: rgba(64, 80, 95, 0.9);
     box-shadow: inset 0 -30px 18px -20px rgba(0, 0, 0, 0.4);
     padding: 30px;
     font-size: 13px; }
+    @media (max-width: 1199px) {
+      .small-block.dark-blue-block {
+        padding: 25px; } }
 
 img {
   max-width: 100%;
@@ -103,6 +131,8 @@ img {
 
 .list-inline.social-icons li {
   padding: 0px; }
+  .list-inline.social-icons li img {
+    margin-bottom: 0; }
   .list-inline.social-icons li a > img {
     display: block;
     width: 22px;
@@ -125,58 +155,73 @@ img {
   background-color: #59645f;
   padding: 10px 40px 20px; }
 
+#navbar {
+  padding: 0;
+  margin: 0; }
+
+.navbar {
+  border-radius: 0px !important;
+  border-bottom: 1px solid #FFF !important;
+  margin-bottom: 0; }
+  @media (max-width: 991px) {
+    .navbar {
+      padding: 12px 0; } }
+  @media (max-width: 991px) {
+    .navbar .mobile-logo {
+      display: block; } }
+
 .navbar-default {
   background-color: #606c67 !important;
   border-radius: 0px !important;
   color: white;
   border-color: #606c67 !important; }
+  .navbar-default .navbar-nav > li > a {
+    color: white !important; }
+    .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:active {
+      background: #555; }
+  .navbar-default .small-links {
+    margin-right: 5px; }
+    @media (max-width: 1199px) {
+      .navbar-default .small-links a {
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 13px; } }
+  .navbar-default .left-menu li.active:after,
+  .navbar-default .left-menu li.active:before {
+    bottom: 0%;
+    margin-bottom: -2px;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none; }
+  .navbar-default .left-menu li.active:after {
+    border-bottom-color: #fff;
+    border-width: 6px;
+    margin-left: -6px;
+    z-index: 1; }
+  .navbar-default .left-menu li.active:before {
+    border-width: 9px;
+    margin-left: -9px;
+    z-index: 1; }
+  .navbar-default .left-menu > li.active a {
+    background: #555; }
+  .navbar-default .navbar-toggle {
+    border: none;
+    font-size: 12px;
+    font-weight: 400; }
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:active {
+      background: none !important; }
 
-.navbar {
-  border-radius: 0px !important;
-  border-bottom: 1px solid #FFF !important; }
+@media (max-width: 991px) {
+  .navbar-default .container,
+  .navbar-default.container {
+    padding: 0 15px !important; }
 
-.navbar-default .navbar-nav > li > a {
-  color: white !important; }
-
-.navbar-default .left-menu > li > a:hover {
-  background: #555; }
-
-.navbar-default .left-menu li.active:after, .navbar-default .left-menu li.active:before {
-  bottom: 0%;
-  margin-bottom: -2px;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none; }
-
-.navbar-default .left-menu li.active:after {
-  border-bottom-color: #fff;
-  border-width: 6px;
-  margin-left: -6px;
-  z-index: 1; }
-
-.navbar-default .left-menu li.active:before {
-  border-width: 9px;
-  margin-left: -9px;
-  z-index: 1; }
-
-.navbar-default .left-menu > li.active a {
-  background: #555; }
-
-.navbar {
-  margin-bottom: 0px; }
-
-.navbar-default .navbar-toggle {
-  border: none;
-  font-size: 12px;
-  font-weight: 400; }
-
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background: none !important; }
-
+  .site-header {
+    display: none; } }
 footer {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -186,6 +231,14 @@ footer {
     color: #888; }
   footer:hover {
     color: #888; }
+  @media (max-width: 991px) {
+    footer .pull-right,
+    footer .pull-left {
+      float: none !important;
+      text-align: center; }
+    footer .text-right {
+      text-align: center !important;
+      margin-top: 12px; } }
 
 .new-articles .contextual-region .contextual .contextual-links {
   display: none !important; }
@@ -680,21 +733,10 @@ ul.recent-posts li {
   display: none; }
 
 .activity-node {
-  margin: -15px 0; }
-  @media screen and (max-width: 767px) {
-    .activity-node {
-      margin: -15px; } }
+  margin: -15px; }
   .activity-node .activity {
     background-color: black;
-    margin-bottom: 60px;
-    padding: 35px 0; }
-    @media screen and (max-width: 1199px) {
-      .activity-node .activity {
-        padding: 15px 0; } }
-    @media screen and (max-width: 767px) {
-      .activity-node .activity {
-        padding: 0;
-        margin-bottom: 30px; } }
+    margin-bottom: 30px; }
     .activity-node .activity canvas {
       max-height: inherit !important;
       width: 100% !important; }
@@ -731,6 +773,20 @@ ul.recent-posts li {
     height: 175px;
     float: left;
     padding: 0 15px; }
+
+#swiffy-wrapper {
+  height: auto;
+  margin: 0 auto; }
+
+#swiffycontainer {
+  height: 596px;
+  width: 100%; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    #swiffycontainer {
+      height: 340px; } }
+  @media (max-width: 767px) {
+    #swiffycontainer {
+      height: 240px; } }
 
 .gallery .back-to-results {
   margin-top: 8px; }

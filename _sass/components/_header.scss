@@ -4,6 +4,10 @@
 .list-inline.social-icons {
     li {
 	    padding:0px;
+
+        img {
+            margin-bottom: 0;
+        }
         
         a > img {
             display: block;
@@ -29,66 +33,101 @@
 	background-color: #59645f;
 	padding: 10px 40px 20px;
 }
-    
-	
+
+#navbar {
+    padding: 0;
+    margin: 0;
+}
+.navbar {
+	border-radius:0px !important;
+	border-bottom:1px solid #FFF !important;
+    margin-bottom: 0;
+
+    @include screen-ltmd {
+        padding:12px 0;
+    }
+
+    .mobile-logo {
+        @include screen-ltmd {
+            display:block;
+        }
+    }
+}
 .navbar-default {
 	background-color: #606c67 !important;
 	border-radius: 0px !important;
 	color: white;
 	border-color:#606c67 !important;
-}
 
-.navbar {
-	border-radius:0px !important;
-	border-bottom:1px solid #FFF !important;
-}
+    .navbar-nav > li > a {
+    	color:white !important;
 
-.navbar-default .navbar-nav>li>a {
-	color:white !important;
-}
+        &:hover, &:focus, &:active {
+            background: #555;
+        }
+    }
 
-.navbar-default .left-menu>li>a:hover {
-	background: #555;
-}
+    .small-links {
+        margin-right: 5px;
+
+        a {
+            @include screen-ltlg {
+                padding-left: 8px;
+                padding-right: 8px;
+                font-size: 13px;
+            }
+        }
+    }
+    .left-menu {
+
+        li.active:after, 
+        li.active:before {
+        	bottom: 0%;
+            margin-bottom: -2px;
+        	left: 50%;
+        	border: solid transparent;
+        	content: " ";
+        	height: 0;
+        	width: 0;
+        	position: absolute;
+        	pointer-events: none;
+        }
+    
+        li.active:after {
+        	border-bottom-color: #fff;
+        	border-width: 6px;
+        	margin-left: -6px;
+            z-index: 1;
+        }
+        li.active:before {
+        	border-width: 9px;
+        	margin-left: -9px;
+            z-index: 1;
+        }
     	
-    	
-.navbar-default .left-menu li.active:after, .navbar-default .left-menu li.active:before {
-	bottom: 0%;
-    margin-bottom: -2px;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-.navbar-default .left-menu li.active:after {
-	border-bottom-color: #fff;
-	border-width: 6px;
-	margin-left: -6px;
-    z-index: 1;
-}
-.navbar-default .left-menu li.active:before {
-	border-width: 9px;
-	margin-left: -9px;
-    z-index: 1;
-}
-    	
-    	.navbar-default .left-menu>li.active a {
+    	> li.active a {
 	    	background:#555;
     	}
-    	
-    	.navbar {
-	    	margin-bottom:0px;
-    	}
-.navbar-default .navbar-toggle {
-    border: none;
-    font-size: 12px;
-    font-weight: 400;
+    }
+
+    .navbar-toggle {
+        border: none;
+        font-size: 12px;
+        font-weight: 400;
+
+        &:hover, &:focus, &:active {
+            background:none !important;
+        }
+    }
 }
 
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background:none !important;
+@include screen-ltmd {
+    .navbar-default .container, 
+    .navbar-default.container {
+    	padding: 0 15px !important;
+    }
+    
+    .site-header {
+    	display: none;
+    }
 }

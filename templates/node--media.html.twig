@@ -67,17 +67,26 @@
 #}
 
 <script>
-    {% if node.field_orig_filename[0].value|length < 2 %}
-		{% set orig_filename = '00000' ~ node.field_orig_filename[0].value %}
+    {% if node.field_orig_filename[0].value ends with "m4v" %}
+        {% set orig_filename = node.field_orig_filename[0].value|split('.')[0] %}
+    {% else %}
+        {% set orig_filename = node.field_orig_filename[0].value %}
+    {% endif %}
 
-    {% elseif node.field_orig_filename[0].value|length < 3 %}
-        {% set orig_filename = '0000' ~ node.field_orig_filename[0].value %}
+    {% if orig_filename|length == 1 %}
+		{% set orig_filename = '00000' ~ orig_filename %}
 
-    {% elseif node.field_orig_filename[0].value|length < 4 %}
-        {% set orig_filename = '000' ~ node.field_orig_filename[0].value %}
+    {% elseif orig_filename|length == 2 %}
+        {% set orig_filename = '0000' ~ orig_filename %}
 
-	{% else %}
-		{% set orig_filename = node.field_orig_filename[0].value %}
+    {% elseif orig_filename|length == 3 %}
+        {% set orig_filename = '000' ~ orig_filename %}
+
+    {% elseif orig_filename|length == 4 %}
+        {% set orig_filename = '00' ~ orig_filename %}
+
+    {% elseif orig_filename|length == 5 %}
+        {% set orig_filename = '0' ~ orig_filename %}
 	{% endif %}
 
     var data = [];
