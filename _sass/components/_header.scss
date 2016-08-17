@@ -36,7 +36,6 @@
 
 #navbar {
     padding: 0;
-    margin: 0;
 }
 .navbar {
 	border-radius:0px !important;
@@ -46,10 +45,19 @@
     @include screen-ltmd {
         padding:12px 0;
     }
+    @include screen-sm {
+        padding-bottom: 0;
+    }
 
     .mobile-logo {
         @include screen-ltmd {
             display:block;
+        }
+        @include screen-sm {
+            margin-left: 10px;
+        }
+        @include screen-xs {
+            margin-left: 10px;
         }
     }
 }
@@ -59,8 +67,17 @@
 	color: white;
 	border-color:#606c67 !important;
 
+    @include screen-xs {
+        height: 70px;
+    }
+
     .navbar-nav > li > a {
     	color:white !important;
+
+        @include screen-xs {
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
 
         &:hover, &:focus, &:active {
             background: #555;
@@ -69,6 +86,17 @@
 
     .small-links {
         margin-right: 5px;
+
+        @include screen-sm {
+            margin-right: 0;
+            padding-right: 5px;
+            background: #59645F;
+            width: 100%;
+
+            li {
+                float: right;
+            }
+        }
 
         a {
             @include screen-ltlg {
@@ -80,10 +108,15 @@
     }
     .left-menu {
 
+        @include screen-sm {
+            float: right;
+        }
+
         li.active:after, 
         li.active:before {
         	bottom: 0%;
-            margin-bottom: -2px;
+            margin-bottom: -1px;
+            margin-left: -5px;
         	left: 50%;
         	border: solid transparent;
         	content: " ";
@@ -91,13 +124,28 @@
         	width: 0;
         	position: absolute;
         	pointer-events: none;
+
+            @include screen-sm {
+                margin-bottom: 0px;
+            }
+            @include screen-xs {
+                left: 0;
+                top: 50%;
+                margin-top: -6px;
+                margin-bottom: 0;
+                margin-left: 0;
+            }
         }
     
         li.active:after {
         	border-bottom-color: #fff;
         	border-width: 6px;
-        	margin-left: -6px;
             z-index: 1;
+
+            @include screen-xs {
+                border-left-color: #fff;
+                border-bottom-color: transparent;
+            }
         }
         li.active:before {
         	border-width: 9px;
@@ -109,7 +157,6 @@
 	    	background:#555;
     	}
     }
-
     .navbar-toggle {
         border: none;
         font-size: 12px;
@@ -117,6 +164,11 @@
 
         &:hover, &:focus, &:active {
             background:none !important;
+        }
+
+        @include screen-xs {
+            margin-right: 25px;
+            margin-top: 4px;
         }
     }
 }
@@ -129,5 +181,30 @@
     
     .site-header {
     	display: none;
+    }
+}
+@include screen-xs {
+    #navbar {
+        background-color: #606c67 !important;
+        z-index: 1;
+        position: relative;
+        top: 10px;
+        box-shadow: 0 5px 25px rgba(0,0,0,.35);
+    }
+    .main-nav {
+        padding: 0 30px;
+    }
+    .mobile-nav {
+        padding: 0 30px;
+
+        > ul {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: white;
+            line-height: 2.1;
+            font-size: 1.3rem;
+        }
     }
 }

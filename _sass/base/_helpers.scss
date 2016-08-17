@@ -40,3 +40,14 @@
         color: #6B9AB8;
     }
 }
+
+.clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}

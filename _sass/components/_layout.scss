@@ -48,14 +48,23 @@ body {
         @include screen-ltlg {
             min-height: 280px;
         }
+        @include screen-xs {
+            min-height: 0;
+        }
     }
 
     @include screen-ltlg {
         height: 280px;
     }
+    @include screen-sm {
+        float:none !important; 
+        width:100%;
+        height: auto;
+    }
     @include screen-xs {
         float:none !important; 
         width:100%;
+        height: auto;
     }
 }
 

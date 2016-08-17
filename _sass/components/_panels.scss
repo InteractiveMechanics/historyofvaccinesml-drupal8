@@ -9,7 +9,13 @@
         }
     }
 }
-		
+	
+#filtersList {
+    @include screen-xs {
+        margin: 0 -16px;
+    }
+}
+	
 .panel-group {
     .panel {
     	border-radius:0px;
@@ -20,6 +26,10 @@
         	background-color: #2A594D;
         	color:#FFF;
         	border-radius:0px;
+
+            @include screen-xs {
+                margin: -16px -16px 0;
+            }
 
             a:hover{
     			text-decoration:none;
@@ -32,9 +42,31 @@
 			color: #ddd;
 		}
 		.panel-body {
-			padding:0px;
 			background-color:#36AA6B;
 
+            @include screen-xs {
+                padding: 15px;
+                box-shadow: 0 5px 25px rgba(0,0,0,.35);
+            }
+            
+            label {
+                font-size: 14px;
+                color: white;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: 400;
+                margin: 10px 0 0;
+            }
+            .checkbox {
+                margin-top: 5px;
+                margin-bottom: 5px;
+
+                label {
+                    text-transform: none;
+                    letter-spacing: 0;
+                    font-weight: 400;
+                }
+            }
             a {
     			font-size:13px;
     			color:white;

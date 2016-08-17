@@ -56,6 +56,27 @@
         height: 175px;
         float: left;
         padding: 0 15px;
+
+        @include screen-sm {
+            width: 50%;
+            height: 150px;
+            padding: 0 30px;
+        }
+        @include screen-xs {
+            width: 100%;
+            height: auto;
+            float: none;
+            padding: 0 30px;
+            
+            &:before,
+            &:after {
+                content: " ";
+                display: table;
+            }
+            &:after {
+                clear: both;
+            }
+        }
     }
 }
 
