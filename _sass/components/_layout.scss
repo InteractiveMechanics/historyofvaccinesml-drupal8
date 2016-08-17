@@ -1,6 +1,7 @@
 body {
 	margin-bottom: 1px;
 	background: url(../images/BG_2014_100.gif) top center no-repeat;
+    overflow-x: hidden;
 }
 
 .container, 
@@ -63,6 +64,7 @@ body {
 	color:white;
     height: 170px;
     overflow: hidden;
+    position: relative;
 
     @include screen-ltlg {
         height: 140px;
@@ -77,6 +79,8 @@ body {
         margin: 0;
         width: 100%;
         height: auto !important;
+        position: absolute;
+        bottom: 0;
     }
 
     &.dark-blue-block {

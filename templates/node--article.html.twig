@@ -218,7 +218,7 @@
 				{% if content.field_related_timeline_entries[0] %}
 					{% for key, entry in content.field_related_timeline_entries if key|first != '#' %}
 						<div class="timeline-entry border-box">
-							<p class="date">Timeline Entry: {{ entry['#node'].created.value|date("m/d/Y") }}</p>
+							<p class="date">Timeline Entry: {{ entry['#node'].field_event_date.value }}</p>
 						
 							<p class="title">{{ entry['#node'].title.value }}</p>
 						
