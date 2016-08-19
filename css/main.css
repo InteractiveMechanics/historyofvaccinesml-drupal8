@@ -43,6 +43,9 @@
 .clearfix:after, ul.recent-posts li:after {
   clear: both; }
 
+p {
+  word-wrap: break-word; }
+
 body {
   margin-bottom: 1px;
   background: url(../images/BG_2014_100.gif) top center no-repeat;
@@ -346,7 +349,7 @@ footer {
       min-height: 250px;
       float: left;
       padding: 0 15px; }
-    @media screen and (max-width: 991px) {
+    @media (max-width: 991px) {
       .new-articles ul li {
         list-style: none;
         width: 100%;
@@ -354,6 +357,9 @@ footer {
         float: left;
         padding: 0 15px; } }
 
+@media (max-width: 767px) {
+  .sidebar {
+    display: none; } }
 .sidebar .sidebar-item {
   margin-bottom: 35px; }
   .sidebar .sidebar-item h5 {
@@ -391,6 +397,11 @@ button.collapsed span.glyphicon-menu-hamburger {
   float: right;
   margin-left: 15px;
   width: 300px; }
+  @media (max-width: 767px) {
+    .body-mediaitem {
+      float: none;
+      width: 100%;
+      margin: 0; } }
   .body-mediaitem p {
     font-size: 11px;
     margin: 5px 0px;
@@ -662,11 +673,11 @@ button.collapsed span.glyphicon-menu-hamburger {
         .quiz-item .choices ul li:hover, .quiz-item .choices ul li:focus, .quiz-item .choices ul li:active {
           background: #5b7e95; }
 
-.panel-body ul li {
-  margin-bottom: 10px;
+.panel-body ul li a {
+  margin-bottom: 5px;
   padding: 5px 15px;
   cursor: pointer; }
-  .panel-body ul li:hover, .panel-body ul li:focus, .panel-body ul li:active {
+  .panel-body ul li a:hover, .panel-body ul li a:focus, .panel-body ul li a:active {
     background: rgba(255, 255, 255, 0.2); }
 
 @media (max-width: 767px) {
@@ -692,11 +703,13 @@ button.collapsed span.glyphicon-menu-hamburger {
     font-size: 14px;
     color: #ddd; }
   .panel-group .panel .panel-body {
-    background-color: #36AA6B; }
+    background-color: #36AA6B;
+    border: none !important; }
     @media (max-width: 767px) {
       .panel-group .panel .panel-body {
-        padding: 15px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.35); } }
+        padding: 0;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.35);
+        margin: 0 -16px; } }
     .panel-group .panel .panel-body label {
       font-size: 14px;
       color: white;
@@ -789,6 +802,10 @@ ul.recent-posts li {
     font-weight: bold; }
   .article-node .article h2 {
     font-size: 2rem; }
+  .article-node .article li {
+    line-height: 30px;
+    font-size: 15px;
+    margin-bottom: 10px; }
   .article-node .article p {
     margin: 0 0 10px;
     line-height: 30px;
@@ -1023,7 +1040,8 @@ ul.recent-posts li {
 .blog-author {
   font-size: 12px;
   color: #888;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  display: inline-block; }
 
 a.rss-link {
   display: inline-block;
@@ -1046,19 +1064,23 @@ a.rss-link {
   font-size: 24px;
   margin: 12px 0 0px;
   font-weight: 600; }
-
 .blog-page .views-field-field-taxonomy {
   display: block;
   clear: both; }
 
 .blog h1 {
   margin-bottom: 5px; }
-
 .blog .article img {
   float: left;
   margin-bottom: 20px;
   margin-right: 15px; }
-
+  @media (max-width: 767px) {
+    .blog .article img {
+      max-width: 120px;
+      height: auto;
+      float: right;
+      margin-right: 0;
+      margin-left: 15px; } }
 .blog .article .author {
   font-size: 11px;
   color: #888;

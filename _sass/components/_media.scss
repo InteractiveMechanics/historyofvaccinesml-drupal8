@@ -3,6 +3,12 @@
     margin-left:15px;
     width:300px;
 
+    @include screen-xs {
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+
     p {
         font-size:11px;
         margin:5px 0px;

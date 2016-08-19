@@ -24,7 +24,7 @@
             padding: 0 15px;
         }
         
-        @media screen and ($screen-ltmd) {
+        @include screen-ltmd {
 		    li {
 		        list-style: none;
 		        width: 100%;
@@ -35,20 +35,26 @@
 		}
     }
 }
-.sidebar .sidebar-item {
-    margin-bottom:35px;
-		
-	h5 {
-		color:maroon;
-    	text-transform:uppercase;
-    	letter-spacing:1px;
-	}
-	ul {
-		padding-left:0px;	
-		padding-top:0px;
+.sidebar {
+    @include screen-xs {
+        display: none;
+    }
 
-        li {
-			list-style:none;
-		}
+    .sidebar-item {
+        margin-bottom:35px;
+    		
+    	h5 {
+    		color:maroon;
+        	text-transform:uppercase;
+        	letter-spacing:1px;
+    	}
+    	ul {
+    		padding-left:0px;	
+    		padding-top:0px;
+    
+            li {
+    			list-style:none;
+    		}
+        }
     }
 }

@@ -1,6 +1,6 @@
 .panel-body {
-    ul li {
-    	margin-bottom:10px;
+    ul li a {
+    	margin-bottom:5px;
     	padding:5px 15px;
     	cursor:pointer;
 
@@ -43,10 +43,12 @@
 		}
 		.panel-body {
 			background-color:#36AA6B;
+            border: none !important;
 
             @include screen-xs {
-                padding: 15px;
+                padding: 0;
                 box-shadow: 0 5px 25px rgba(0,0,0,.35);
+                margin: 0 -16px;
             }
             
             label {
