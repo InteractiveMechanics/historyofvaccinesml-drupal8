@@ -76,12 +76,13 @@
 			<div class="year">
 				{{year}}
 			</div>
-			<div class="timeline-entry" data-year="{{year}}" data-title="{{title}}" data-body='{{description}}' data-filename="{{filename}}" data-toggle="modal" data-target="#myModal">
-			{{#if filename}}
-				<div class="image">
-					<img src="http://media.historyofvaccines.org/images/{{ filename }}_90.jpg" alt="{{title}}" />
-				</div>
-			{{/if}}
+			<div class="timeline-entry" data-year="{{year}}" data-title="{{title}}" data-body='{{description}}' 
+				data-filename="{{#each filename}}{{this}}|,|{{/each}}" data-toggle="modal" data-target="#myModal">
+					{{#if filename.[0]}}
+						<div class="image">
+							<img src="http://media.historyofvaccines.org/images/{{filename.[0]}}_90.jpg" alt="{{title}}" />
+						</div>
+					{{/if}}
 				
 				<div class="title">
 					{{title}}
@@ -116,7 +117,7 @@
 		 idArray.push($(this).text().trim());
 		});
 		
-		console.log(bodyArray);
+		//console.log(bodyArray);
 
 		var dateArray = [];
 		$( '.timeline-date' ).each(function() {
@@ -165,19 +166,40 @@
 		
 		var timelineData = [];
 		
-		for (i = 0; i < titleArray.length; i++) {
-			timelineData.push(
+		var append = 0;
+		var append_to = 0;
+
+		for(i = 0; i < titleArray.length; i++) 
+		{
+			append = 0;
+			for(x = 0; x < timelineData.length; x++) 
+			{
+				if(timelineData[x].title == titleArray[i] && timelineData[x].year == dateArray[i])
 				{
-					year: dateArray[i],
-					title: titleArray[i],
-					filename: fileNameArray[i],
-					category: categoryArray[i],
-					description: bodyArray[i],
-					start: dateArray[i]
+					append = 1;
+					append_to = x;
 				}
-			);
+			}
+
+			if(append == 1)
+			{
+				append = 0;
+				timelineData[append_to].filename.push(fileNameArray[i]);
+			}
+			else
+			{
+				timelineData.push(
+					{
+						year: dateArray[i],
+						title: titleArray[i],
+						filename: [fileNameArray[i]],
+						category: categoryArray[i],
+						description: bodyArray[i],
+						start: dateArray[i]
+					}
+				);
+			}
 		}
-		
 		
 		//test
 		var source   = $("#item-template").html();
@@ -212,8 +234,6 @@
 		
 		// Create a Timeline
 		var timeline = new vis.Timeline(container, items, options);
-		
-		
 		
 		$(document).ready(function(){
 			var eventLocationID = window.location.hash.substring(1);

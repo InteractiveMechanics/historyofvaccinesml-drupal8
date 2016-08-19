@@ -163,9 +163,9 @@
                                 </div>
                             {% endif %}
                         </div>
-						<p><small>{{ content.field_related_media[0]['#node'].field_caption.value }}
-                            {% if content.field_related_media[0]['#node'].field_copyright[0]['#node'].title.value %}
-                                <br/><b>{{ content['#node'].title.value|raw }}</b>
+						<p><small><em>{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }}</em>
+                            {% if content.field_related_media[0]['#node'].field_copyright.entity.title.value %}
+                                <br /><b>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }}</b>
                             {% endif %}
                         </small></p>
 
@@ -213,6 +213,9 @@
 				
 				{{ node.body[0].value|raw  }}
 				
+				{{kint(content)}}
+				
+				{{content.comment_no_subject}}
 				</div>
 				
 				{% if content.field_related_timeline_entries[0] %}
@@ -261,6 +264,43 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">	
+	
+	$(document).ready(function(){
+		var taxID = {{node.field_taxonomy.target_id}};
+		
+		if(taxID == 1) {
+			$('.panel-title:eq(4)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+			$('#collapseFive').addClass('in');	
+		}
+		
+		if(taxID == 2) {
+			$('.panel-title:eq(3)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+			$('#collapseFour').addClass('in');	
+		}
+		
+		if(taxID == 3) {
+			$('.panel-title:eq(1)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+			$('#collapseTwo').addClass('in');	
+		}
+		
+		if(taxID == 4) {
+			$('.panel-title:eq(2)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+			$('#collapseThree').addClass('in');	
+		}
+		
+		if(taxID == 5) {
+			$('.panel-title:eq(0)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+			$('#collapseOne').addClass('in');	
+		}
+		
+		
+		
+		
+	});
+
+</script>
 
 
 <script type="text/javascript">

@@ -346,6 +346,13 @@ footer {
       min-height: 250px;
       float: left;
       padding: 0 15px; }
+    @media screen and (max-width: 991px) {
+      .new-articles ul li {
+        list-style: none;
+        width: 100%;
+        min-height: 160px;
+        float: left;
+        padding: 0 15px; } }
 
 .sidebar .sidebar-item {
   margin-bottom: 35px; }

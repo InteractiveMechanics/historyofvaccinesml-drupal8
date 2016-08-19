@@ -109,7 +109,7 @@
 				
 			</div>
 			
-			<div style="padding:0 20px;">
+			<div style="">
 				<div class="row">
 					<div class="col-md-12">
 						<hr style="border-color:#ddd;" />
@@ -137,3 +137,13 @@
 	</div>
 
 </div>
+
+
+<script type="text/javascript">	
+	
+	$(document).ready(function(){
+		$('.panel-title:eq(0)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+		$('#collapseOne').addClass('in');
+	});
+
+</script>

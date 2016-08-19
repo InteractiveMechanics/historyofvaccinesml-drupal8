@@ -1,3 +1,4 @@
+
 {#
 /**
  * @file
@@ -73,16 +74,14 @@
 </div>
 {% verbatim %}
 <script id="item-template" type="text/x-handlebars-template">
+<div style="width:300px; !important;">
 			<div class="year">
 				{{year}}
 			</div>
 			<div class="timeline-entry" data-year="{{year}}" data-title="{{title}}" data-body='{{description}}' 
 				data-filename="{{#each filename}}{{this}}|,|{{/each}}" data-toggle="modal" data-target="#myModal">
-					{{#if filename.[0]}}
-						<div class="image">
-							<img src="http://media.historyofvaccines.org/images/{{filename.[0]}}_90.jpg" alt="{{title}}" />
-						</div>
-					{{/if}}
+					
+					{{#isVideo filename.[0]}}{{/isVideo}}
 				
 				<div class="title">
 					{{title}}
@@ -90,14 +89,24 @@
 				
 				<br style="clear:both" />
 			</div>
-			
+</div>
 </script>
 {% endverbatim %}
 <div id="visualization"></div>
 
 
 <script type="text/javascript">
-		
+		Handlebars.registerHelper('isVideo', function(filename) {
+			var imgURL = "http://media.historyofvaccines.org/images/"+ filename + "_90.jpg"
+			if ( filename.indexOf('m4v') == -1 && filename != "") {
+				return "<div class='image'>" +
+							"<img src='"+ imgURL +"' />" +
+						"</div>"
+			} else {
+				return ""
+			}
+			
+		});
 		
 		var titleArray = [];
 		
@@ -188,6 +197,7 @@
 			}
 			else
 			{
+				console.log(fileNameArray[i]);
 				timelineData.push(
 					{
 						year: dateArray[i],
@@ -210,6 +220,8 @@
 		// create a handlebars template
 		//var source   = document.getElementById('item-template').innerHTML;
 		//var template = Handlebars.compile(document.getElementById('item-template').innerHTML);
+		
+		
 		
 		
 		// DOM element where the Timeline will be attached
@@ -255,6 +267,24 @@
       	<div class="row">
 	        <div class="col-md-5 timeline-modal-left">
 	        	<div class="timeline-modal-image text-center">
+	        		<div class="body-mediaitem">
+
+					    <div class="gallery-image-container">
+					        <div class="image ">
+					            <img src="http://media.historyofvaccines.org/images/000135_265.jpg" alt="Smallpox in the Revolution">
+					        </div>
+					    </div>
+						
+					    <p><small>Smallpox in the Revolution</small></p>
+					
+					     <div id="body-mediaitem-switcher">
+					        <div class="body-mediaitem-small" data-filename="" data-type="image" data-caption="U.S. Yellow Fever Commission">
+							   <img src="http://media.historyofvaccines.org/images/_265.jpg" alt="U.S. Yellow Fever Commission">
+					        </div>
+					    </div>
+					
+					</div>
+
 	        	</div>
 			</div>
         

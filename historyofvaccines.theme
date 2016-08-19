@@ -1,5 +1,7 @@
 <?php
 	function historyofvaccines_theme_suggestions_node_alter(array &$suggestions, array &$variables)  {
+		$node = \Drupal::routeMatch()->getParameter('node');
+
 		if ($node) {
 			$nid = $node->id();			
 			$uid = $node->getOwnerId();
@@ -102,10 +104,10 @@
 		
 		
 		
-		$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
+		$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
 		$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
 		
-		$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
+		$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
 		$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
 		
 		$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');

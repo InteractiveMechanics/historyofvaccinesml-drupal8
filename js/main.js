@@ -13,6 +13,10 @@
         }
     });
     
+    $('.panel-group .panel-title').click(function(){
+	    $(this).find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+	});
+    
     $('.gallery-form input').on('change', function(){
         $(this).closest('form').submit();
     });
@@ -202,7 +206,7 @@
 		$('.timeline-modal-body').html($invoker.data('body'));
         $('.timeline-modal-image').html("");
         $.each(file_arr,function(k,v){
-                $('.timeline-modal-image').append('<img src="http://media.historyofvaccines.org/images/' + v + '_265.jpg"  />');
+            $('.timeline-modal-image').append('<img src="http://media.historyofvaccines.org/images/' + v + '_265.jpg"  />');
         });
 		
 		if(!filename) {
@@ -215,5 +219,44 @@
 			$('.timeline-modal-right').removeClass('col-md-12');
 		}
 	});
+	
+	/*function imageHTMLMaker(file_arr) {
+		var str = "";
+		
+		for(var i = 1; i < file_arr.length; i++) {
+			var file = file_arr[i];
+			var filename = "";
+			if(file.indexOf('m4v') == -1) {
+				filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+				htmlString = '<div class="image hidden">
+					            <img src="' + filename + '" alt="Smallpox in the Revolution">
+					         </div>'
+			} else {
+				filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+				htmlString = '<div class="video hidden">
+                                 <video src="'+ filename + '" poster="'+ poster +'" controls="controls" autoplay="true" width="100%"></video>
+                            </div>'
+			}
+			
+			
+			str = '<div class="gallery-image-container">
+					        <div class="image hidden">
+					            <img src="http://media.historyofvaccines.org/images/000135_265.jpg" alt="Smallpox in the Revolution">
+					        </div>
+					    </div>
+						
+					
+					     <div id="body-mediaitem-switcher">
+					        <div class="body-mediaitem-small" data-filename="" data-type="image" data-caption="U.S. Yellow Fever Commission">
+							   <img src="http://media.historyofvaccines.org/images/_265.jpg" alt="U.S. Yellow Fever Commission">
+					        </div>
+			
+			
+		    </div>';
+		}
+		
+		return str;
+	};*/
    
 })(jQuery);

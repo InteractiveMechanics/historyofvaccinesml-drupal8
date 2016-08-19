@@ -23,6 +23,16 @@
             float: left;
             padding: 0 15px;
         }
+        
+        @media screen and ($screen-ltmd) {
+		    li {
+		        list-style: none;
+		        width: 100%;
+		        min-height: 160px;
+		        float: left;
+		        padding: 0 15px;
+		    }
+		}
     }
 }
 .sidebar .sidebar-item {
