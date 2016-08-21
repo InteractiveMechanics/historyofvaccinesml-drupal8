@@ -29,6 +29,10 @@
     display: block;
     min-height: 240px;
 
+    @include screen-sm {
+        min-height: 275px;
+    }
+
     p {
         text-decoration: none;
     }
@@ -80,6 +84,10 @@
 
     &:hover {
         opacity: 1;
+    }
+
+    @include screen-xs {
+        display: none;
     }
 }
 .gallery-form {

@@ -1,3 +1,7 @@
+#visualization {
+    margin: -16px -16px 0;
+}
+
 .timeline-modal-date {
     font-size: 15px;
     font-weight: bold;
@@ -19,11 +23,27 @@
 
 .timeline-dialog {
     width:800px;
+
+    @include screen-sm {
+        width: 100%;
+        margin: 0;
+    }
+    @include screen-xs {
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .timeline-dialog .modal-content{
     background:#eee;
     border-radius:0px;
+
+    @include screen-sm {
+        margin: 30px;
+    }
+    @include screen-xs {
+        margin: 10px;
+    }
 }
 
 .vis-item {
@@ -35,6 +55,9 @@
     border: 0px !important;
     text-align: left !important;
     
+}
+.vis-item .vis-item-content {
+    height: 99px;
 }
 
 .vis-item.vis-selected {
@@ -55,24 +78,52 @@
 .vis-timeline .timeline-entry {
 	background:white;
 	cursor:pointer;
+    max-height: 89px;
+    display: block;
 }
 
 .vis-timeline .timeline-entry .image {
 	float:left;
+    height: 89px;
+    width: 89px;
+}
+.vis-timeline .timeline-entry .image + .title {
+    height: 89px;
+    width: 211px;
 }
 
 .vis-timeline .timeline-entry .image img {
 	height: inherit;
-	width:84px;
+	width:89px;
 }
 
 .vis-timeline .timeline-entry .title {
-	float:right;
+	float:left;
 	padding:10px;
+    height: auto;
+    width: 300px;
+    font-weight: bold;
+    white-space: normal;
+}
+
+.vis-time-axis .vis-grid.vis-minor {
+    height: 570px !important;
+}
+
+.vis-panel.vis-center {
+    border: none !important;
+}
+
+.vis-time-axis.vis-foreground {
+    height: 85px !important;
 }
 
 .vis-time-axis .vis-text {
 	color:#ddd !important;
+    font-size: 60px;
+    opacity: 0.5;
+    top: -15px !important;
+    margin-left: 10px;
 }
 
 

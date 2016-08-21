@@ -20,6 +20,10 @@
     $('.gallery-form input').on('change', function(){
         $(this).closest('form').submit();
     });
+    $('#views-exposed-form-gallery-gallery').on('change', function(){
+        $(this).closest('form').submit();
+    });
+
     $('#body-mediaitem-switcher > div').on('click', function() {
         var root = $(this).attr('data-filename');
         var caption = $(this).attr('data-caption');
