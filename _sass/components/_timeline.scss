@@ -1,5 +1,14 @@
 #visualization {
-    margin: -16px -16px 0;
+    margin: -15px -15px 0;
+}
+
+.vis-timeline {
+    background: url('./themes/historyofvaccines/images/timelinebg.jpg') top center no-repeat;
+	background-size: cover;
+    border: none !important;
+}
+
+.vis-item {
 }
 
 .timeline-modal-date {
@@ -130,4 +139,36 @@
 .vis-major {
 	font-size:48px;
 	font-weight: 100;
+}
+
+
+.filters ul {
+	margin:0px;
+	padding:0px;
+}
+
+.filters ul li {
+	display:inline-block;
+	background:white;
+	border-radius:8px 8px 0 0;
+	padding:6px 14px;
+	cursor:pointer;
+	font-weight:bold;
+	color:#444;
+	text-transform:uppercase;
+}
+
+.filters ul li:hover {
+	background:#23527c;
+	color:white;
+}
+
+.filters ul li.active:hover {
+	background:white;
+	color:#444;
+}
+
+.filters ul li.active {
+	background:#23527c;
+	color:white;
 }

@@ -117,7 +117,9 @@
 	
 		<div class="col-md-9 col-sm-12">			
 			<div class="article">
-                {{ languageswitcher }}
+                {% if translations %}
+                    {{ languageswitcher }}
+                {% endif %}
 
 				<h1>{{ label }}</h1>
 				
@@ -163,17 +165,17 @@
                                 </div>
                             {% endif %}
                         </div>
-						<p><small><em>{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }}</em>
-                            {% if content.field_related_media[0]['#node'].field_copyright.entity.title.value %}
-                                <br /><b>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }}</b>
-                            {% endif %}
+                        
+                        
+						<p><small><em>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }}</em>
+                            
+                            <br /><b>{{ content.field_related_media[0]['#node'].field_creator.entity.field_caption.value|raw }}</b>
                         </small></p>
 
 					{% endif %}
                     {% if content.field_related_media[1] %}
                         <div id="body-mediaitem-switcher">
                         {% for key, related_media in content.field_related_media if key|first != '#' %}
-                            {% if loop.index0 > 0 %}
                                 {% if content.field_related_media[key]['#node'].field_orig_filename[0].value ends with "m4v" %}
                                     {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value|split('.')[0] %}
                                 {% else %}
@@ -197,25 +199,20 @@
                             	{% endif %}
                                 
                                 {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
-                                    <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
-        						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
+                                    <div class="body-mediaitem-small" data-filename="{{ orig_filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
+        						        <img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
                                     </div>
                                 {% elseif content.field_related_media[key]['#node'].field_taxonomy.target_id == 37 %}
-                                    <div class="body-mediaitem-small" data-filename="{{ filename }}" data-type="video" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
-        						        <img src="http://media.historyofvaccines.org/images/{{ filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
+                                    <div class="body-mediaitem-small" data-filename="{{ orig_filename }}" data-type="video" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
+        						        <img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
                                     </div>
                                 {% endif %}
-                            {% endif %}
                         {% endfor %}
                         </div>
 					{% endif %}
 				</div>
 				
 				{{ node.body[0].value|raw  }}
-				
-				{{kint(content)}}
-				
-				{{content.comment_no_subject}}
 				</div>
 				
 				{% if content.field_related_timeline_entries[0] %}
@@ -227,7 +224,7 @@
 						
 							{{ entry['#node'].body.value|raw }}
 						
-							<a href="javascript: void(0);" class="btn btn-green">See this item in the timeline</a>
+							<a href="{{front_page}}/drupal/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">See this item in the timeline</a>
 						</div>
 					{% endfor %}
 				{% endif %}
@@ -241,7 +238,7 @@
 						
 							<div class="question" data-answer="{{assessment['#node'].field_answer.value}}">
 								<p>
-									<strong>{{ assessment['#node'].field_question.value }} </strong>
+									<strong>{{ assessment['#node'].field_question.value|raw }} </strong>
 								</p>
 								<ul>
 									{% for answer in assessment['#node'].field_choice %}

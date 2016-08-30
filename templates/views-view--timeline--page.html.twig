@@ -95,6 +95,51 @@
 <div id="visualization"></div>
 
 
+<div class="main-content">
+	<div class="row">
+		<div class="col-md-8">
+			
+			<h2>{{timeline_overview_title}}</h2>
+			
+			<p>
+				{{timeline_overview_body|raw}}
+			</p>
+			
+			
+		</div>
+		
+		<div class="col-md-4">
+			<div class="sidebar">
+				<div class="sidebar-item">
+					<h5>HIGHLIGHTS</h5>
+				
+					<ul>
+						{% for key, highlight in timeline_overview_highlight if key|first != '#' %}
+							
+							<li>
+								<div class="sidebar-blurb">
+									<p class="title">
+										<a href="javascript:void(0);">{{highlight.title.value}}</a>
+									</p>
+				
+									<p>
+										<!--<img style="float:left; margin-right:15px; margin-bottom:5px;" 
+										src="{{file_url(activities['#node'].field_thumbnail65_image[0].entity.uri.value)}}">-->
+										{{highlight.body.value|raw}}
+									</p>
+									
+									<br style="clear:both;" />
+								</div>
+							</li>
+						{% endfor %}					
+					</ul>
+				</div>
+			</div>
+		</div>	
+	</div>
+
+</div>
+
 <script type="text/javascript">
 		Handlebars.registerHelper('isVideo', function(filename) {
 			var imgURL = "http://media.historyofvaccines.org/images/"+ filename + "_90.jpg"
@@ -197,9 +242,9 @@
 			}
 			else
 			{
-				console.log(fileNameArray[i]);
 				timelineData.push(
 					{
+						id: idArray[i],
 						year: dateArray[i],
 						title: titleArray[i],
 						filename: [fileNameArray[i]],
@@ -241,7 +286,7 @@
             start: '1200',
             zoomMax: (788923150000),
             zoomMin: (788923150000),
-            timeAxis: {scale: 'year', step: 25}
+            timeAxis: {scale: 'year', step: 35}
 		};
 		
 		// Create a Timeline
@@ -267,24 +312,7 @@
       	<div class="row">
 	        <div class="col-md-5 timeline-modal-left">
 	        	<div class="timeline-modal-image text-center">
-	        		<div class="body-mediaitem">
-
-					    <div class="gallery-image-container">
-					        <div class="image ">
-					            <img src="http://media.historyofvaccines.org/images/000135_265.jpg" alt="Smallpox in the Revolution">
-					        </div>
-					    </div>
-						
-					    <p><small>Smallpox in the Revolution</small></p>
-					
-					     <div id="body-mediaitem-switcher">
-					        <div class="body-mediaitem-small" data-filename="" data-type="image" data-caption="U.S. Yellow Fever Commission">
-							   <img src="http://media.historyofvaccines.org/images/_265.jpg" alt="U.S. Yellow Fever Commission">
-					        </div>
-					    </div>
-					
-					</div>
-
+	        	
 	        	</div>
 			</div>
         

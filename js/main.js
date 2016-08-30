@@ -1,7 +1,27 @@
 (function ($) {
+	
+	$(".article .body a").each(function(){
+		
+		var url = $(this).attr('href');
+		
+		if(url) {
+			
+			console.log(url.indexOf('historyofvaccines'));
+			
+			if(url && url.indexOf('historyofvaccines') != -1 && url.indexOf("#") != -1) {
+				var hash =  url.split("#")[1];	
+				$(this).attr('href', '#'+hash);
+			}	
+		}
+		
+   		//do something with the element here.
+	});
 
-	$('.article a[href*="#"]:not([href="#"])').click(function() {
+	$('.article .body a[href*="#"]:not([href="#"])').click(function(e) {
+		
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+	        e.preventsDefault();
+	        e.stopPropagation();
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
             if (target.length) {
@@ -25,7 +45,7 @@
     });
 
     $('#body-mediaitem-switcher > div').on('click', function() {
-        var root = $(this).attr('data-filename');
+	    var root = $(this).attr('data-filename');
         var caption = $(this).attr('data-caption');
         var type = $(this).attr('data-type');
 
@@ -202,16 +222,24 @@
 		var filename = $invoker.data('filename');
         var file_arr = filename.split("|,|");
         file_arr.pop();
-        console.log("file_arr: ");
-        console.log(file_arr);
+        
+        console.log(filename);
+         
+        var mediaHtml = createHTML(file_arr);
 
 		$('.timeline-modal-date').html($invoker.data('year'));
 		$('.timeline-modal-title').html($invoker.data('title'));
 		$('.timeline-modal-body').html($invoker.data('body'));
-        $('.timeline-modal-image').html("");
-        $.each(file_arr,function(k,v){
+		
+		if(file_arr.length == 0) {
+			$('.timeline-modal-image').html("");
+		} else {
+			 $('.timeline-modal-image').html(mediaHtml);
+		}
+        
+        /*$.each(file_arr,function(k,v){
             $('.timeline-modal-image').append('<img src="http://media.historyofvaccines.org/images/' + v + '_265.jpg"  />');
-        });
+        });*/
 		
 		if(!filename) {
 			$('.timeline-modal-left').hide();
@@ -224,43 +252,86 @@
 		}
 	});
 	
-	/*function imageHTMLMaker(file_arr) {
-		var str = "";
+	function createHTML(file_arr) {
+		var htmlString = "";
+		
+		htmlString = '<div class="body-mediaitem"><div class="gallery-image-container">';
+
+		if(file_arr.length > 0) {
+			var file = file_arr[0];
+			var type = 'image';
+			
+			if(file.indexOf('m4v') != -1) {
+				type = 'video';	
+			}
+			
+        	htmlString += '<div class="'+ type +'">';
+        	
+        	if(type == 'image') {
+	        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+	        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';	
+        	} else {
+	        	var filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+				htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" autoplay="true" width="100%"></video>';
+        	}
+        	
+        	htmlString += '</div>';
+		}
+		
 		
 		for(var i = 1; i < file_arr.length; i++) {
 			var file = file_arr[i];
-			var filename = "";
-			if(file.indexOf('m4v') == -1) {
-				filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
-				htmlString = '<div class="image hidden">
-					            <img src="' + filename + '" alt="Smallpox in the Revolution">
-					         </div>'
-			} else {
-				filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
-				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
-				htmlString = '<div class="video hidden">
-                                 <video src="'+ filename + '" poster="'+ poster +'" controls="controls" autoplay="true" width="100%"></video>
-                            </div>'
+			var type = 'image';
+			
+			if(file.indexOf('m4v') != -1) {
+				type = 'video';	
 			}
 			
+        	htmlString += '<div class="'+ type +' hidden">';
+        	
+        	if(type == 'image') {
+	        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+	        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';	
+        	} else {
+	        	var filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+				htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" autoplay="true" width="100%"></video>';
+        	}
+        	
+        	htmlString += '</div>';
+        }
+        
+        
+        htmlString += "<p><small>Smallpox in the Revolution</small></p>";
+        
+        htmlString += '<div id="body-mediaitem-switcher">'
+        for(var i = 0; i < file_arr.length; i++) {
+	        var file = file_arr[i];
+			var type = 'image';
 			
-			str = '<div class="gallery-image-container">
-					        <div class="image hidden">
-					            <img src="http://media.historyofvaccines.org/images/000135_265.jpg" alt="Smallpox in the Revolution">
-					        </div>
-					    </div>
-						
-					
-					     <div id="body-mediaitem-switcher">
-					        <div class="body-mediaitem-small" data-filename="" data-type="image" data-caption="U.S. Yellow Fever Commission">
-							   <img src="http://media.historyofvaccines.org/images/_265.jpg" alt="U.S. Yellow Fever Commission">
-					        </div>
+			if(file.indexOf('m4v') != -1) {
+				type = 'video';	
+			}
 			
+        	
+				htmlString += '<div class="body-mediaitem-small" data-filename="'+file+'" data-type="'+ type +'" data-caption="U.S. Yellow Fever Commission">';
+					if(type == 'image') {
+			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';	
+		        	} else {
+			        	var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+						htmlString += '<img src="'+ poster +'" alt="Smallpox in the Revolution">';	
+		        	}
+				htmlString += '</div>';
 			
-		    </div>';
 		}
+		htmlString += '</div>';
 		
-		return str;
-	};*/
+		htmlString += '</div></div>';
+		
+		return htmlString;
+	}
+	
    
 })(jQuery);

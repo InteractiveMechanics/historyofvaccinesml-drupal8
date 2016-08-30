@@ -6,143 +6,199 @@
 			$nid = $node->id();			
 			$uid = $node->getOwnerId();
 		    $user = \Drupal\user\Entity\User::load($uid);
+		    $contentType = $node->getType();
+		    
 		    if (!is_null($user)) {
-		      $username = $user->getDisplayName();
-		      $variables['username'] = $username;
+		        $username = $user->getDisplayName();
+		        $variables['username'] = $username;
 		    }
-        }
+            $variables['translations'] = $node->hasTranslation('es');
+        
 			
-        /*
-			$all_activities = views_embed_view('all_simulations', 'default', $nid);
-			$variables['all_simulations'] = render($all_activities);
-
-			$recent_post = views_embed_view('recent_posts', 'default', $nid);
-			$variables['recent_post'] = render($recent_post);
+	        if($contentType == 'espanol_page') {
+				$spanish_pages = \Drupal\block\Entity\Block::load('views_block__spanish_pages_block_1');
+				$variables['spanish_pages'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($spanish_pages);	
+				
+				$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
+				$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
+				
+				$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
+				$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
+				
+				$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');
+				$variables['history_society_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($history_society_articles);
+				
+				$vaccine_information_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_information_articles_block_1');
+				$variables['vaccine_information_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_information_articles);
+				
+				$common_questions_articles = \Drupal\block\Entity\Block::load('views_block__common_questions_articles_block_1');
+				$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
+				
+				$all_simulations = \Drupal\block\Entity\Block::load('views_block__all_simulations_block_1');
+				$variables['all_simulations'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_simulations);
+	
+				$all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+				$variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+			}
 			
-			$recent_articles = views_embed_view('recent_articles', 'default', $nid);
-			$variables['recent_articles'] = render($recent_articles);
-			
-			$popular_articles = views_embed_view('popular_articles', 'default', $nid);
-			$variables['popular_articles'] = render($popular_articles);
-			
-			$featured_articles = views_embed_view('homepage_featured_articles', 'default', $nid);
-			$variables['featured_articles'] = render($featured_articles); //all_activities
-			
-			$all_activities = views_embed_view('all_activities', 'default', $nid);
-			$variables['all_activities'] = render($all_activities); 
-			
-			$blog_categories = views_embed_view('blog_categories', 'default', $nid);
-			$variables['blog_categories'] = render($blog_categories); 
-			
-			$vaccine_science_articles = views_embed_view('vaccine_science_articles', 'default', $nid);
-			$variables['vaccine_science_articles'] = render($vaccine_science_articles);
-			
-			$vaccine_preventable_diseases = views_embed_view('vaccine_preventable_diseases', 'default', $nid);
-			$variables['vaccine_preventable_diseases'] = render($vaccine_preventable_diseases); 
-			
-			$history_society_articles = views_embed_view('history_society_articles', 'default', $nid);
-			$variables['history_society_articles'] = render($history_society_articles);
+			if($contentType == 'homepage') {
+				$featured_articles = \Drupal\block\Entity\Block::load('views_block__homepage_featured_articles_block_1');
+		        $variables['featured_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($featured_articles);
+		        
+		        $recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
+				$variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
+		        
+		        $popular_articles = \Drupal\block\Entity\Block::load('views_block__popular_articles_block_1');
+				$variables['popular_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_articles);
+				
+				$homepage_featured_image = \Drupal\block\Entity\Block::load('views_block__homepage_featured_image_block_1');
+				$variables['homepage_featured_image'] = render($homepage_featured_image);	
+			}
 			
 			
-			$spanish_pages = views_embed_view('spanish_pages', 'default', $nid);
-			$variables['spanish_pages'] = render($spanish_pages);
+			if($contentType == 'educational' || $contentType == 'simulation') {
+				$all_simulations = \Drupal\block\Entity\Block::load('views_block__all_simulations_block_1');
+				$variables['all_simulations'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_simulations);
+	
+				$all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+				$variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+			}
 			
-			
-			
-			$vaccine_information_articles = views_embed_view('vaccine_information_articles', 'default', $nid);
-			$variables['vaccine_information_articles'] = render($vaccine_information_articles); 
-			
-			$common_questions_articles = views_embed_view('common_questions_articles', 'default', $nid);
-			$variables['common_questions_articles'] = render($common_questions_articles);
-			
-			$homepage_featured_image = views_embed_view('homepage_featured_image', 'default', $nid);
-			$variables['homepage_featured_image'] = render($homepage_featured_image);
-			
-    		$exposed_gallery_block = \Drupal\block\Entity\Block::load('exposedformgallerygallery');
-    		$variables['exposed_form_gallery'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_gallery_block);
-
-            
-            
-			$blog_archive = views_embed_view('blog_archive', 'default');
-			$variables['blog_archive'] = render($blog_archive);
+			if($contentType == 'article') {
+    			$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
+    			$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
+    			
+    			$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
+    			$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
+    			
+    			$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');
+    			$variables['history_society_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($history_society_articles);
+    			
+    			$vaccine_information_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_information_articles_block_1');
+    			$variables['vaccine_information_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_information_articles);
+    			
+    			$common_questions_articles = \Drupal\block\Entity\Block::load('views_block__common_questions_articles_block_1');
+    			$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
+    		}
+		
 		}
-		*/
 	}
 
 	function historyofvaccines_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
 		
+		///$node = Drupal::routeMatch()->getParameter('node');
+		//$contentType = $node->getType();
 		
-		$popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
-		$variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
+		$view = \Drupal::request()->attributes->get('view_id');
 		
-		$popular_articles = \Drupal\block\Entity\Block::load('views_block__popular_articles_block_1');
-		$variables['popular_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_articles);
+		//$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('nid', 691);    
+		//$nids = $query->execute();
+		//$node = \Drupal\node\Entity\Node::load(691);
 		
-		$exposed_gallery_block = \Drupal\block\Entity\Block::load('exposedformgallerygallery');
-		$variables['exposed_form_gallery'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_gallery_block);
+		if($view == "timeline") {
+            /*
+			$category_id = $_GET['timeline_category'][0];
+			
+			if($category_id) {
+				// get overview
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('field_timeline_categories', $category_id);
+				$nids = $query->execute();
+				$nids_array = array_keys($nids);
+				
+				$nodeItem = \Drupal\node\Entity\Node::load($nids_array[0]);
+				$temp = $nodeItem->body->getValue();
+				
+				$variables['timeline_overview_title'] = $nodeItem->title->value;
+				$variables['timeline_overview_body'] = $temp[0]['value']; 
+				
+				//get highlight
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', $category_id);    
+				$nids = $query->execute();
+				
+				$arr = \Drupal\node\Entity\Node::loadMultiple($nids);
+				$variables['timeline_overview_highlight'] = $arr;
+			} else {
+            */
+            
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('nid', 691);    
+				$nids = $query->execute();
+				$nodeItem = \Drupal\node\Entity\Node::load(691);
+				$temp = $nodeItem->body->getValue();
+				
+				$variables['timeline_overview_title'] = $nodeItem->title->value;
+				$variables['timeline_overview_body'] = $temp[0]['value']; 
+				
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', 61);    
+				$nids = $query->execute();
+				
+				$arr = \Drupal\node\Entity\Node::loadMultiple($nids);
+				$variables['timeline_overview_highlight'] = $arr;
+			// }
+		}
 		
-		$blog_categories = \Drupal\block\Entity\Block::load('views_block__blog_categories_block_1');
-		$variables['blog_categories'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_categories);
 		
-		$all_simulations = \Drupal\block\Entity\Block::load('views_block__all_simulations_block_1');
-		$variables['all_simulations'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_simulations);
+		if($view == "blog") {
+			$blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
+			$variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive); 
+			
+			$blog_categories = \Drupal\block\Entity\Block::load('views_block__blog_categories_block_1');
+			$variables['blog_categories'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_categories);
+			
+			$popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
+			$variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
+			
+			$recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
+			$variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
+			
+			$otherblogs = \Drupal\block\Entity\Block::load('otherblogs');
+			$variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
+		}
+		
+		
+		if($view == 'articles') {
+			$recent_articles = \Drupal\block\Entity\Block::load('views_block__recent_articles_block_1');
+			$variables['recent_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_articles);
+	
+	        $featured_articles = \Drupal\block\Entity\Block::load('views_block__homepage_featured_articles_block_1');
+	        $variables['featured_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($featured_articles);
+	        
+	        $popular_articles = \Drupal\block\Entity\Block::load('views_block__popular_articles_block_1');
+			$variables['popular_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_articles);
+			
+			$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
+			$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
+			
+			$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
+			$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
+			
+			$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');
+			$variables['history_society_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($history_society_articles);
+			
+			$vaccine_information_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_information_articles_block_1');
+			$variables['vaccine_information_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_information_articles);
+			
+			$common_questions_articles = \Drupal\block\Entity\Block::load('views_block__common_questions_articles_block_1');
+			$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
+		}
+		
+		if($view == 'activities') {
+			$all_simulations = \Drupal\block\Entity\Block::load('views_block__all_simulations_block_1');
+			$variables['all_simulations'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_simulations);
 
-        $all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
-        $variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+			$all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+			$variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+		}
 		
-		$blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
-		$variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive); 
-		
-		$recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
-		$variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
-
-        $recent_articles = \Drupal\block\Entity\Block::load('views_block__recent_articles_block_1');
-		$variables['recent_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_articles);
-
-        $featured_articles = \Drupal\block\Entity\Block::load('views_block__homepage_featured_articles_block_1');
-        $variables['featured_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($featured_articles);
-		
-		
-		
-		$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
-		$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
-		
-		$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
-		$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
-		
-		$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');
-		$variables['history_society_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($history_society_articles);
-		
-		$vaccine_information_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_information_articles_block_1');
-		$variables['vaccine_information_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_information_articles);
-		
-		$common_questions_articles = \Drupal\block\Entity\Block::load('views_block__common_questions_articles_block_1');
-		$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
-		
-		$recent_articles = \Drupal\block\Entity\Block::load('views_block__recent_articles_block_1');
-		$variables['recent_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_articles);
-		
-		$otherblogs = \Drupal\block\Entity\Block::load('otherblogs');
-		$variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
-
-
-
-        $spanish_pages = \Drupal\block\Entity\Block::load('views_block__spanish_pages_block_1');
-        $variables['spanish_pages'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($spanish_pages);
-		
-
-
-        $homepage_featured_image = \Drupal\block\Entity\Block::load('views_block__homepage_featured_image_block_1');
-        $variables['homepage_featured_image'] = render($homepage_featured_image);
-		
-        $langswitcher = \Drupal\block\Entity\Block::load('languageswitcher');
-        $variables['languageswitcher'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($langswitcher);
-
-        $exposed_gallery_block = \Drupal\block\Entity\Block::load('exposedformgallerygallery');
-        $variables['exposed_form_gallery'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_gallery_block);
+		if($view == 'gallery') {
+			$exposed_gallery_block = \Drupal\block\Entity\Block::load('exposedformgallerygallery');
+			$variables['exposed_form_gallery'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_gallery_block);
+		}
 		
 		$primarylinksmenu = \Drupal\block\Entity\Block::load('primarylinks');
 		$variables['primarylinksmenu'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($primarylinksmenu);
+		
+		$langswitcher = \Drupal\block\Entity\Block::load('languageswitcher');
+        $variables['languageswitcher'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($langswitcher);
         
 	}
 

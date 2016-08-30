@@ -1,123 +1,263 @@
-<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+<div class="mobile-panel hidden-md hidden-lg" style="width:100%;">
+
+	<div class="panel-group " id="accordionMobile">
+		<div class="panel panel-default">
+            <div class="panel-heading">
                 <h4 class="panel-title">
-                    {% if content.langcode['#markup'] == "Espa–ol" %}
-                        La ciencia de las vacunas
-                    {% else %}
-                        Vaccine Science
-                    {% endif %}
-                    <span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+                	<a data-toggle="collapse" data-parent="#accordionMobile" href="#mobileMenuList">
+                		Article Menu
+						<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
+                	</a>
                 </h4>
-            </a>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body">
+            </div>
             
-            	<ul class="list-unstyled">
-            		{{vaccine_science_articles}}
-            	</ul>
+            <div id="mobileMenuList" class="panel-collapse collapse">
+            	<div class="panel-body">
+            	
+            		<div class="panel-group" id="accordion">
+					    <div class="panel panel-default">
+					        <div class="panel-heading">
+					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileOne">
+					                <h4 class="panel-title">
+					                    {% if content.langcode['#markup'] starts with "Esp" %}
+					                        La ciencia de las vacunas
+					                    {% else %}
+					                        Vaccine Science
+					                    {% endif %}
+					                    <span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+					                </h4>
+					            </a>
+					        </div>
+					        <div id="collapseMobileOne" class="panel-collapse collapse">
+					            <div class="panel-body">
+					            
+					            	<ul class="list-unstyled">
+					            		{{vaccine_science_articles}}
+					            	</ul>
+					            </div>
+					        </div>
+					    </div>
+					    <div class="panel panel-default">
+					        <div class="panel-heading">
+					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileTwo">
+					                <h4 class="panel-title">
+					                     {% if content.langcode['#markup'] starts with "Esp" %}
+					                        La historia y la sociedad
+					                    {% else %}
+					                        History and Society
+					                    {% endif %}
+					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+					                </h4>
+					            </a>
+					        </div>
+					        <div id="collapseMobileTwo" class="panel-collapse collapse">
+					            <div class="panel-body">
+					                
+					                <ul class="list-unstyled">
+					            		{{ history_society_articles }}
+					            	</ul>
+					                
+					            </div>
+					        </div>
+					    </div>
+					    <div class="panel panel-default">
+					        <div class="panel-heading">
+					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileThree">
+					                <h4 class="panel-title">
+					                     {% if content.langcode['#markup'] starts with "Esp" %}
+					                        Informacion sobre las vacunas
+					                    {% else %}
+					                        Vaccine Information
+					                    {% endif %}
+					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+					                </h4>
+					            </a>
+					        </div>
+					        <div id="collapseMobileThree" class="panel-collapse collapse">
+					            <div class="panel-body">
+					            	<ul class="list-unstyled">
+					            		{{vaccine_information_articles}}
+					            	</ul>
+					            </div>
+					        </div>
+					    </div>
+					    
+					    <div class="panel panel-default">
+					        <div class="panel-heading">
+					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileFour">
+					                <h4 class="panel-title">
+					                     {% if content.langcode['#markup'] starts with "Esp" %}
+					                        Enfermedades que se pueden prevenir con las vacunas
+					                    {% else %}
+					                        Vaccine-Preventable Diseases
+					                    {% endif %}
+					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+					                </h4>
+					            </a>
+					        </div>
+					        <div id="collapseMobileFour" class="panel-collapse collapse">
+					            <div class="panel-body">
+					            	<ul class="list-unstyled">
+					            		{{vaccine_preventable_diseases}}
+					            	</ul>
+					            </div>
+					        </div>
+					    </div>
+					    
+					     <div class="panel panel-default">
+					        <div class="panel-heading">
+					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileFive">
+					                <h4 class="panel-title">
+					                     {% if content.langcode['#markup'] starts with "Esp" %}
+					                        Preguntas comunes
+					                    {% else %}
+					                        Common Questions
+					                    {% endif %}
+					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+					                </h4>
+					            </a>
+					        </div>
+					        <div id="collapseMobileFive" class="panel-collapse collapse">
+					            <div class="panel-body">
+					                <ul class="list-unstyled">
+					            		{{ common_questions_articles }}
+					            	</ul>
+					            </div>
+					        </div>
+					    </div>    
+					</div>
+            	
+            	
+            	</div>
             </div>
-        </div>
+		</div>
+        
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                <h4 class="panel-title">
-                    {% if content.langcode['#markup'] == "Espa–ol" %}
-                        La historia y la sociedad
-                    {% else %}
-                        History and Society
-                    {% endif %}
-                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
-                </h4>
-            </a>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                
-                <ul class="list-unstyled">
-            		{{ history_society_articles }}
-            	</ul>
-                
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                <h4 class="panel-title">
-                    {% if content.langcode['#markup'] == "Espa–ol" %}
-                        Informaci—n sobre las vacunas
-                    {% else %}
-                        Vaccine Information
-                    {% endif %}
-                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
-                </h4>
-            </a>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse">
-            <div class="panel-body">
-            	<ul class="list-unstyled">
-            		{{vaccine_information_articles}}
-            	</ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                <h4 class="panel-title">
-                    {% if content.langcode['#markup'] == "Espa–ol" %}
-                        Enfermedades que se pueden prevenir con las vacunas
-                    {% else %}
-                        Vaccine-Preventable Diseases
-                    {% endif %}
-                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
-                </h4>
-            </a>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse">
-            <div class="panel-body">
-            	<ul class="list-unstyled">
-            		{{vaccine_preventable_diseases}}
-            	</ul>
-            </div>
-        </div>
-    </div>
-    
-     <div class="panel panel-default">
-        <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                <h4 class="panel-title">
-                    {% if content.langcode['#markup'] == "Espa–ol" %}
-                        Preguntas comunes
-                    {% else %}
-                        Common Questions
-                    {% endif %}
-                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
-                </h4>
-            </a>
-        </div>
-        <div id="collapseFive" class="panel-collapse collapse">
-            <div class="panel-body">
-                <ul class="list-unstyled">
-            		{{ common_questions_articles }}
-            	</ul>
-            </div>
-        </div>
-    </div>    
+
 </div>
 
+	
+<div class="hidden-xs hidden-sm">
+	<div class="panel-group" id="accordion">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+	                <h4 class="panel-title">
+	                    {% if content.langcode['#markup'] starts with "Esp" %}
+	                        La ciencia de las vacunas
+	                    {% else %}
+	                        Vaccine Science
+	                    {% endif %}
+	                    <span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+	                </h4>
+	            </a>
+	        </div>
+	        <div id="collapseOne" class="panel-collapse collapse">
+	            <div class="panel-body">
+	            
+	            	<ul class="list-unstyled">
+	            		{{vaccine_science_articles}}
+	            	</ul>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+	                <h4 class="panel-title">
+	                     {% if content.langcode['#markup'] starts with "Esp" %}
+	                        La historia y la sociedad
+	                    {% else %}
+	                        History and Society
+	                    {% endif %}
+	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+	                </h4>
+	            </a>
+	        </div>
+	        <div id="collapseTwo" class="panel-collapse collapse">
+	            <div class="panel-body">
+	                
+	                <ul class="list-unstyled">
+	            		{{ history_society_articles }}
+	            	</ul>
+	                
+	            </div>
+	        </div>
+	    </div>
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+	                <h4 class="panel-title">
+	                     {% if content.langcode['#markup'] starts with "Esp" %}
+	                        Informacion sobre las vacunas
+	                    {% else %}
+	                        Vaccine Information
+	                    {% endif %}
+	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+	                </h4>
+	            </a>
+	        </div>
+	        <div id="collapseThree" class="panel-collapse collapse">
+	            <div class="panel-body">
+	            	<ul class="list-unstyled">
+	            		{{vaccine_information_articles}}
+	            	</ul>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+	                <h4 class="panel-title">
+	                     {% if content.langcode['#markup'] starts with "Esp" %}
+	                        Enfermedades que se pueden prevenir con las vacunas
+	                    {% else %}
+	                        Vaccine-Preventable Diseases
+	                    {% endif %}
+	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+	                </h4>
+	            </a>
+	        </div>
+	        <div id="collapseFour" class="panel-collapse collapse">
+	            <div class="panel-body">
+	            	<ul class="list-unstyled">
+	            		{{vaccine_preventable_diseases}}
+	            	</ul>
+	            </div>
+	        </div>
+	    </div>
+	    
+	     <div class="panel panel-default">
+	        <div class="panel-heading">
+	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+	                <h4 class="panel-title">
+	                     {% if content.langcode['#markup'] starts with "Esp" %}
+	                        Preguntas comunes
+	                    {% else %}
+	                        Common Questions
+	                    {% endif %}
+	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
+	                </h4>
+	            </a>
+	        </div>
+	        <div id="collapseFive" class="panel-collapse collapse">
+	            <div class="panel-body">
+	                <ul class="list-unstyled">
+	            		{{ common_questions_articles }}
+	            	</ul>
+	            </div>
+	        </div>
+	    </div>    
+	</div>
+</div>
 <div class="sidebar hidden-xs hidden-sm">
 	
 	{% if content.field_rel_articles[0] %}
 		<div class="sidebar-item">
 		
-			{% if content.langcode['#markup'] == "Espa–ol" %}
-				<h5>Art’culos Relacionadas</h5>
+			 {% if content.langcode['#markup'] starts with "Esp" %}
+				<h5>Articulos Relacionadas</h5>
 			{% else %}
 				<h5>Related Articles</h5>
 			{% endif %}
@@ -173,7 +313,7 @@
 	
 	{% if content.field_rel_simulations[0] %}
 		<div class="sidebar-item">
-			{% if content.langcode['#markup'] == "Espa–ol" %}
+			 {% if content.langcode['#markup'] starts with "Esp" %}
 				<h5>Actividades Relacionadas</h5>
 			{% else %}
 				<h5>Related Activities</h5>
@@ -204,7 +344,7 @@
 	
 	{% if content.field_rel_blog_posts[0] %}
 		<div class="sidebar-item">
-			{% if content.langcode['#markup'] == "Espa–ol" %}
+			 {% if content.langcode['#markup'] starts with "Esp" %}
 				<h5>Art’culos Relacionados Blog</h5>
 			{% else %}
 				<h5>Related Blog Posts</h5>
@@ -228,7 +368,7 @@
 	
 	{% if content.field_rel_items[0] %}
 		<div class="sidebar-item">
-			{% if content.langcode['#markup'] == "Espa–ol" %}
+			 {% if content.langcode['#markup'] starts with "Esp" %}
 				<h5>Enlaces Relacionados</h5>
 			{% else %}
 				<h5>Related Links</h5>

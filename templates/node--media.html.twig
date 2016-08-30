@@ -161,10 +161,6 @@
                 {% endif %}
 
                 <dl class="dl-horizontal">
-                    {% if node.field_orig_filename[0].value %}
-                        <dt>ID:</dt>
-                        <dd>{{ orig_filename }}</dd>
-                    {% endif %}
                     {% if node.field_caption[0].value %}
                         <dt>Caption:</dt>
                         <dd>{{ node.field_caption[0].value|raw }}</dd>
