@@ -27,7 +27,7 @@
 .gallery-item {
     position: relative;
     display: block;
-    min-height: 240px;
+    min-height: 250px;
 
     @include screen-sm {
         min-height: 275px;

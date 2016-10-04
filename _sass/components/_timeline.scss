@@ -3,8 +3,46 @@
     overflow: hidden;
     background: #555 url('../images/timelinebg.jpg') top center no-repeat;
 	background-size: cover;
-    height: 600px;
+    height: 640px;
     position: relative;
+}
+
+#visualization-timeline {
+    position: absolute;
+    bottom: 0;
+    height: 44px;
+    width: 100%;
+    padding: 5px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+    background: #eeeeee; /* Old browsers */
+    background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+
+    .moveright,
+    .moveleft {
+        color: white;
+        background: #61C8F2;
+        border-radius: 0;
+        border: 1px solid white;
+        width: 34px;
+        text-align: center;
+        position: relative;
+        top: 0;
+        transition: 0.5s all;
+
+        &:hover, &:focus, &:active {
+            top: -3px;
+            box-shadow: 0 2px 2px rgba(0,0,0,0.35);
+        }
+    }
+    .moveleft {
+        text-indent: -3px;
+    }
+    .moveright {
+        text-indent: -1px;
+    }
 }
 
 .vis-timeline {
@@ -70,7 +108,7 @@
     
 }
 .vis-item .vis-item-content {
-    height: 99px;
+    height: 95px;
 }
 
 .vis-item.vis-selected {
@@ -87,31 +125,33 @@
 .vis-timeline .timeline-entry {
 	background:white;
 	cursor:pointer;
-    max-height: 89px;
+    max-height: 65px;
     display: block;
+    overflow: hidden;
 }
 
 .vis-timeline .timeline-entry .image {
 	float:left;
-    height: 89px;
-    width: 89px;
+    height: 65px;
+    width: 65px;
 }
 .vis-timeline .timeline-entry .image + .title {
-    height: 89px;
-    width: 211px;
+    height: 65px;
+    width: 155px;
 }
 
 .vis-timeline .timeline-entry .image img {
 	height: inherit;
-	width:89px;
+	width:65px;
 }
 
 .vis-timeline .timeline-entry .title {
 	float:left;
 	padding:10px;
     height: auto;
-    width: 300px;
+    width: 220px;
     font-weight: bold;
+    font-size: 12px;
     white-space: normal;
 }
 

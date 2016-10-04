@@ -69,7 +69,7 @@
 		
 {% verbatim %}
 <script id="item-template" type="text/x-handlebars-template">
-<div style="width:300px; !important;">
+<div style="width:220px; !important;">
 			<div class="year">
 				{{year}}
 			</div>
@@ -89,6 +89,10 @@
 {% endverbatim %}
 <div id="visualization">
     <div id="visualization-filters"><span class="expand">FILTER</span>{{ exposed_form_timeline }}</div>
+    <div id="visualization-timeline" class="">
+        <a class="moveleft btn btn-default">&#9664;</a>
+        <a class="moveright btn btn-default pull-right">&#9654;</a>
+    </div>
 </div>
 
 <div class="main-content">
@@ -161,7 +165,7 @@
 
 <script type="text/javascript">
         var allCheckbox = $('#views-exposed-form-timeline-page-1 .form-select:eq(0)');
-        $('#views-exposed-form-timeline-page-1 .form-select:eq(0)').parent().html(allCheckbox).append('<b>Any Category</b>');
+        $('#views-exposed-form-timeline-page-1 .form-select:eq(0)').parent().html(allCheckbox).append('<b>All</b>');
         
         $('#views-exposed-form-timeline-page-1 .form-select').each(function(index){
             var text = $(this).parent().text();
@@ -252,6 +256,7 @@
 			}
 		});
 
+        var timelineData = [];
         var query = getQueryVariable('timeline_categories[]');
         var timeline;
         
@@ -273,7 +278,6 @@
             url: url,
             success: function(data) {
 	            data = JSON.parse(data);
-                var timelineData = [];
                 var append = 0;
                 var append_to = 0;
 
@@ -349,6 +353,8 @@
         		// Create a DataSet (allows two way data-binding)
         		var items = new vis.DataSet(timelineData);
         		
+                console.log(timelineData[3].start - 300);
+
         		// Configuration for the Timeline
         		var options = {
         			template: template,
@@ -356,7 +362,7 @@
         			height: '600px',
                     showMinorLabels: true,
                     min: '800',
-                    max: '2050',
+                    max: '2025',
                     start: '1200',
                     zoomMax: (473353890000),
                     zoomMin: (473353890000),
@@ -374,13 +380,34 @@
         				timeline.setSelection(eventLocationID, {focus: true});
         				
         				$("#" + eventLocationID).click();
-        			}
+        			} else {
+                        eventLocationID = timelineData[1].id;
+        				timeline.setSelection(eventLocationID, {focus: true});
+                    }
 	        	}, 1000);
-        		
             },
             error: function (err) {
                 console.log('Failed to load timeline data');
             }
+        });
+
+        $('.moveleft').on('click', function(){
+            var range = timeline.getWindow();
+            var interval = range.end - range.start;
+    
+            timeline.setWindow({
+                start: range.start.valueOf() - interval * 1.15,
+                end:   range.end.valueOf()   - interval * 1.15
+            });
+        });
+		$('.moveright').on('click', function(){
+            var range = timeline.getWindow();
+            var interval = range.end - range.start;
+    
+            timeline.setWindow({
+                start: range.start.valueOf() - interval * -1.15,
+                end:   range.end.valueOf()   - interval * -1.15
+            });
         });
 </script>
 
