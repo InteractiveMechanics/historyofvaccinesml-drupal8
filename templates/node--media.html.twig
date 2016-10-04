@@ -89,13 +89,16 @@
         {% set orig_filename = '0' ~ orig_filename %}
 	{% endif %}
 
+	
+    
     var data = [];
     data["{{ orig_filename }}"] = {
         root: "{{ orig_filename }}",
         title: "{{ node.title.value }}",
-        description: "{{ node.body[0].value|raw }}",
-        caption: "{{ node.field_caption[0].value|raw }}"
+        description: "{{ node.body[0].value|raw|striptags|replace({"\n":' ', "\r":' '}) }}",
+        caption: "{{ node.field_caption[0].value|raw|striptags|replace({"\n":' ', "\r":' '}) }}"
     };
+    
 </script>
 
 <div class="mobile-panel mobile-filter hidden-md hidden-lg" style="width:100%;">
@@ -139,10 +142,10 @@
 		<div class="col-md-9">
 			
 			<div class="gallery-item">
-                <a href="{{ base_path }}/drupal/gallery" class="back-to-results">&laquo; Back to results</a>
+                <a href="{{ base_path }}/gallery" class="back-to-results">&laquo; Back to results</a>
 				<h1>{{ node.title.value }}</h1>
 
-                {% if content.field_taxonomy.0['#url'].routeParameters['taxonomy_term'] == 36 %}
+                {% if content.field_taxonomy.0['#url'].routeParameters['taxonomy_term'] != 37 %}
                     <div class="gallery-image-container">
                         <div 
                             class="show-modal" 

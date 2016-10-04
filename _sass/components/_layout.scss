@@ -122,3 +122,21 @@ img {
         max-width: 100px;
     }
 }
+
+@media print {
+	.nav {
+		display: none;
+	}
+	
+	.nav-pills {
+		display: none;
+	}
+	
+	footer {
+		display:none;
+	}
+	
+	.site-header {
+		display: none;
+	}
+}

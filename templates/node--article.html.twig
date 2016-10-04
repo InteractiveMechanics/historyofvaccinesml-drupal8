@@ -123,95 +123,157 @@
 
 				<h1>{{ label }}</h1>
 				
-				<div class="body">
-					
-				<div class="body-mediaitem">
-					{% if content.field_related_media[0] %}
-                        {% if content.field_related_media[0]['#node'].field_orig_filename[0].value ends with "m4v" %}
-                            {% set orig_filename = content.field_related_media[0]['#node'].field_orig_filename[0].value|split('.')[0] %}
-                        {% else %}
-                            {% set orig_filename = content.field_related_media[0]['#node'].field_orig_filename[0].value %}
-                        {% endif %}
-                    
-                        {% if orig_filename|length == 1 %}
-                    		{% set orig_filename = '00000' ~ orig_filename %}
-                    
-                        {% elseif orig_filename|length == 2 %}
-                            {% set orig_filename = '0000' ~ orig_filename %}
-                    
-                        {% elseif orig_filename|length == 3 %}
-                            {% set orig_filename = '000' ~ orig_filename %}
-                    
-                        {% elseif orig_filename|length == 4 %}
-                            {% set orig_filename = '00' ~ orig_filename %}
-                    
-                        {% elseif orig_filename|length == 5 %}
-                            {% set orig_filename = '0' ~ orig_filename %}
-                    	{% endif %}
-
-                        <div class="gallery-image-container">
-                            <div class="image {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 37 %}hidden{% endif %}">
-                                {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 36 %}
-                                <div 
-                                    class="show-modal" 
-                                    data-filename="{{ orig_filename }}"
-                                    >+</div>
-                                {% endif %}
-                                <img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{ content.field_related_media[0]['#node'].title.value }}" />
-                            </div>
-                            {% if content.field_related_media[0]['#node'].field_taxonomy.target_id %}
-                                <div class="video {% if content.field_related_media[0]['#node'].field_taxonomy.target_id == 36 %}hidden{% endif %}">
-                                    <video src="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" poster="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" controls="controls" autoplay="true" width="100%"></video>
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        
-						<p><small><em>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }}</em>
-                            
-                            <br /><b>{{ content.field_related_media[0]['#node'].field_creator.entity.field_caption.value|raw }}</b>
-                        </small></p>
-
-					{% endif %}
-                    {% if content.field_related_media[1] %}
-                        <div id="body-mediaitem-switcher">
-                        {% for key, related_media in content.field_related_media if key|first != '#' %}
-                                {% if content.field_related_media[key]['#node'].field_orig_filename[0].value ends with "m4v" %}
-                                    {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value|split('.')[0] %}
-                                {% else %}
-                                    {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
-                                {% endif %}
-                            
-                                {% if orig_filename|length == 1 %}
-                            		{% set orig_filename = '00000' ~ orig_filename %}
-                            
-                                {% elseif orig_filename|length == 2 %}
-                                    {% set orig_filename = '0000' ~ orig_filename %}
-                            
-                                {% elseif orig_filename|length == 3 %}
-                                    {% set orig_filename = '000' ~ orig_filename %}
-                            
-                                {% elseif orig_filename|length == 4 %}
-                                    {% set orig_filename = '00' ~ orig_filename %}
-                            
-                                {% elseif orig_filename|length == 5 %}
-                                    {% set orig_filename = '0' ~ orig_filename %}
-                            	{% endif %}
-                                
-                                {% if content.field_related_media[key]['#node'].field_taxonomy.target_id == 36 %}
-                                    <div class="body-mediaitem-small" data-filename="{{ orig_filename }}" data-type="image" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
-        						        <img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
-                                    </div>
-                                {% elseif content.field_related_media[key]['#node'].field_taxonomy.target_id == 37 %}
-                                    <div class="body-mediaitem-small" data-filename="{{ orig_filename }}" data-type="video" data-caption="{{ content.field_related_media[key]['#node'].field_caption.value }}">
-        						        <img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{ content.field_related_media[key]['#node'].title.value }}" />
-                                    </div>
-                                {% endif %}
-                        {% endfor %}
-                        </div>
-					{% endif %}
-				</div>
 				
+				<div class="body">
+				
+				<div class="body-mediaitem">
+					{% set first_item_done = false %}
+					{% if content.field_related_media[0] %}
+						<div class="gallery-image-container">
+							<div class="gallery-items">
+								{% for key, related_media in content.field_related_media if key|first != '#' %}
+									 	
+									 	{% if content.field_related_media[key]['#node'].field_orig_filename[0].value ends with "m4v" %}
+		                                    {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value|split('.')[0] %}
+		                                {% else %}
+		                                    {% set orig_filename = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+		                                {% endif %}
+		                            
+		                                {% if orig_filename|length == 1 %}
+		                            		{% set orig_filename = '00000' ~ orig_filename %}
+		                            
+		                                {% elseif orig_filename|length == 2 %}
+		                                    {% set orig_filename = '0000' ~ orig_filename %}
+		                            
+		                                {% elseif orig_filename|length == 3 %}
+		                                    {% set orig_filename = '000' ~ orig_filename %}
+		                            
+		                                {% elseif orig_filename|length == 4 %}
+		                                    {% set orig_filename = '00' ~ orig_filename %}
+		                            
+		                                {% elseif orig_filename|length == 5 %}
+		                                    {% set orig_filename = '0' ~ orig_filename %}
+		                            	{% endif %}
+		                            	
+		                            	{% set media_title = content.field_related_media[key]['#node'].title.value %}
+		                            	
+		                            	{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37%}
+		                            		
+		                            		<div class="image {% if first_item_done %}hidden{% endif %} {{orig_filename}}">
+		                            			<img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{media_title}}" />
+		                            		</div>
+		                            		
+		                            	{% else %}
+		                            	
+		                            		<div class="video {% if first_item_done %}hidden{% endif %} {{orig_filename}}">
+												<video 
+													src="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" 
+													poster="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" 
+													controls="controls" 
+													preload="none" 
+													width="100%">
+												</video>
+											</div>
+		                            	
+		                            	{% endif %}
+				                        
+				                        {% if first_item_done == false %}
+									 		{% set first_item_done = true %}
+									 	{% endif %}
+									 
+									
+								{% endfor %}
+							</div>
+							
+							{% if content.field_related_media[0] %}
+							
+								<p style='line-height: 15px; margin-top: 15px; font-size: 13px;'><small>
+									{% if content.field_related_media[0]['#node'].field_creator.entity.title.value %}
+										<em>{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }} </em>
+									{% else %}
+										<em>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }} </em>
+									{% endif %}
+		                            
+		                            <br /><b>{{ content.field_related_media[0]['#node'].field_caption.value }}</b>
+		                        </small></p>
+		                        
+		                    {% endif %}
+		                    
+		                    {% if content.field_related_media[0] %}
+		                    	<div id="body-mediaitem-switcher">
+		                    		{% for key, related_media1 in content.field_related_media if key|first != '#' %}
+		                    			
+		                    			{% if content.field_related_media[key]['#node'].field_orig_filename[0].value ends with "m4v" %}
+		                                    {% set thumb_file = content.field_related_media[key]['#node'].field_orig_filename[0].value|split('.')[0] %}
+		                                {% else %}
+		                                    {% set thumb_file = content.field_related_media[key]['#node'].field_orig_filename[0].value %}
+		                                {% endif %}
+		                                
+		                                
+		                                {% if thumb_file|length == 1 %}
+		                            		{% set thumb_file = '00000' ~ thumb_file %}
+		                            
+		                                {% elseif thumb_file|length == 2 %}
+		                                    {% set thumb_file = '0000' ~ thumb_file %}
+		                            
+		                                {% elseif thumb_file|length == 3 %}
+		                                    {% set thumb_file = '000' ~ thumb_file %}
+		                            
+		                                {% elseif thumb_file|length == 4 %}
+		                                    {% set thumb_file = '00' ~ thumb_file %}
+		                            
+		                                {% elseif thumb_file|length == 5 %}
+		                                    {% set thumb_file = '0' ~ thumb_file %}
+		                            	{% endif %}
+		                    		
+		                    		
+			                    		{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37 %}
+			                    		
+			                    			{% if content.field_related_media[key]['#node'].field_creator.entity.title.value %}
+			                    				{% set text = content.field_related_media[key]['#node'].field_creator.entity.title.value|raw %}
+											{% else %}
+												{% set text = content.field_related_media[key]['#node'].field_copyright.entity.title.value|raw %}
+											{% endif %}
+			                    			
+			                    			<div 
+			                    				class="body-mediaitem-small body-mediaitem-small-article" 
+			                    				data-filename="{{ thumb_file }}" 
+			                    				data-type="image" 
+			                    				data-caption="<em>{{text}}</em><br /><b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>">
+															  <img 
+															  	src="http://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
+															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
+															  />
+											</div>
+			                    		
+			                    		{% else %}
+			                    		
+			                    			<div 
+			                    				class="body-mediaitem-small body-mediaitem-small-article" 
+			                    				data-filename="{{ thumb_file }}" 
+			                    				data-type="video" 
+			                    				data-caption="<em>{{ content.field_related_media[key]['#node'].field_copyright.entity.title.value|raw }}</em> 
+			                    							  <br /><b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>" 
+			                    			>
+															  <img 
+															  	src="http://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
+															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
+															  />
+											</div>
+			                    			
+			                    		{% endif %}
+		                    		
+		                    		{% endfor %}
+		                    		
+		                    	</div>
+		                    {% endif %}
+							
+						</div>
+					{% endif %}
+				
+				</div>
+					
+								
 				{{ node.body[0].value|raw  }}
 				</div>
 				
@@ -221,22 +283,64 @@
 							<p class="date">Timeline Entry: {{ entry['#node'].field_event_date.value }}</p>
 						
 							<p class="title">{{ entry['#node'].title.value }}</p>
+							
 						
-							{{ entry['#node'].body.value|raw }}
-						
-							<a href="{{front_page}}/drupal/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">See this item in the timeline</a>
+							<div class="">
+								{% if entry['#node'].field_related_media[0].entity.field_orig_filename.value %}
+									<div style="float:left; width:50%;">
+								{% else %}
+									<div>
+								{% endif %}
+									{{ entry['#node'].body.value|raw }}
+									<a href="{{front_page}}/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">See this item in the timeline</a>
+								</div>
+								
+								{% if entry['#node'].field_related_media[0].entity.field_orig_filename.value %}
+
+									<div style="float:right;">
+										{% if entry['#node'].field_related_media[0].entity.field_orig_filename.value ends with "m4v" %}
+				                            {% set orig_filename = entry['#node'].field_related_media[0].entity.field_orig_filename.value|split('.')[0] %}
+				                        {% else %}
+				                            {% set orig_filename = entry['#node'].field_related_media[0].entity.field_orig_filename.value %}
+				                        {% endif %}
+				                    
+				                        {% if orig_filename|length == 1 %}
+				                    		{% set orig_filename = '00000' ~ orig_filename %}
+				                    
+				                        {% elseif orig_filename|length == 2 %}
+				                            {% set orig_filename = '0000' ~ orig_filename %}
+				                    
+				                        {% elseif orig_filename|length == 3 %}
+				                            {% set orig_filename = '000' ~ orig_filename %}
+				                    
+				                        {% elseif orig_filename|length == 4 %}
+				                            {% set orig_filename = '00' ~ orig_filename %}
+				                    
+				                        {% elseif orig_filename|length == 5 %}
+				                            {% set orig_filename = '0' ~ orig_filename %}
+				                    	{% endif %}
+				                    	
+										<img style="margin-right:15px; margin-bottom:5px;" 
+										src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" />
+									</div>
+									
+								{% endif %}
+								
+								<br style="clear:both;" />
+							</div>
+							
 						</div>
 					{% endfor %}
 				{% endif %}
 				
 				{% if content.field_rel_assessment[0] %}
 					<div class="assessment border-box">
-						<h2>Assessment Questions</h2>
+						<h2><span class="glyphicon glyphicon-ok-sign" style="color: #36AA6B;"></span> Assessment Questions</h2>
 						
 						{% for key, assessment in content.field_rel_assessment if key|first != '#' %}
 						
 						
-							<div class="question" data-answer="{{assessment['#node'].field_answer.value}}">
+							<div class="question" data-answer="{{assessment['#node'].field_answer.value}}" data-assessmentid="{{assessment['#node'].id}}">
 								<p>
 									<strong>{{ assessment['#node'].field_question.value|raw }} </strong>
 								</p>
@@ -253,7 +357,7 @@
 							
 						{% endfor %}
 						
-						
+						<a href="http://www.historyofvaccines.org/content/assessments">View Progress</a>
 					</div>
 				{% endif %}
 			</div>
@@ -308,10 +412,12 @@
 			if(!$(this).parent().parent().hasClass('answered')) {
 			
 				var answer = $(this).parent().parent().data('answer');
+				
+				var id = $(this).parent().parent().data('assessmentid');
 				var n = $(this).index();
 				
 				var chr = String.fromCharCode(97 + n);
-				
+				var correctIndex = null;
 				if(chr == answer) {
 					$(this).addClass('correct');
 				} else {
@@ -322,7 +428,22 @@
 					$(this).parent().parent().find('ul > li:eq(' + correctIndex +')').text(value + ' (correct)');
 					$(this).parent().parent().find('ul > li:eq(' + correctIndex +')').addClass('correct');
 				}
-				$(this).parent().parent().addClass('answered')
+				$(this).parent().parent().addClass('answered');
+				
+				var assessments = JSON.parse(localStorage.getItem("assessments"));
+				
+				if(!assessments) {
+					assessments = [];
+				}
+				
+				assessments.push({
+					nid: id,
+					indexSelected: n,
+					correctIndex: correctIndex
+					
+				});
+				
+				localStorage.setItem("assessments", JSON.stringify(assessments));
 			}
 		});
 		
@@ -342,6 +463,10 @@
 				$(this).parent().parent().addClass('answered');
 				
 				$('.more-info').show();
+				
+				
+				
+				
 			}
 			
 		});

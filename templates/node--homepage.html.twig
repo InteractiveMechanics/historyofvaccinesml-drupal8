@@ -71,7 +71,7 @@
 	<div class="blocks">
 		<div class="large-block pull-left">
 			{#node.field_featured_relative_path[0].value#}
-			<a href="javascript: void(0);"><img src="{{ file_url(node.field_featured_image.entity.fileuri) }}" class="img-responsive" /></a>
+			<a href="{{ base_path }}{{ node.field_featured_relative_path.value }}"><img src="{{ file_url(node.field_featured_image.entity.fileuri) }}" class="img-responsive" /></a>
 		</div>
 		
 		<div class="small-block pull-right dark-blue-block hidden-sm hidden-xs">
@@ -82,7 +82,7 @@
 		</div>
 		
 		<div class="small-block pull-right hidden-sm hidden-xs">
-			<img src="{{front_page}}themes/historyofvaccines/images/homepage/TIMELINE.jpg" class="img-responsive" width="100%" />
+			<a href="{{ base_path }}/drupal/timeline"><img src="{{front_page}}themes/historyofvaccines/images/homepage/TIMELINE.jpg" class="img-responsive" width="100%" /></a>
 		</div>
 	</div>
 	
@@ -151,7 +151,7 @@
 			<ul class="link-list recent-posts">
 				{{ recent_post }}
 			</ul>
-            <a href="{{ front_page }}/drupal/blog" class="view-more">View All &#9654;</a>
+            <a href="{{ base_path }}/drupal/blog" class="view-more">View All &#9654;</a>
 		</div>
 	</div>
     <div class="col-md-3 col-sm-6">

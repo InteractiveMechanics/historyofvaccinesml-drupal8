@@ -75,7 +75,7 @@
 			var key = getParameterByName('keys');
 			
 			if(filter == 'Site') {
-				var searchLink = window.location.origin + window.location.pathname + "?keys=" + key;
+				var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
 				window.location = searchLink;
 			}
 			

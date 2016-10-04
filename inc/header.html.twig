@@ -32,7 +32,7 @@
 				
 				<div class="pull-right">
 					<div class="header-search hidden-sm hidden-xs">
-						<form action="/drupal/search/node" method="get" id="search-block-form" accept-charset="UTF-8" data-drupal-form-fields="edit-keys">
+						<form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8" data-drupal-form-fields="edit-keys">
               
 	<div class="search-area">
 		<input title="Enter the terms you wish to search for." autocomplete="off" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search form-control" placeholder="Enter the terms you wish to search for.">
@@ -53,7 +53,7 @@
 	<nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="pull-left  mobile-logo hidden-md hidden-lg">
-          	 <a href="{{ front_page }}"><img src="{{front_page}}themes/historyofvaccines/images/hov_text.png" style="width:65%;" /></a>
+          	 <a href="/drupal/"><img src="{{front_page}}themes/historyofvaccines/images/hov_text.png" style="width:65%;" /></a>
           </div>
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -62,10 +62,41 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav left-menu main-nav">
-              {{primarylinksmenu}}
+               <li class=" ">
+                  <a href="{{base_path}}timeline" data-drupal-link-system-path="timeline">Timeline</a>
+              </li>
+          <li class=" ">
+                  <a href="{{base_path}}activities" data-drupal-link-system-path="activities">Activities</a>
+              </li>
+          <li class=" ">
+                  <a href="{{base_path}}articles" data-drupal-link-system-path="articles">Articles</a>
+              </li>
+          <li class=" ">
+                  <a href="{{base_path}}gallery" data-drupal-link-system-path="gallery">Gallery</a>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right small-links hidden-xs">
-              	{{ page.primary_menu }}
+              	<li class=" ">
+		                  <a href="{{base_path}}content/about" data-drupal-link-system-path="node/645">About</a>
+		              </li>
+		          <li class=" ">
+		                  <a href="{{base_path}}blog" data-drupal-link-system-path="blog">Blog</a>
+		              </li>
+		          <li class=" ">
+		                  <a href="{{base_path}}content/educators" data-drupal-link-system-path="node/643">Educators</a>
+		              </li>
+		          <li class=" ">
+		                  <a href="{{base_path}}content/faq" data-drupal-link-system-path="node/647">FAQ</a>
+		              </li>
+		          <li class=" ">
+		                  <a href="{{base_path}}glossary" data-drupal-link-system-path="glossary">Glossary</a>
+		              </li>
+		          <li class=" ">
+		                  <a href="{{base_path}}content/media" data-drupal-link-system-path="node/644">Media</a>
+		              </li>
+		          <li class=" ">
+		                  <a href="{{base_path}}content/parents" data-drupal-link-system-path="node/642">Parents</a>
+		              </li>
               	<li>
     				<a href="{{ base_path }}es/content"> Español</a>
     			</li>
@@ -76,14 +107,45 @@
     <div class="hidden-md hidden-lg hidden-sm mobile-nav">
     	
     			<ul class="list-unstyled col-xs-6" style="padding:0;">
+    				<li class=" ">
+			                  <a href="{{base_path}}timeline" data-drupal-link-system-path="timeline">Timeline</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}activities" data-drupal-link-system-path="activities">Activities</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}articles" data-drupal-link-system-path="articles">Articles</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}gallery" data-drupal-link-system-path="gallery">Gallery</a>
+			              </li>
     				<li>
     					<a href="{{ base_path }}es/content">Español</a> <hr align="left" width="75%" />
     				</li>
-    				{{ page.primary_menu }}
     			</ul>
     			
 				<ul class="list-unstyled col-xs-6" style="padding:0;">
-					{{ page.footer_menu }}
+					<li class=" ">
+		                  <a href="{{base_path}}content/legal-and-privacy" data-drupal-link-system-path="node/1012">Legal</a>
+		              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}content/resources" data-drupal-link-system-path="node/1011">Resources</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}glossary" data-drupal-link-system-path="glossary">Glossary</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}content/credits" data-drupal-link-system-path="node/1008">Credits</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}content/email-sign" data-drupal-link-system-path="node/1010">E-mail Sign-up</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}content/donors" data-drupal-link-system-path="node/1112">Donors</a>
+			              </li>
+			          <li class=" ">
+			                  <a href="{{base_path}}content/contact" data-drupal-link-system-path="node/1007">Contact</a>
+			           </li>
 				</ul>
     	</div>
     </div>

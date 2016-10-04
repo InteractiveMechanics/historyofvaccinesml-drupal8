@@ -1,10 +1,14 @@
 #visualization {
     margin: -15px -15px 0;
+    overflow: hidden;
+    background: #555 url('../images/timelinebg.jpg') top center no-repeat;
+	background-size: cover;
+    height: 600px;
+    position: relative;
 }
 
 .vis-timeline {
-    background: url('./themes/historyofvaccines/images/timelinebg.jpg') top center no-repeat;
-	background-size: cover;
+    background: none;
     border: none !important;
 }
 
@@ -75,10 +79,6 @@
     z-index: 2;
 }
 
-.vis-timeline {
-	background: #555;
-}
-
 .vis-timeline .year {
 	color:white;
 	font-weight:bold;
@@ -134,6 +134,9 @@
     top: -15px !important;
     margin-left: 10px;
 }
+.vis-panel.vis-bottom {
+    border: none;
+}
 
 
 .vis-major {
@@ -141,34 +144,56 @@
 	font-weight: 100;
 }
 
+#visualization-filters {
+    position: absolute;
+    z-index: 9;
+    right: -15px;
+    top: 50px;
+    width: 320px;
+    overflow: hidden;
+    height: 500px;
+    pointer-events: none;
 
-.filters ul {
-	margin:0px;
-	padding:0px;
-}
+    .expand {
+        position: absolute;
+        background: #26A862;
+        color: white;
+        text-transform: uppercase;
+        right: 0;
+        width: 90px;
+        pointer-events: all;
+        transition: 0.5s all;
+        padding: 14px;
+        letter-spacing: 1px;
+        font-weight: 700;
+        border-radius: 3px 0 0 3px;
 
-.filters ul li {
-	display:inline-block;
-	background:white;
-	border-radius:8px 8px 0 0;
-	padding:6px 14px;
-	cursor:pointer;
-	font-weight:bold;
-	color:#444;
-	text-transform:uppercase;
-}
+        &.active {
+            right: 200px;
+        }
+    }
 
-.filters ul li:hover {
-	background:#23527c;
-	color:white;
-}
+    form {
+        position: absolute;
+        right: -200px;
+        transition: 0.5s all;
+        pointer-events: all;
+        background: white;
+        padding: 20px;
+        width: 200px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.35);
 
-.filters ul li.active:hover {
-	background:white;
-	color:#444;
-}
-
-.filters ul li.active {
-	background:#23527c;
-	color:white;
+        &.in {
+            right: 0;
+        }
+        
+        .js-form-item > label {
+            color: #26A862;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .form-actions {
+            display: none;
+        }
+    }
 }
