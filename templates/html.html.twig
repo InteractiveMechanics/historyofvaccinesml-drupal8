@@ -207,12 +207,29 @@
 			e.preventDefault();
 			e.stopPropagation();
 			if (event.keyCode == 13) {
-				var search = "?keys=" + document.getElementById('edit-keys').value + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
+				var search = "?keys=" + document.getElementById('edit-keys').value + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation&f[2]=type:timeline_entry";
 				var searchLink = window.location.origin + '/search/node' + search;
 				window.location = searchLink;
 			}
 		});
+		
+		
+		
     </script>
+    
+    
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		if( document.getElementById("mollom") !== null ) {
+			var html = $('.article-node').next('div').html();
+			$('.article-node').next('div').hide();
+			
+			$('.article-node .comments').html(html);
+		}
+	});
+	
+</script>
     
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5755a6c926eeffb8"></script>

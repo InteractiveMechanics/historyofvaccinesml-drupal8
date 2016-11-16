@@ -4,6 +4,7 @@
  * Default theme implementation to display a node.
  *
  * Available variables:
+ *
  * - node: The node entity with limited access to object properties and methods.
      Only "getter" methods (method names starting with "get", "has", or "is")
      and a few common methods such as "id" and "label" are available. Calling
@@ -66,86 +67,78 @@
  */
 #}
 
-{% for row in rows %}
-	{{ row.title }}
-{% endfor %}
 
-<div class="article-view-node">
-
+<div class="article-node blog">
 	<div class="row">
 	
-		<div class="col-md-3">
+		<div class="col-md-3 hidden-sm hidden-xs">
 		
-			{% include directory ~ '/inc/sidebar-articles.html.twig' %}
 		
-		</div>
-		
-		<div class="col-md-9">
-		
-			<div class="row">
-			
-				<div class="featured-articles">
-					<div class="col-md-7">
-						<div class="main-article">
-							{{ rows }}
-						</div>
-                        <hr class="visible-xs" />
-					</div>
+			<div class="sidebar">
+				<div class="sidebar-item" style="margin-bottom:10px;">
+					<div class="rss"><a href="http://feeds.feedburner.com/TheHistoryOfVaccinesBlog" class="rss-link">RSS</a></div>
+				</div>
+				<div class="sidebar-item">
+					<a href="https://feedburner.google.com/fb/a/mailverify?uri=TheHistoryOfVaccinesBlog&amp;loc=en_US" class="feedburner-email-link" rel="external" target="_blank">Subscribe to The History of Vaccines Blog by Email</a>
+				</div>
 				
-				
-					<div class="col-md-5">
+				<div class="sidebar-item">
+					<h5>POSTS BY CATEGORY</h5>
 					
-						<div class="side-articles">
-						
-							<div class="homepage-item">
-								
-								<ul class="link-list recent-posts">
-                                    <h5>Popular Posts</h5>
-									{{ popular_articles }}
-								</ul>
-							</div>
-							
-						</div>					
-					</div>
-				</div>
-				
-			</div>
-			
-			<div style="">
-				<div class="row">
-					<div class="col-md-12">
-						<hr style="border-color:#ddd;" />
-					</div>
-				</div>
-			</div>
-			
-			
-			<div class="new-articles">
-				
-				<div class="row row-same-height">
-				
-					<ul class="recent-article-list">
-						{{recent_articles}}
+					<ul class="link-list recent-posts blog-categories">
+						{{blog_categories}}
 					</ul>
-					
 				</div>
 				
+				<div class="sidebar-item">
+					<h5>POPULAR POSTS</h5>
+					
+					<ul class="link-list recent-posts">
+						{{ popular_posts }}
+					</ul>
+				</div>
 				
+				<div class="sidebar-item">
+					<h5>RECENT POSTS</h5>
+					
+					<ul class="link-list recent-posts">
+						{{ recent_post }}
+					</ul>
+				</div>
+				
+				<div class="sidebar-item">
+					<h5>ARCHIVES</h5>
+					
+					<ul class="link-list recent-posts">
+						{{blog_archive}}
+					</ul>
+				</div>
+				
+				<div class="sidebar-item">
+					<h5>OTHER BLOGS</h5>
+					
+					<ul class="link-list">
+						{{otherblogs}}
+					</ul>
+				</div>
 			</div>
 		
 		</div>
 	
-	
+		<div class="col-md-9">
+			
+			
+			
+			<div class="article">
+				<h1>History of Vaccines Blog</h1>
+				<br />
+				
+				{{rows}}
+				
+				{{ pager }}
+				
+			</div>
+			
+		</div>
 	</div>
-
 </div>
-
-
-<script type="text/javascript">	
-	
-	$(document).ready(function(){
-		$('.panel-title:eq(0)').find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-		$('#collapseOne').addClass('in');
-	});
-
-</script>

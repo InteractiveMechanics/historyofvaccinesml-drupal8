@@ -92,6 +92,7 @@
     <div id="visualization-timeline" class="">
         <a class="moveleft btn btn-default">&#9664;</a>
         <a class="moveright btn btn-default pull-right">&#9654;</a>
+        <div class="slider"></div>
     </div>
 </div>
 
@@ -104,7 +105,6 @@
 			<p class="timeline-overview">
 				{{timeline_overview_body|raw}}
 			</p>
-			
 			
 		</div>
 		
@@ -257,6 +257,7 @@
 		});
 
         var timelineData = [];
+        var timelineCount;
         var query = getQueryVariable('timeline_categories[]');
         var timeline;
         
@@ -270,9 +271,12 @@
 	        ids = 'all';
         }
         
-        
-        
-        var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=0';
+        var pathArray = window.location.pathname.split( '/' );
+        if (pathArray[1] == 'es'){
+            var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=1';
+        } else {
+            var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=0';
+        }
         console.log(url);
         $.ajax({
             url: url,
@@ -329,10 +333,7 @@
 				     } 
 				}
 				
-				timelineData.sort(sort_by('year', false, parseInt));
-
-				console.log(timelineData);
-                
+				timelineData.sort(sort_by('year', false, parseInt));                
 
         		//test
         		var source   = $("#item-template").html();
@@ -346,15 +347,12 @@
         		
         		
         		
-        		
         		// DOM element where the Timeline will be attached
         		var container = document.getElementById('visualization');
         		
         		// Create a DataSet (allows two way data-binding)
         		var items = new vis.DataSet(timelineData);
         		
-                console.log(timelineData[3].start - 300);
-
         		// Configuration for the Timeline
         		var options = {
         			template: template,
@@ -371,6 +369,8 @@
         		
         		// Create a Timeline
         		timeline = new vis.Timeline(container, items, options);
+                timelineCount = timelineData.length;
+                console.log(timelineData[timelineCount-1]);
         		
         		setTimeout(function(){
 	        		var eventLocationID = window.location.hash.substring(1);
@@ -381,10 +381,21 @@
         				
         				$("#" + eventLocationID).click();
         			} else {
-                        eventLocationID = timelineData[1].id;
+                        eventLocationID = timelineData[0].id;
         				timeline.setSelection(eventLocationID, {focus: true});
                     }
-	        	}, 1000);
+	        	}, 300);
+                $('#visualization-timeline .slider').slider({
+                    value: (Date.parse( timelineData[0].year ) - 20000),
+                    min: (Date.parse( timelineData[0].year ) - 20000),
+                    max: (Date.parse( timelineData[timelineCount-1].year )),
+                    slide: function(e, ui) {
+                        var newval = ui.value;
+                        timeline.setWindow({
+                            start: newval
+                        });
+                    }
+                });
             },
             error: function (err) {
                 console.log('Failed to load timeline data');

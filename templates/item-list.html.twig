@@ -22,16 +22,16 @@
 <br />
 <div class="filters">
 	
-	<ul>
-		<li>Site</li>
-		<li>Blog</li>
-		<li>Media</li>
+	<ul class="nav nav-tabs">
+		<li><a>Site</a></li>
+		<li><a>Blog</a></li>
+		<li><a>Media</a></li>
 	</ul>
 </div>
-<section class="page search-page">
+<section class="page search-page" style="background:white;">
     <div class="row">
         <div class="col-md-12">
-			<div style="background:white;">
+			<div>
 			
             {% if context.list_style %}
               {%- set attributes = attributes.addClass('item-list__' ~ context.list_style) %}
@@ -48,7 +48,9 @@
                   {%- endfor -%}
                 </div>
               {%- else -%}
+                <div style="padding:20px;">
                 {{- empty -}}
+                </div>
               {%- endif -%}
             {%- endif %}
             
@@ -66,11 +68,17 @@
 			$('.filters ul li:eq(1)').addClass('active');
 		} else if (window.location.href.indexOf('media') > -1) {
 			$('.filters ul li:eq(2)').addClass('active');
-		} else {	
+		} else if (window.location.href.indexOf('article') > -1) {	
 			$('.filters ul li:eq(0)').addClass('active');
+        } else {
+            $('.filters ul li:eq(0)').addClass('active');
+
+            var key = getParameterByName('keys');
+            var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
+            window.location = searchLink;
 		}
 		
-		$('.filters ul li').click(function(){
+		$('.filters ul li a').click(function(){
 			var filter = $(this).text();
 			var key = getParameterByName('keys');
 			

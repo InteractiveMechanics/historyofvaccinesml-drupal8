@@ -9,6 +9,14 @@ bootstrap:
   dependencies:
     - core/jquery
 
+jqueryui:
+  version: 1.12.1
+  header: true
+  js:
+    js/lib/jquery-ui.min.js: {}
+  dependencies:
+    - core/jquery
+
 openseadragon:
   version: 2.2.1
   js:

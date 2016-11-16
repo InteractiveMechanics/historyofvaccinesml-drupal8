@@ -1,5 +1,6 @@
 <?php
 	function historyofvaccines_theme_suggestions_node_alter(array &$suggestions, array &$variables)  {
+		
 		$node = \Drupal::routeMatch()->getParameter('node');
 		
 		if ($node) {
@@ -133,8 +134,9 @@
             $exposed_timeline_block = \Drupal\block\Entity\Block::load('exposedformtimelinepage_1');
 			$variables['exposed_form_timeline'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_timeline_block);
 
-			$categories = $_GET['timeline_categories'];
-			
+            if ($_GET['timeline_categories']){
+			    $categories = $_GET['timeline_categories'];
+			}
 			
 			if(count($categories) == 1) {
 				// get overview
@@ -192,6 +194,23 @@
 			$variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
 		}
 		
+		if(!$view) {
+			$blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
+			$variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive); 
+			
+			$blog_categories = \Drupal\block\Entity\Block::load('views_block__blog_categories_block_1');
+			$variables['blog_categories'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_categories);
+			
+			$popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
+			$variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
+			
+			$recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
+			$variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
+			
+			$otherblogs = \Drupal\block\Entity\Block::load('otherblogs');
+			$variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
+		}
+		
 		if($view == "blog_archive") {
 			$blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
 			$variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive); 
@@ -210,21 +229,38 @@
 		}
 
 		if($view == "taxonomy_term") {
-                        $blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
-                        $variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive);
+                $blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
+                $variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive);
 
-                        $blog_categories = \Drupal\block\Entity\Block::load('views_block__blog_categories_block_1');
-                        $variables['blog_categories'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_categories);
+                $blog_categories = \Drupal\block\Entity\Block::load('views_block__blog_categories_block_1');
+                $variables['blog_categories'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_categories);
 
-                        $popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
-                        $variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
+                $popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
+                $variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
 
-                        $recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
-                        $variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
+                $recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
+                $variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
 
-                        $otherblogs = \Drupal\block\Entity\Block::load('otherblogs');
-                        $variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
-                }
+                $otherblogs = \Drupal\block\Entity\Block::load('otherblogs');
+                $variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
+        }
+
+        if($view == "blog_category_page") {
+                $blog_archive = \Drupal\block\Entity\Block::load('views_block__blog_archive_block_1');
+                $variables['blog_archive'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_archive);
+
+                $blog_categories = \Drupal\block\Entity\Block::load('views_block__blog_categories_block_1');
+                $variables['blog_categories'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($blog_categories);
+
+                $popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
+                $variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
+
+                $recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
+                $variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
+
+                $otherblogs = \Drupal\block\Entity\Block::load('otherblogs');
+                $variables['otherblogs'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($otherblogs);
+        }
 		
 		
 		if($view == 'articles') {
@@ -274,4 +310,17 @@
         
 	}
 
+	function historyofvaccines_preprocess_search_result(&$variables) {
+		
+		$node = $variables['result']['node'];
+		
+		if($node->field_uid) {
+			
+			$uid = $node->field_uid->getValue()[0]['value'];
+			$link = "http://www.historyofvaccines.org/timeline#EVT_" . $uid;
+			$variables['url'] = $link;
+			
+		}
+		
+	}
 ?>
