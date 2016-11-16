@@ -258,6 +258,7 @@
 
         var timelineData = [];
         var timelineCount;
+        var slider;
         var query = getQueryVariable('timeline_categories[]');
         var timeline;
         
@@ -370,7 +371,6 @@
         		// Create a Timeline
         		timeline = new vis.Timeline(container, items, options);
                 timelineCount = timelineData.length;
-                console.log(timelineData[timelineCount-1]);
         		
         		setTimeout(function(){
 	        		var eventLocationID = window.location.hash.substring(1);
@@ -385,7 +385,7 @@
         				timeline.setSelection(eventLocationID, {focus: true});
                     }
 	        	}, 300);
-                $('#visualization-timeline .slider').slider({
+                slider = $('#visualization-timeline .slider').slider({
                     value: (Date.parse( timelineData[0].year ) - 365000000000),
                     min: (Date.parse( timelineData[0].year ) - 365000000000),
                     max: (Date.parse( timelineData[timelineCount-1].year )),
@@ -396,29 +396,32 @@
                         });
                     }
                 });
+                $('.moveleft').on('click', function(){
+                    var range = timeline.getWindow();
+                    var interval = range.end - range.start;
+        
+                    slider.slider('value', range.start.valueOf() - interval * 1.15);
+        
+                    timeline.setWindow({
+                        start: range.start.valueOf() - interval * 1.15,
+                        end:   range.end.valueOf()   - interval * 1.15
+                    });
+                });
+        		$('.moveright').on('click', function(){
+                    var range = timeline.getWindow();
+                    var interval = range.end - range.start;
+        
+                    slider.slider('value', range.start.valueOf() - interval * -1.15);
+            
+                    timeline.setWindow({
+                        start: range.start.valueOf() - interval * -1.15,
+                        end:   range.end.valueOf()   - interval * -1.15
+                    });
+                });
             },
             error: function (err) {
                 console.log('Failed to load timeline data');
             }
-        });
-
-        $('.moveleft').on('click', function(){
-            var range = timeline.getWindow();
-            var interval = range.end - range.start;
-    
-            timeline.setWindow({
-                start: range.start.valueOf() - interval * 1.15,
-                end:   range.end.valueOf()   - interval * 1.15
-            });
-        });
-		$('.moveright').on('click', function(){
-            var range = timeline.getWindow();
-            var interval = range.end - range.start;
-    
-            timeline.setWindow({
-                start: range.start.valueOf() - interval * -1.15,
-                end:   range.end.valueOf()   - interval * -1.15
-            });
         });
 </script>
 
