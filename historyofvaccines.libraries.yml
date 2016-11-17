@@ -17,6 +17,15 @@ jqueryui:
   dependencies:
     - core/jquery
 
+jqueryuitouch:
+  version: 0.2.3
+  header: true
+  js:
+    js/lib/jquery.ui.touch-punch.min.js: {}
+  dependencies:
+    - core/jquery
+    - historyofvaccines/jqueryui
+
 openseadragon:
   version: 2.2.1
   js:

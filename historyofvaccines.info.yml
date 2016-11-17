@@ -10,6 +10,7 @@ base theme: stable
 # Libraries
 libraries:
   - historyofvaccines/jqueryui
+  - historyofvaccines/jqueryuitouch
   - historyofvaccines/bootstrap
   - historyofvaccines/openseadragon
   - historyofvaccines/global-styling
