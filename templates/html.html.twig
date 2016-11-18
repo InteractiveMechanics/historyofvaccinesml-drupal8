@@ -227,6 +227,11 @@
 			
 			$('.article-node .comments').html(html);
 		}
+        $('.blog img').each(function(index){
+            if (!$(this).attr('title') && $(this).attr('alt')){
+                $(this).attr('title', $(this).attr('alt'));
+            }
+        });
 	});
 	
 </script>

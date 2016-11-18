@@ -1326,7 +1326,8 @@ a.rss-link {
     float: none; }
 .blog .article img {
   margin-bottom: 20px;
-  margin-right: 15px; }
+  margin-right: 15px;
+  height: auto; }
   @media (max-width: 767px) {
     .blog .article img {
       max-width: 100%;
