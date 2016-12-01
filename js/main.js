@@ -30,6 +30,9 @@
             }
         }
     });
+
+    var mollom_policy = $('.mollom-privacy').html().slice(0,-1)
+    $('.mollom-privacy').html(mollom_policy + ' and our <a href="http://www.historyofvaccines.org/content/legal-and-privacy" target="_blank">moderation and blog commenting policies</a>.<br><br>');
     
     $('.panel-group .panel-title').click(function(){
 	    $(this).find('span.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
