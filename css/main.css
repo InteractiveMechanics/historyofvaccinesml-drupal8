@@ -685,21 +685,44 @@ button.collapsed span.glyphicon-menu-hamburger {
   background: none;
   border: none !important; }
 
+.timeline-overview p {
+  text-align: right; }
+.timeline-overview h2 {
+  text-align: right; }
+
+.timeline-sidebar .sidebar-item h5 {
+  text-align: right; }
+.timeline-sidebar p {
+  text-align: right; }
+
 .timeline-modal-date {
   font-size: 15px;
   font-weight: bold;
   color: #889;
-  margin: 0; }
+  margin: 0;
+  text-align: right; }
 
 .timeline-modal-title {
   font-size: 20px;
   font-weight: bold;
   color: #35A;
   margin: 0;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  text-align: right; }
 
 .timeline-modal-body {
-  font-size: 12px; }
+  font-size: 12px;
+  text-align: right; }
+
+.timeline-modal-image .body-mediaitem p {
+  width: 94%;
+  text-align: right; }
+
+#visualization-filters label {
+  text-align: right;
+  width: 97% !important; }
+#visualization-filters .checkbox {
+  text-align: right; }
 
 .timeline-dialog {
   width: 800px; }
@@ -741,7 +764,8 @@ button.collapsed span.glyphicon-menu-hamburger {
 
 .vis-timeline .year {
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: right; }
 
 .vis-timeline .timeline-entry {
   background: white;
@@ -757,7 +781,8 @@ button.collapsed span.glyphicon-menu-hamburger {
 
 .vis-timeline .timeline-entry .image + .title {
   height: 65px;
-  width: 155px; }
+  width: 155px;
+  text-align: right; }
 
 .vis-timeline .timeline-entry .image img {
   height: inherit;
@@ -770,7 +795,8 @@ button.collapsed span.glyphicon-menu-hamburger {
   width: 220px;
   font-weight: bold;
   font-size: 12px;
-  white-space: normal; }
+  white-space: normal;
+  text-align: right; }
 
 .vis-time-axis .vis-grid.vis-minor {
   height: 570px !important; }
@@ -816,7 +842,9 @@ button.collapsed span.glyphicon-menu-hamburger {
     padding: 14px;
     letter-spacing: 1px;
     font-weight: 700;
-    border-radius: 3px 0 0 3px; }
+    border-radius: 3px 0 0 3px;
+    text-align: right;
+    padding-right: 30px; }
     #visualization-filters .expand.active {
       right: 200px; }
   #visualization-filters form {

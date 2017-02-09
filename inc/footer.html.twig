@@ -1,42 +1,30 @@
 <footer class="container">
-		<div class="row">
-			<div class="col-md-12">
-				
-				<div class="pull-left logo">
-					<a href="http://www.collegeofphysicians.org/"><img src="{{front_page}}themes/historyofvaccines/images/cop_logo.jpg" /></a>
-				</div>
+	<div class="row">
+		<div class="col-md-12">
 			
-				<div class="pull-right">
-					<ul class="list-inline hidden-xs hidden-sm">
-						<li class=" ">
-		                  <a href="{{base_path}}content/legal-and-privacy" data-drupal-link-system-path="node/1012">Legal</a>
-		              </li>
-			          <li class=" ">
-			                  <a href="{{base_path}}content/resources" data-drupal-link-system-path="node/1011">Resources</a>
-			              </li>
-			          <li class=" ">
-			                  <a href="{{base_path}}glossary" data-drupal-link-system-path="glossary">Glossary</a>
-			              </li>
-			          <li class=" ">
-			                  <a href="{{base_path}}content/credits" data-drupal-link-system-path="node/1008">Credits</a>
-			              </li>
-			          <li class=" ">
-			                  <a href="{{base_path}}content/email-sign" data-drupal-link-system-path="node/1010">E-mail Sign-up</a>
-			              </li>
-			          <li class=" ">
-			                  <a href="{{base_path}}content/donors" data-drupal-link-system-path="node/1112">Donors</a>
-			              </li>
-			          <li class=" ">
-			                  <a href="{{base_path}}content/contact" data-drupal-link-system-path="node/1007">Contact</a>
-			           </li>
-					</ul>
-					
-					<p class="text-right">
-						<small>
-							© 2016 <a href="http://www.collegeofphysicians.org/">The College of Physicians of Philadelphia</a>
-						</small>
-					</p>
-				</div>
+			<div class="pull-left logo">
+				<a href="http://www.collegeofphysicians.org/"><img src="{{base_url}}themes/historyofvaccines/images/cop_logo.jpg" /></a>
+			</div>
+		
+			<div class="pull-right text-right">
+				<ul class="list-inline hidden-xs hidden-sm">
+					{{footerlinksmenu}}
+				</ul>
+				
+				<p class="text-right">
+					<small>
+                        {% if language.id == 'ar' %}
+						    ©{{"now"|date("Y")}} <a href="http://www.collegeofphysicians.org/">جمعية الأطباء في فيلادلفيا</a>
+                        {% endif %}
+                        {% if language.id == 'ur' %}
+						    ©{{"now"|date("Y")}} <a href="http://www.collegeofphysicians.org/">فلاڈیلفیا کے کالج آف فزیشنز</a>
+                        {% endif %}
+                        {% if language.id == 'hi' %}
+						    ©{{"now"|date("Y")}} <a href="http://www.collegeofphysicians.org/">कॉलेज फिलाडेल्फिया के चिकित्सकों का</a>
+                        {% endif %}
+					</small>
+				</p>
 			</div>
 		</div>
+	</div>
 </footer>

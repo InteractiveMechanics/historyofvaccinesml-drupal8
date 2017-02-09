@@ -109,7 +109,7 @@
 		</div>
 		
 		<div class="col-md-4">
-			<div class="sidebar">
+			<div class="sidebar timeline-sidebar">
 				<div class="sidebar-item">
 					<h5>HIGHLIGHTS</h5>
 				
@@ -209,17 +209,20 @@
 		});
 		
 		function filterTimeline() {
-			var path = "http://www.historyofvaccines.org/timeline";
+			var path = "http://ml.historyofvaccines.org/timeline";
 			var filters = document.getElementsByName('timeline_categories');
 			
 			if(filters[0].checked) {
 				window.location = path;
 			}
 			
+			
 			var filterQuery = '';
 			for(var i = 1; i < filters.length; i++) {
 				if(filters[i].checked) {
 					filterQuery += 'timeline_categories[]=' + filters[i].value + '&';
+					
+					console.log(filters[i].value);
 				}	
 			} 
 			
@@ -242,6 +245,40 @@
             }
             return(false);
         }
+        
+        function fixTitle(title) {
+	        return title.replace("&#039;", "'");
+        }
+        
+        function getURLParam(key,target){
+	        var values = [];
+	        if(!target){
+	            target = location.href;
+	        }
+	
+	        key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	
+	        var pattern = key + '=([^&#]+)';
+	        var o_reg = new RegExp(pattern,'ig');
+	        while(true){
+	            var matches = o_reg.exec(target);
+	            if(matches && matches[1]){
+	                values.push(matches[1]);
+	            }
+	            else{
+	                break;
+	            }
+	        }
+	
+	        if(!values.length){
+	             return null;   
+	         }
+	        else{
+	           return values;
+	        }
+	
+	    }
+
 
 		Handlebars.registerHelper('isVideo', function(filename) {
             if (filename) {
@@ -260,29 +297,35 @@
         var timelineCount;
         var slider;
         var query = getQueryVariable('timeline_categories[]');
+        
+        var params = getURLParam('timeline_categories[]');
+        
+        
         var timeline;
-        
-        if (query) {
-            var ids = query;
+        var url = "";
+        if (params) {
+            
+            var pathArray = window.location.pathname.split( '/' );
+
+	        if (pathArray[1] == 'es'){
+	            url = 'http://ml.historyofvaccines.org/timeline.php?category_ids='+ params.join(); + '&is_espanol=1';
+	        } else {
+	            url = 'http://ml.historyofvaccines.org/timeline.php?category_ids='+ params.join(); + '&is_espanol=0';
+	        }
+	        
         } else {
-            var ids = 'all';
+            var pathArray = window.location.pathname.split( '/' );
+
+	        if (pathArray[1] == 'es'){
+	            url = 'http://ml.historyofvaccines.org/timeline.php?category_ids=all&is_espanol=1';
+	        } else {
+	            url = 'http://ml.historyofvaccines.org/timeline.php?category_ids=all&is_espanol=0';
+	        }
         }
-        
-        if(ids == 'All') {
-	        ids = 'all';
-        }
-        
-        var pathArray = window.location.pathname.split( '/' );
-        if (pathArray[1] == 'es'){
-            var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=1';
-        } else {
-            var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=0';
-        }
-        console.log(url);
         $.ajax({
             url: url,
             success: function(data) {
-	            data = JSON.parse(data);
+	            data = JSON.parse( data );
                 var append = 0;
                 var append_to = 0;
 
@@ -307,7 +350,7 @@
             					{
             						id: data[i].id,
             						year: data[i].year,
-            						title: data[i].title,
+            						title: fixTitle(data[i].title),
             						filename: [data[i].filename],
                                     filetype: [data[i].filetype],
                                     creator: [data[i].field_creator],
@@ -365,6 +408,7 @@
                     start: '1200',
                     zoomMax: (473353890000),
                     zoomMin: (473353890000),
+                    rtl: true,
                     timeAxis: {scale: 'year', step: 25}
         		};
         		
@@ -433,7 +477,7 @@
       <div class="modal-body">
       	
       	<div style="cursor:pointer;" class="pull-right" data-dismiss="modal">
-      		<span class="glyphicon glyphicon-remove"></span>
+      		<span class="glyphicon glyphicon-remove" style="z-index:10;"></span>
       	</div>
       	
       	<div class="row">
