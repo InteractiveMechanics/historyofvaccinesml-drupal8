@@ -136,10 +136,6 @@
 			$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
 		}
 		
-		if($view == 'activities') {
-			
-		}
-		
 		$primarylinksmenu = \Drupal\block\Entity\Block::load('primarylinks');
 		$variables['primarylinksmenu'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($primarylinksmenu);
 
@@ -150,6 +146,14 @@
         $variables['languageswitcher'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($langswitcher);
         
 	}
+
+    function historyofvaccines_preprocess_links(&$variables) {
+        if (!isset($variables['language'])) {
+            $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+            $variables['language'] = $lang;
+        }
+    }
 
 	function historyofvaccines_preprocess_search_result(&$variables) {
 		

@@ -27,29 +27,50 @@
  *   screen reader and keyboard only users to navigate to or skip the links.
  *   See http://juicystudio.com/article/screen-readers-display-none.php and
  *   http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
+ *   item.link['#options'].language.id
  *
  * @see template_preprocess_links()
  */
 #}
+
 {% if links -%}
-  {%- if heading -%}
-    {%- if heading.level -%}
-      <{{ heading.level }}{{ heading.attributes }}>{{ heading.text }}</{{ heading.level }}>
-    {%- else -%}
-      <h2{{ heading.attributes }}>{{ heading.text }}</h2>
-    {%- endif -%}
-  {%- endif -%}
-  <ul class="links list-inline pull-right">
     {%- for item in links -%}
-      <li{{ item.attributes }}>
-        {%- if item.link -%}
-          {{ item.link }}
-        {%- elseif item.text_attributes -%}
-          <span{{ item.text_attributes }}>{{ item.text }}</span>
-        {%- else -%}
-          {{ item.text }}
-        {%- endif -%}
-      </li>
+        {% if item.text != 'English' %}
+            <li{{ item.attributes }}>
+                {% if item.text == 'Arabic' %}
+                    <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
+                        {% if language == 'ar' %}
+                            في العربية
+                        {% elseif language == 'hi' %}
+अरबी में
+                        {% elseif language == 'ur' %}
+عربی میں
+                        {% endif %}
+                    </a>
+                {% endif %}
+                {% if item.text == 'Urdu' %}
+                    <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
+                        {% if language == 'ar' %}
+                           في الأردو
+                        {% elseif language == 'hi' %}
+उर्दू में
+                        {% elseif language == 'ur' %}
+اردو میں
+                        {% endif %}
+                    </a>
+                {% endif %}
+                {% if item.text == 'Hindi' %}
+                    <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
+                        {% if language == 'ar' %}
+في الهندية
+                        {% elseif language == 'hi' %}
+हिंदी में
+                        {% elseif language == 'ur' %}
+ہندی میں
+                        {% endif %}
+                    </a>
+                {% endif %}
+            </li>
+        {% endif %}
     {%- endfor -%}
-  </ul>
 {%- endif %}

@@ -10,7 +10,9 @@
                             {% set smtitle = 'The+History+of+Vaccines+%E2%80%94+A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia' %}
                         {% endif %}
 						<li>
-							<img src="{{base_path}}themes/historyofvaccines/images/share_txt.jpg" />
+							{% if language.id == 'ar' %}شارك{% endif %}
+                            {% if language.id == 'ur' %}بانٹنا{% endif %}
+                            {% if language.id == 'hi' %}आदान प्रदान करना{% endif %}
 						</li>
 						<li>
 							<a href="https://www.facebook.com/dialog/share?app_id=140586622674265&display=popup&href=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3Ldw-JwCDE.facebook&picture=&title={{ smtitle }}&description=A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia&redirect_uri=http%3A%2F%2Fs7.addthis.com%2Fstatic%2Fthankyou.html"><img src="{{base_path}}themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
@@ -28,15 +30,33 @@
 			<div class="row">
 			
 				<div class="pull-left">
-                    <a href="{{ front_page }}"><img src="{{base_path}}themes/historyofvaccines/images/hov_text.png" /></a>
-                    <div><a id="a_project_of" class="hidden-sm hidden-xs" href="http://www.collegeofphysicians.org/" rel="external" target="_blank" title="A Vaccine History Project of The College of Physicians of Philadelphia"><span><img src="{{base_path}}themes/historyofvaccines/images/an_educational_res.png" /></span></a></div>
+                    <a href="{{ front_page }}">
+                        {% if language.id == 'ar' %}تاريخ ٍالتطعيمات{% endif %}
+                        {% if language.id == 'ur' %}ویکسین کی تاریخ{% endif %}
+                        {% if language.id == 'hi' %}टीके का इतिहास{% endif %}
+                    </a>
+                    <div><a id="a_project_of" class="hidden-sm hidden-xs" href="{{ front_page }}" rel="external" target="_blank" title="
+                        {% if language.id == 'ar' %}مورد و مرجع تعليمي لجمعية الأطباء في فيلادلفيا{% endif %}
+                        {% if language.id == 'ur' %}فلاڈیلفیا کے کالج آف فزیشنز کی طرف سے ایک تعلیمی وسائل{% endif %}
+                        {% if language.id == 'hi' %}एक शिक्षा संसाधन फिलाडेल्फिया के चिकित्सकों के कॉलेज द्वारा{% endif %}
+                    ">
+                        <span>
+                            {% if language.id == 'ar' %}مورد و مرجع تعليمي لجمعية الأطباء في فيلادلفيا{% endif %}
+                            {% if language.id == 'ur' %}فلاڈیلفیا کے کالج آف فزیشنز کی طرف سے ایک تعلیمی وسائل{% endif %}
+                            {% if language.id == 'hi' %}एक शिक्षा संसाधन फिलाडेल्फिया के चिकित्सकों के कॉलेज द्वारा{% endif %}
+                        </span>
+                    </a></div>
 				</div>    
 				<div class="pull-right">
 					<div class="header-search hidden-sm hidden-xs">
 						<form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8" data-drupal-form-fields="edit-keys">
               
                         	<div class="search-area">
-                        		<input title="Enter the terms you wish to search for." autocomplete="off" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search form-control" placeholder="Enter the terms you wish to search for.">
+                        		<input title="Enter the terms you wish to search for." autocomplete="off" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search form-control" placeholder="
+                                        {% if language.id == 'ar' %}أدخِل الكلمة التي تريد / تريدين بحثها{% endif %}
+                                        {% if language.id == 'ur' %}اصطلاحات جو آپ  تلاش کرنا چاہتے ہیں درج کریں{% endif %}
+                                        {% if language.id == 'hi' %}उन विषयों को दर्ज करें जिनकी आपको तलाश है{% endif %}
+                                    ">
                         	</div>
 
                         </form>
@@ -50,17 +70,31 @@
     	<nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="pull-left mobile-logo hidden-md hidden-lg">
-                    <a href="/"><img src="{{front_page}}themes/historyofvaccines/images/hov_text.png" style="width:65%;" /></a>
+                    <a href="/"><img src="{{base_path}}themes/historyofvaccines/images/hov_text.png" style="width:65%;" /></a>
                 </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span style="display:none;" class="glyphicon glyphicon-menu-hamburger"></span> <span class="glyphicon glyphicon-remove"></span> 
-                        MENU
+                        {% if language.id == 'ar' %}في العربية{% endif %}
+                        {% if language.id == 'ur' %}اردو میں{% endif %}
+                        {% if language.id == 'hi' %}हिंदी में{% endif %}
                     </button>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     {% if language.direction == 'ltr' %}
-                        <div class="pull-right">{{ languageswitcher }}</div>
+                        <div class="pull-right">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {% if language.id == 'ar' %}القائمة{% endif %}
+                                    {% if language.id == 'ur' %}فہرست طعام{% endif %}
+                                    {% if language.id == 'hi' %}मेन्यू{% endif %}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu {% if language.direction == "ltr" %}dropdown-menu-right{% endif %}" aria-labelledby="languageSwitcher">
+                                    {{ languageswitcher }}
+                                </ul>
+                            </div>
+                        </div>
                         <ul class="nav navbar-nav left-menu main-nav">
                             {{primarylinksmenu}}
                         </ul>
@@ -69,7 +103,19 @@
                         </ul>
                     {% endif %}
                     {% if language.direction == 'rtl' %}
-                        <div class="pull-left">{{ languageswitcher }}</div>
+                        <div class="pull-left">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {% if language.id == 'ar' %}في العربية{% endif %}
+                                    {% if language.id == 'ur' %}اردو میں{% endif %}
+                                    {% if language.id == 'hi' %}हिंदी में{% endif %}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu {% if language.direction == "ltr" %}dropdown-menu-right{% endif %}" aria-labelledby="languageSwitcher">
+                                    {{ languageswitcher }}
+                                </ul>
+                            </div>
+                        </div>
                         <ul class="nav navbar-nav left-menu main-nav pull-right">
                             {{primarylinksmenu}}
                         </ul>
