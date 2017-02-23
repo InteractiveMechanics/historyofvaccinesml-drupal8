@@ -53,6 +53,12 @@
         right: 80px;
         top: 16px;
 
+        &.right-start {
+            .ui-slider-handle {
+                left: 100%;
+            }
+        }
+
         .ui-slider-handle {
             height: 34px;
             width: 70px;
@@ -81,7 +87,7 @@
                 }
             }
             &:after {
-                content: 'DRAG';
+                content: ':::::';
                 font-weight: bold;
                 font-size: 1.2rem;
                 text-align: center;
@@ -334,4 +340,14 @@
             display: none;
         }
     }
+}
+.timeline-overview img {
+    float:left;
+    margin-right:20px;
+}
+
+#views-exposed-form-timeline-page-1 div.checkbox.child {margin-left:20px;}
+
+.timeline-modal-image #body-mediaitem-switcher {
+    margin-top:10px;
 }

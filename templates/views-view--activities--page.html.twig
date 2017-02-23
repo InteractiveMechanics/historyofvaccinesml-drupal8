@@ -68,65 +68,31 @@
 
 <div class="blocks clearfix">
 		<div class="large-block pull-left">
-			<a href="{{front_page}}content/how-vaccines-work">
-				<img src="{{front_page}}themes/historyofvaccines/images/activities/bkg_how_vaccines_work.jpg" class="img-responsive" />
+			<a href="{{base_path}}content/how-vaccines-work">
+				<img src="/themes/historyofvaccines/images/activities/bkg_how_vaccines_work.jpg" class="img-responsive" />
 			</a>
 		</div>
 		
 		<div class="small-block pull-right dark-blue-block hidden-sm hidden-xs">
 			<p>
-				Learn actively by finding out how vaccines work, how vaccines are made, how to visualize risk, and more. Click through these activities to explore the past, present, and future of vaccination and infectious disease.
+				{% if language.id == 'ar' %}...{% endif %}
+                {% if language.id == 'ur' %}...{% endif %}
+                {% if language.id == 'hi' %}...{% endif %}
 			</p>
 		</div>
 		
 		<div class="small-block pull-right hidden-sm hidden-xs">
-			<a href="{{front_page}}content/scientific-method">
-				<img src="{{front_page}}themes/historyofvaccines/images/activities/activities_scientific_method.jpg" style="height:192px" class="img-responsive" width="100%" />
+			<a href="{{base_path}}content/scientific-method">
+				<img src="/themes/historyofvaccines/images/activities/activities_scientific_method.jpg" style="height:192px" class="img-responsive" width="100%" />
 			</a>
 		</div>
 	</div>
 	
 <div class="main-content">
 <div class="row">
-	<div class="col-md-3 img-nav hidden-xs hidden-sm">
-		<ul class="list-unstyled">
-					
-			<li>
-				<a href="./activities">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/ImgNav_Activities.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-			<li>
-				<a href="./gallery">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/ImgNav_Gallery.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-			<li>
-				<a href="./content/parents">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/IngNav_Families.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-			<li>
-				<a href="./content/educators">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/ImgNav_Educators.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-		</ul>
+	<div class="col-md-12">
+		{{ all_activities }}
 	</div>
-	
-	<div class="col-md-9">
-		
-    	<div class="related-activities">
-    		
-    			{{all_simulations}}
-    			
-        </div>
-    </div>
-
 </div>
 
 

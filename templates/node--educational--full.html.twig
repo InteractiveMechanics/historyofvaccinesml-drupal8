@@ -71,183 +71,50 @@
 		<div class="row">
 			<div class="col-md-12">
 			
-				<div id="node-1182" class="node node-type-swf">
-						
-						<script src="//www.gstatic.com/swiffy/v7.1/runtime.js"></script>
-						
-						<div id="swiffy-wrapper">
-							<div id="swiffycontainer"></div>
-						</div>    
-						
-						{{content.field_swf_reference[0]['#node'].field_swiffy[0].value|raw}}
-						
-						<script>
-							var stage = new swiffy.Stage(document.getElementById("swiffycontainer"), swiffyobject, {  }); 
-							stage.start();
-						</script>
-					
-					</div>
+				<div id="activity-slideshow">
+                    <div class="activity-slideshow-container">
+                        {% for key, entry in content.field_activity_slides if key|first != '#' %}
+                            <div class="slide">
+                                <img src="{{ base_path }}{{ file_url(entry['#paragraph'].field_activity_image.entity.fileuri) }}" alt="{{ entry['#paragraph'].field_activity_headline_one.value }}" />
+                                <h5>{{ entry['#paragraph'].field_headline_primary.value }}</h5>
+                                <h3>{{ entry['#paragraph'].field_headline_secondary.value }}</h3>
+                                <p>{{ entry['#paragraph'].field_activity_text.value }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="activity-slideshow-controls">
+                        {% if language.direction == 'ltr' %}
+                            <a class="moveleft btn btn-default pull-left">&#9664;</a>
+                            <a class="moveright btn btn-default pull-right">&#9654;</a>
+                        {% elseif language.direction == 'rtl' %}
+                            <a class="moveleft btn btn-default pull-right">&#9654;</a>
+                            <a class="moveright btn btn-default pull-left">&#9664;</a>
+                        {% endif %}
+                    </div>
 				</div>
-				
 
 			</div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-sm-12">
 			<div class="related-activities">
 				<ul>
-					{{all_simulations}}
+					{{ all_activities }}
 				</ul>
 			</div>
 		</div>
-		
-		<div class="col-md-3">
-			
-			<div class="sidebar">
-			
-				{% if content.field_rel_blog_posts[0] %}
-					<div class="sidebar-item">
-						<h5>Related Blog Posts</h5>
-						
-						<ul>
-							{% for key, activities in content.field_rel_blog_posts if key|first != '#' %}
-								<li>
-									<div class="sidebar-blurb">
-										<p class="title">
-											<a href="javascript:void(0);">{{ activities['#node'].title.value }}</a>
-										</p>
-					
-										<p>
-											<!--<img style="float:left; margin-right:15px; margin-bottom:5px;" 
-											src="http://www.historyofvaccines.org/sites/default/files/000herd_65_0.jpg">-->
-											{{ activities['#node'].field_synopsis.value|raw   }}
-											<br style="clear:both;" />
-										</p>
-									</div>
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				{% endif %}	
-				
-				
-				{% if content.field_rel_items[0] %}
-					<div class="sidebar-item">
-						<h5>Featured Links</h5>
-						
-						<ul>
-							{% for key, activities in content.field_rel_items if key|first != '#' %}
-								<li>
-									<div class="sidebar-blurb">
-										<p class="title">
-											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-										</p>
-									</div>
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				{% endif %}	
-				
-				
-				{% if content.field_rel_articles[0] %}
-					<div class="sidebar-item">
-						<h5>Related Articles</h5>
-						
-						<ul>
-							{% for key, activities in content.field_rel_articles if key|first != '#' %}
-								<li>
-									<div class="sidebar-blurb">
-										<p class="title">
-											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-										</p>
-					
-										<p>
-											<!--<img style="float:left; margin-right:15px; margin-bottom:5px;" 
-											src="http://www.historyofvaccines.org/sites/default/files/000herd_65_0.jpg">-->
-											{{ activities['#node'].field_synopsis.value|raw   }}
-											<br style="clear:both;" />
-										</p>
-									</div>
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				{% endif %}	
-				
-				
-				{% if content.field_rel_quiz_question[0] %}
-					<div class="sidebar-item quiz-item">
-						
-						<div class="header">
-							<h4>What do you think?</h4>
-						</div>
-						
-						<div class="questions">
-							<p>
-								{{ content.field_rel_quiz_question[0]['#node'].field_question[0].value }}
-							</p>
-						</div>
-						
-						<div class="choices" data-answer="{{content.field_rel_quiz_question[0]['#node'].field_answer.value}}">
-							<ul>
-								{% for answer in content.field_rel_quiz_question[0]['#node'].field_choice %}
-								
-									<li>
-										{{ answer.value }} 
-									</li>
-									
-								{% endfor %}
-							</ul>
-						</div>
-						
-						<div class="more-info">
-						
-							<span class="answer">Correct</span>
-							{{ content.field_rel_quiz_question[0]['#node'].body[0].value|raw }}
-						</div>
-						
-						
-					</div>
-			
-				{% endif %}
-			</div>
-			
-			
-			
-		</div>
-		
 	</div>
 </div>
 
-<script type="text/javascript">
-
-	$(document).ready(function(){
-		$('.choices ul li').click(function(){
-			if(!$(this).parent().parent().hasClass('answered')) {
-			
-				var answer = $(this).parent().parent().data('answer');
-				var n = $(this).index();
-				
-				var chr = String.fromCharCode(97 + n);
-				
-				if(chr == answer) {
-					$('span.answer').text('Correct');
-				} else {
-					$('span.answer').text('Incorrect');
-				}
-				$(this).parent().parent().addClass('answered');
-				
-				$('.more-info').show();
-			}
-			
-		});
-		
-		if( document.body.offsetWidth < 768 ) {
-			document.getElementById('MobileActivityLink').click();
-		}
-	});
-
+<script>
+    $('.activity-slideshow-container').slick({
+        slidesToShow: 1,
+        infinite: true,
+        prevArrow: '.moveleft',
+        nextArrow: '.moveright',
+        fade: true{% if language.direction == 'rtl' %},
+        rtl: true{% endif %}
+    });
 </script>

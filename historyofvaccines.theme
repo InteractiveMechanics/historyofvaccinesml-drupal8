@@ -26,12 +26,9 @@
 				$variables['homepage_featured_image'] = render($homepage_featured_image);	
 			}
 			
-			if($contentType == 'educational' || $contentType == 'simulation') {
-				$all_simulations = \Drupal\block\Entity\Block::load('views_block__all_simulations_block_1');
-				$variables['all_simulations'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_simulations);
-	
-				$all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
-				$variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+			if($contentType == 'educational') {	
+                $all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+    			$variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
 			}
 			
 			if($contentType == 'article') {
@@ -55,7 +52,14 @@
 
 	function historyofvaccines_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
 		
-        $variables['language'] = \Drupal::request()->attributes->get('language');
+        if (!isset($variables['language'])) {
+            $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $dir = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
+
+            $variables['language'];
+            $variables['language']['id'] = $lang;
+            $variables['language']['direction'] = $dir;
+        }
 
 		$view = \Drupal::request()->attributes->get('view_id');
 		
@@ -63,11 +67,11 @@
             $exposed_timeline_block = \Drupal\block\Entity\Block::load('exposedformtimelinepage_1');
 			$variables['exposed_form_timeline'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_timeline_block);
 
-            if ($_GET['timeline_categories']){
+            if (isset($_GET['timeline_categories'])){
 			    $categories = $_GET['timeline_categories'];
 			}
 			
-			if(count($categories) == 1) {
+			if(isset($categories) && count($categories) == 1) {
 				// get overview
 				$category_id = $_GET['timeline_categories'][0];
 				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('field_timeline_categories', $category_id);
@@ -102,6 +106,10 @@
 				$variables['timeline_overview_highlight'] = $arr;
 			}
 		}
+        if($view == "activities") {
+            $all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+            $variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+        }
 		if($view == "taxonomy_term") {
             $popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
             $variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
@@ -150,8 +158,11 @@
     function historyofvaccines_preprocess_links(&$variables) {
         if (!isset($variables['language'])) {
             $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $dir = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
 
-            $variables['language'] = $lang;
+            $variables['language'];
+            $variables['language']['id'] = $lang;
+            $variables['language']['direction'] = $dir;
         }
     }
 

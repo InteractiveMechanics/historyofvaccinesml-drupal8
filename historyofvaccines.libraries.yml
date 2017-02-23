@@ -17,6 +17,17 @@ jqueryui:
   dependencies:
     - core/jquery
 
+slick:
+  version: 1.6.0
+  header: true
+  css:
+    theme:
+      //cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css: { external: true }
+  js:
+    //cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js: { external: true }
+  dependencies:
+    - core/jquery
+
 jqueryuitouch:
   version: 0.2.3
   header: true

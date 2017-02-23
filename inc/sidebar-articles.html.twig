@@ -5,7 +5,9 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                 	<a data-toggle="collapse" data-parent="#accordionMobile" href="#mobileMenuList">
-                		Article Menu
+                        {% if language.id == 'ar' %}مقالات وبحوث{% endif %}
+                        {% if language.id == 'ur' %}مضامین{% endif %}
+                        {% if language.id == 'hi' %}सामग्री{% endif %}
 						<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-minus" style="top:2px;"></span>]</span>
                 	</a>
                 </h4>
@@ -19,11 +21,9 @@
 					        <div class="panel-heading">
 					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileOne">
 					                <h4 class="panel-title">
-					                    {% if content.langcode['#markup'] starts with "Esp" %}
-					                        La ciencia de las vacunas
-					                    {% else %}
-					                        Vaccine Science
-					                    {% endif %}
+                                        {% if language.id == 'ar' %}علوم اللقاحات{% endif %}
+                                        {% if language.id == 'ur' %}ویکسین سائنس{% endif %}
+                                        {% if language.id == 'hi' %}वैक्सीन विज्ञान{% endif %}
 					                    <span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 					                </h4>
 					            </a>
@@ -41,11 +41,9 @@
 					        <div class="panel-heading">
 					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileTwo">
 					                <h4 class="panel-title">
-					                     {% if content.langcode['#markup'] starts with "Esp" %}
-					                        La historia y la sociedad
-					                    {% else %}
-					                        History and Society
-					                    {% endif %}
+                                        {% if language.id == 'ar' %}التاريخ والمجتمع{% endif %}
+                                        {% if language.id == 'ur' %}تاریخ اور معاشرے{% endif %}
+                                        {% if language.id == 'hi' %}इतिहास और समाज{% endif %}
 					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 					                </h4>
 					            </a>
@@ -64,11 +62,9 @@
 					        <div class="panel-heading">
 					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileThree">
 					                <h4 class="panel-title">
-					                     {% if content.langcode['#markup'] starts with "Esp" %}
-					                        Informacion sobre las vacunas
-					                    {% else %}
-					                        Vaccine Information
-					                    {% endif %}
+					                    {% if language.id == 'ar' %}معلومات التطعيم{% endif %}
+                                        {% if language.id == 'ur' %}ویکسین معلومات{% endif %}
+                                        {% if language.id == 'hi' %}वैक्सीन  सम्बन्धित  सूचना{% endif %}
 					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 					                </h4>
 					            </a>
@@ -86,11 +82,9 @@
 					        <div class="panel-heading">
 					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileFour">
 					                <h4 class="panel-title">
-					                    {% if content.langcode['#markup'] starts with "Esp" %}
-					                        Enfermedades que se pueden prevenir con las vacunas
-					                    {% else %}
-					                        Vaccine-Preventable Diseases
-					                    {% endif %}
+					                    {% if language.id == 'ar' %}الامراض المتجَنَّبة باللقاح{% endif %}
+                                        {% if language.id == 'ur' %}ویکسین کے ذریعے روکی جانے والی بیماریوں{% endif %}
+                                        {% if language.id == 'hi' %}टीके रोके रोग{% endif %}
 					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 					                </h4>
 					            </a>
@@ -108,11 +102,9 @@
 					        <div class="panel-heading">
 					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMobileFive">
 					                <h4 class="panel-title">
-					                     {% if content.langcode['#markup'] starts with "Esp" %}
-					                        Preguntas comunes
-					                    {% else %}
-					                        Common Questions
-					                    {% endif %}
+					                    {% if language.id == 'ar' %}أسئلة عامة{% endif %}
+                                        {% if language.id == 'ur' %}عمومی سوالات{% endif %}
+                                        {% if language.id == 'hi' %}आम सवाल{% endif %}
 					                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 					                </h4>
 					            </a>
@@ -143,11 +135,9 @@
 	        <div class="panel-heading">
 	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
 	                <h4 class="panel-title">
-	                    {% if content.langcode['#markup'] starts with "Esp" %}
-	                        La ciencia de las vacunas
-	                    {% else %}
-	                        Vaccine Science
-	                    {% endif %}
+	                    {% if language.id == 'ar' %}علوم اللقاحات{% endif %}
+                        {% if language.id == 'ur' %}ویکسین سائنس{% endif %}
+                        {% if language.id == 'hi' %}वैक्सीन विज्ञान{% endif %}
 	                    <span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 	                </h4>
 	            </a>
@@ -165,11 +155,9 @@
 	        <div class="panel-heading">
 	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
 	                <h4 class="panel-title">
-	                     {% if content.langcode['#markup'] starts with "Esp" %}
-	                        La historia y la sociedad
-	                    {% else %}
-	                        History and Society
-	                    {% endif %}
+	                    {% if language.id == 'ar' %}التاريخ والمجتمع{% endif %}
+                        {% if language.id == 'ur' %}تاریخ اور معاشرے{% endif %}
+                        {% if language.id == 'hi' %}इतिहास और समाज{% endif %}
 	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 	                </h4>
 	            </a>
@@ -188,11 +176,9 @@
 	        <div class="panel-heading">
 	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
 	                <h4 class="panel-title">
-	                     {% if content.langcode['#markup'] starts with "Esp" %}
-	                        Informacion sobre las vacunas
-	                    {% else %}
-	                        Vaccine Information
-	                    {% endif %}
+	                    {% if language.id == 'ar' %}معلومات التطعيم{% endif %}
+                        {% if language.id == 'ur' %}ویکسین معلومات{% endif %}
+                        {% if language.id == 'hi' %}वैक्सीन  सम्बन्धित  सूचना{% endif %}
 	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 	                </h4>
 	            </a>
@@ -210,11 +196,9 @@
 	        <div class="panel-heading">
 	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
 	                <h4 class="panel-title">
-	                     {% if content.langcode['#markup'] starts with "Esp" %}
-	                        Enfermedades que se pueden prevenir con las vacunas
-	                    {% else %}
-	                        Vaccine-Preventable Diseases
-	                    {% endif %}
+	                    {% if language.id == 'ar' %}الامراض المتجَنَّبة باللقاح{% endif %}
+                        {% if language.id == 'ur' %}ویکسین کے ذریعے روکی جانے والی بیماریوں{% endif %}
+                        {% if language.id == 'hi' %}टीके रोके रोग{% endif %}
 	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 	                </h4>
 	            </a>
@@ -232,11 +216,9 @@
 	        <div class="panel-heading">
 	            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
 	                <h4 class="panel-title">
-	                     {% if content.langcode['#markup'] starts with "Esp" %}
-	                        Preguntas comunes
-	                    {% else %}
-	                        Common Questions
-	                    {% endif %}
+	                    {% if language.id == 'ar' %}أسئلة عامة{% endif %}
+                        {% if language.id == 'ur' %}عمومی سوالات{% endif %}
+                        {% if language.id == 'hi' %}आम सवाल{% endif %}
 	                	<span class="pull-right" style="font-size:10px;">[<span class="glyphicon glyphicon-plus" style="top:2px;"></span>]</span>
 	                </h4>
 	            </a>
@@ -256,11 +238,9 @@
 	{% if content.field_rel_articles[0] %}
 		<div class="sidebar-item">
 		
-			 {% if content.langcode['#markup'] starts with "Esp" %}
-				<h5>Articulos Relacionadas</h5>
-			{% else %}
-				<h5>Related Articles</h5>
-			{% endif %}
+			{% if language.id == 'ar' %}مقالات ذات علاقة{% endif %}
+            {% if language.id == 'ur' %}متعلقہ مضامین{% endif %}
+            {% if language.id == 'hi' %}संबंधित लेख{% endif %}
 			
 			<ul>
 				{% for key, activities in content.field_rel_articles if key|first != '#' %}
@@ -301,89 +281,7 @@
 								    <img style="float:left; margin-right:15px; margin-bottom:5px; width:65px;" 
                                         src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg">
                                 {% endif %}
-								{{ activities['#node'].field_synopsis.value|raw   }}
-								<br style="clear:both;" />
-							</p>
-						</div>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
-	{% endif %}	
-	
-	{% if content.field_rel_simulations[0] %}
-		<div class="sidebar-item">
-			 {% if content.langcode['#markup'] starts with "Esp" %}
-				<h5>Actividades Relacionadas</h5>
-			{% else %}
-				<h5>Related Activities</h5>
-			{% endif %}
-		
-			<ul>
-				{% for key, activities in content.field_rel_simulations if key|first != '#' %}
-					
-					<li>
-						<div class="sidebar-blurb">
-							<p class="title">
-								<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-							</p>
-		
-							<p>
-								<img style="float:left; margin-right:15px; margin-bottom:5px;" 
-								src="{{file_url(activities['#node'].field_thumbnail65_image[0].entity.uri.value)}}">
 								{{ activities['#node'].field_synopsis.value|raw }}
-							</p>
-							
-							<br style="clear:both;" />
-						</div>
-					</li>
-				{% endfor %}					
-			</ul>
-		</div>
-	{% endif %}
-	
-	{% if content.field_rel_blog_posts[0] %}
-		<div class="sidebar-item">
-			 {% if content.langcode['#markup'] starts with "Esp" %}
-				<h5>Art�culos Relacionados Blog</h5>
-			{% else %}
-				<h5>Related Blog Posts</h5>
-			{% endif %}
-			
-			<ul>
-				{% for key, activities in content.field_rel_blog_posts if key|first != '#' %}
-					<li>
-						<div class="sidebar-blurb">
-							<p class="date" style="margin-bottom:2px;">{{ activities['#node'].created.value|date("m/d/Y") }}</p>
-							<p class="title">
-								<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-							</p>
-							<br style="clear:both;" />
-						</div>
-					</li>
-				{% endfor %}
-			</ul>
-		</div>
-	{% endif %}	
-	
-	{% if content.field_rel_items[0] %}
-		<div class="sidebar-item">
-			 {% if content.langcode['#markup'] starts with "Esp" %}
-				<h5>Enlaces Relacionados</h5>
-			{% else %}
-				<h5>Related Links</h5>
-			{% endif %}
-			
-			<ul>
-				{% for key, activities in content.field_rel_items if key|first != '#' %}
-					<li>
-						<div class="sidebar-blurb">
-							<p class="title">
-								<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-							</p>
-		
-							<p>
-								{{ activities['#node'].field_synopsis.value|raw   }}
 								<br style="clear:both;" />
 							</p>
 						</div>
@@ -392,41 +290,5 @@
 			</ul>
 		</div>
 	{% endif %}	
-	
-	
-	{% if content.field_rel_quiz_question[0] %}
-		<div class="sidebar-item quiz-item">
-			
-			<div class="header">
-				<h4>{% trans %}What do you think?{% endtrans %}</h4>
-			</div>
-			
-			<div class="questions">
-				<p>
-					{{ content.field_rel_quiz_question[0]['#node'].field_question[0].value }}
-				</p>
-			</div>
-			
-			<div class="choices" data-answer="{{content.field_rel_quiz_question[0]['#node'].field_answer.value}}">
-				<ul>
-					{% for answer in content.field_rel_quiz_question[0]['#node'].field_choice %}
-					
-						<li>
-							{{ answer.value }} 
-						</li>
-						
-					{% endfor %}
-				</ul>
-			</div>
-			
-			<div class="more-info">
-			
-				<span class="answer">Correct</span>
-				{{ content.field_rel_quiz_question[0]['#node'].body[0].value|raw }}
-			</div>
-			
-		</div>
-
-	{% endif %}
 	
 </div>

@@ -1,0 +1,19 @@
+html[dir="rtl"] {
+    #language-switcher {
+        border: none;
+        border-right: 1px solid rgba(255,255,255,0.25);
+        padding: 0 20px 0 0 ;
+
+        .caret {
+            margin-right: 8px;
+        }
+    }
+    .main-nav {
+        margin: 0;
+        padding: 0;
+    }
+    .header-search input {
+        text-align: right;
+        padding-right: 45px;
+    }
+}

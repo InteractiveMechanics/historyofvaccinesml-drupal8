@@ -100,7 +100,11 @@
 							<div class="homepage-item">
 								
 								<ul class="link-list recent-posts">
-                                    <h5>Popular Posts</h5>
+                                    <h5>
+                                        {% if language.id == 'ar' %}المقالات المشهورة{% endif %}
+                                        {% if language.id == 'ur' %}مقبول مضامین{% endif %}
+                                        {% if language.id == 'hi' %}लोकप्रिय लेख{% endif %}
+                                    </h5>
 									{{ popular_articles }}
 								</ul>
 							</div>

@@ -1,9 +1,74 @@
+#site-logo {
+    color: white;
+    font-size: 42px;
+    position: relative;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: 0.5s all;
+
+    &:hover, &:focus, &:active {
+        opacity: 0.85;
+        text-shadow: 0 0 5px rgba(0,0,0,0.75);
+        text-decoration: none;
+    }
+}
+#a_project_of {
+    color: white;
+    opacity: 0.65;
+    transition: 0.5s all;
+
+    &:hover, &:focus, &:active {
+        opacity: 1;
+        text-decoration: none;
+    }
+}
+#language-switcher {
+    height: 50px;
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    border-radius: 0;
+    padding: 0 0 0 20px;
+
+    & + .dropdown-menu {
+        background: #606c67;
+        border-radius: 0;
+
+        li {
+            &.is-active {
+                background: #555;
+            }
+
+            a {
+                color: white;
+                padding: 8px 20px;
+
+                &:hover, &:focus, &:active {
+                    background: #555;
+                }
+            }
+        }
+    }
+}
+
 .main-nav {
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 .list-inline.social-icons {
+    margin: 5px 0 10px;
+    padding: 0;
+    text-align: right;
+
     li {
 	    padding:0px;
+
+        &:first-of-type {
+            background: white;
+            padding: 0 4px;
+            top: -2px;
+            position: relative;
+            height: 20px;
+        }
 
         img {
             margin-bottom: 0;

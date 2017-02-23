@@ -70,30 +70,15 @@
 	<div class="row">
 		<div class="col-md-3 col-sm-12">
 			
-			<div class="sidebar">
-			
-				{% if content.field_rel_items[0] %}
-					<div class="sidebar-item">
-						<h5>Related Links</h5>
-					
-						<ul>
-							{% for key, activities in content.field_rel_items if key|first != '#' %}
-								<li>
-									<div class="sidebar-blurb">
-										<p class="title">
-											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-										</p>
-									</div>
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				{% endif %}
-				
+			<div class="sidebar">				
 
 				{% if content.field_rel_articles[0] %}
 					<div class="sidebar-item">
-						<h5>Related Articles</h5>
+						<h5>
+                            {% if language.id == 'ar' %}مقالات ذات علاقة{% endif %}
+                            {% if language.id == 'ur' %}متعلقہ مضامین{% endif %}
+                            {% if language.id == 'hi' %} संबंधित लेख{% endif %}
+                        </h5>
 						
 						<ul>
 							{% for key, activities in content.field_rel_articles if key|first != '#' %}
@@ -117,61 +102,6 @@
 						</ul>
 					</div>
 				{% endif %}
-				
-				{% if content.field_rel_blog_posts[0] %}
-					<div class="sidebar-item">
-						<h5>Related Blog Posts</h5>
-					
-						<ul>
-							{% for key, activities in content.field_rel_blog_posts if key|first != '#' %}
-								<li>
-									<div class="sidebar-blurb">
-										<p class="title">
-											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-										</p>
-					
-										<p>
-											{% if activities['#node'].field_image[0].entity.uri.value %}
-												<img style="float:left; width:65px; margin-right:15px; margin-bottom:5px;" 
-											src="{{file_url(activities['#node'].field_image[0].entity.uri.value)}}">
-											{% endif %}
-											{{ activities['#node'].field_synopsis.value|raw }}
-										</p>
-										<br style="clear:both;" />
-									</div>
-								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				{% endif %}
-			
-				
-				{% if content.field_rel_simulations[0] %}
-					<div class="sidebar-item">
-						<h5>Related Activities</h5>
-					
-						<ul>
-							{% for key, activities in content.field_rel_simulations if key|first != '#' %}
-								
-								<li>
-									<div class="sidebar-blurb">
-										<p class="title">
-											<a href="{{ path('entity.node.canonical', {'node': activities['#node'].id}) }}">{{ activities['#node'].title.value }}</a>
-										</p>
-					
-										<p>
-											<img style="float:left; margin-right:15px; margin-bottom:5px;" 
-											src="{{file_url(activities['#node'].field_thumbnail65_image[0].entity.uri.value)}}">
-											{{ activities['#node'].field_synopsis.value|raw }}
-										</p>
-										
-										<br style="clear:both;" />
-									</div>
-								</li>
-							{% endfor %}					
-						</ul>
-					</div>
-				{% endif %}
 			</div>
 	
 		</div>
@@ -179,9 +109,6 @@
 		<div class="col-md-9 col-sm-12">
 		
 			<div class="article">
-                {% if translations %}
-                    {{ languageswitcher }}
-                {% endif %}
 
 				<h1>{{ label }}</h1>
 				<div class="body">

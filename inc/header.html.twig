@@ -1,36 +1,52 @@
 <div class="header">
 	<div class="container">
 		<div class="site-header">
-			<div class="row">
-				<div class="pull-right">
-					<ul class="list-inline social-icons hidden-sm hidden-xs">
-                        {% if node.label %}
-                            {% set smtitle = node.label ~ '%E2%80%94+A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia' %}
-                        {% else %}
-                            {% set smtitle = 'The+History+of+Vaccines+%E2%80%94+A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia' %}
-                        {% endif %}
-						<li>
-							{% if language.id == 'ar' %}شارك{% endif %}
-                            {% if language.id == 'ur' %}بانٹنا{% endif %}
-                            {% if language.id == 'hi' %}आदान प्रदान करना{% endif %}
-						</li>
-						<li>
-							<a href="https://www.facebook.com/dialog/share?app_id=140586622674265&display=popup&href=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3Ldw-JwCDE.facebook&picture=&title={{ smtitle }}&description=A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia&redirect_uri=http%3A%2F%2Fs7.addthis.com%2Fstatic%2Fthankyou.html"><img src="{{base_path}}themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
-						</li>
-						<li>
-							<a href="https://twitter.com/intent/tweet?text={{ smtitle }}&url=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3LdsNp47R8.twitter&related="><img src="{{base_path}}themes/historyofvaccines/images/twitter.svg" alt="Twitter" class="twitter" /></a>
-						</li>
-						<li>
-							<a href="https://www.google.com/bookmarks/mark?op=add&bkmk=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3Ld1gG7aM4.google&title={{ smtitle }}&annotation="><img src="{{base_path}}themes/historyofvaccines/images/google.svg" alt="Google+" class="google" /></a>
-						</li>
-					</ul>
+			<div class="pull-right">
+				<ul class="list-inline social-icons hidden-sm hidden-xs">
+                    {% if node.label %}
+                        {% set smtitle = node.label ~ '%E2%80%94+A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia' %}
+                    {% else %}
+                        {% set smtitle = 'The+History+of+Vaccines+%E2%80%94+A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia' %}
+                    {% endif %}
+					<li>
+						{% if language.id == 'ar' %}شارك{% endif %}
+                        {% if language.id == 'ur' %}بانٹنا{% endif %}
+                        {% if language.id == 'hi' %}आदान प्रदान करना{% endif %}
+					</li>
+					<li>
+						<a href="https://www.facebook.com/dialog/share?app_id=140586622674265&display=popup&href=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3Ldw-JwCDE.facebook&picture=&title={{ smtitle }}&description=A+Vaccine+History+Project+of+The+College+of+Physicians+of+Philadelphia&redirect_uri=http%3A%2F%2Fs7.addthis.com%2Fstatic%2Fthankyou.html"><img src="{{base_path}}themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
+					</li>
+					<li>
+						<a href="https://twitter.com/intent/tweet?text={{ smtitle }}&url=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3LdsNp47R8.twitter&related="><img src="{{base_path}}themes/historyofvaccines/images/twitter.svg" alt="Twitter" class="twitter" /></a>
+					</li>
+					<li>
+						<a href="https://www.google.com/bookmarks/mark?op=add&bkmk=http%3A%2F%2Fwww.historyofvaccines.org%2Fnode%2F{{node.id}}%23.V3Ld1gG7aM4.google&title={{ smtitle }}&annotation="><img src="{{base_path}}themes/historyofvaccines/images/google.svg" alt="Google+" class="google" /></a>
+					</li>
+				</ul>
+
+                <div class="header-search hidden-sm hidden-xs">
+					<form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8" data-drupal-form-fields="edit-keys">
+          
+                    	<div class="search-area">
+                    		<input title="
+                                    {% if language.id == 'ar' %}أدخِل الكلمة التي تريد / تريدين بحثها{% endif %}
+                                    {% if language.id == 'ur' %}اصطلاحات جو آپ  تلاش کرنا چاہتے ہیں درج کریں{% endif %}
+                                    {% if language.id == 'hi' %}उन विषयों को दर्ज करें जिनकी आपको तलाश है{% endif %}
+                            " autocomplete="off" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" class="form-search form-control" placeholder="
+                                    {% if language.id == 'ar' %}أدخِل الكلمة التي تريد / تريدين بحثها{% endif %}
+                                    {% if language.id == 'ur' %}اصطلاحات جو آپ  تلاش کرنا چاہتے ہیں درج کریں{% endif %}
+                                    {% if language.id == 'hi' %}उन विषयों को दर्ज करें जिनकी आपको तलाश है{% endif %}
+                                ">
+                    	</div>
+
+                    </form>
 				</div>
 			</div>
 			
 			<div class="row">
 			
 				<div class="pull-left">
-                    <a href="{{ front_page }}">
+                    <a href="{{ front_page }}" id="site-logo">
                         {% if language.id == 'ar' %}تاريخ ٍالتطعيمات{% endif %}
                         {% if language.id == 'ur' %}ویکسین کی تاریخ{% endif %}
                         {% if language.id == 'hi' %}टीके का इतिहास{% endif %}
@@ -47,21 +63,6 @@
                         </span>
                     </a></div>
 				</div>    
-				<div class="pull-right">
-					<div class="header-search hidden-sm hidden-xs">
-						<form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8" data-drupal-form-fields="edit-keys">
-              
-                        	<div class="search-area">
-                        		<input title="Enter the terms you wish to search for." autocomplete="off" data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search form-control" placeholder="
-                                        {% if language.id == 'ar' %}أدخِل الكلمة التي تريد / تريدين بحثها{% endif %}
-                                        {% if language.id == 'ur' %}اصطلاحات جو آپ  تلاش کرنا چاہتے ہیں درج کریں{% endif %}
-                                        {% if language.id == 'hi' %}उन विषयों को दर्ज करें जिनकी आपको तलाश है{% endif %}
-                                    ">
-                        	</div>
-
-                        </form>
-					</div>
-				</div>  
 			</div>
 		</div>
 	</div>
@@ -84,7 +85,7 @@
                     {% if language.direction == 'ltr' %}
                         <div class="pull-right">
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     {% if language.id == 'ar' %}القائمة{% endif %}
                                     {% if language.id == 'ur' %}فہرست طعام{% endif %}
                                     {% if language.id == 'hi' %}मेन्यू{% endif %}
@@ -105,7 +106,7 @@
                     {% if language.direction == 'rtl' %}
                         <div class="pull-left">
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     {% if language.id == 'ar' %}في العربية{% endif %}
                                     {% if language.id == 'ur' %}اردو میں{% endif %}
                                     {% if language.id == 'hi' %}हिंदी में{% endif %}

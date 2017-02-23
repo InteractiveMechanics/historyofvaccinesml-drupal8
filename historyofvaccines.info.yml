@@ -13,6 +13,7 @@ libraries:
   - historyofvaccines/jqueryuitouch
   - historyofvaccines/bootstrap
   - historyofvaccines/openseadragon
+  - historyofvaccines/slick
   - historyofvaccines/global-styling
 
 
