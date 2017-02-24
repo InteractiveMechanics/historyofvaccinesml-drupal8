@@ -59,14 +59,13 @@ p {
 
 html[dir="rtl"] #language-switcher {
   border: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 0 20px 0 0; }
+  border-right: 1px solid rgba(255, 255, 255, 0.25); }
   html[dir="rtl"] #language-switcher .caret {
     margin-right: 8px; }
 html[dir="rtl"] .main-nav {
   margin: 0;
   padding: 0; }
-html[dir="rtl"] .navbar-nav {
+html[dir="rtl"] .navbar-nav > li {
   float: right; }
 html[dir="rtl"] .header-search input {
   text-align: right;
@@ -218,10 +217,13 @@ img {
   border-left: 1px solid rgba(255, 255, 255, 0.25);
   color: white;
   border-radius: 0;
-  padding: 0 0 0 20px; }
+  padding: 0 20px 0; }
+  #language-switcher:hover, #language-switcher:focus, #language-switcher:active {
+    background: #555; }
   #language-switcher + .dropdown-menu {
     background: #606c67;
-    border-radius: 0; }
+    border-radius: 0;
+    margin-top: -1px; }
     #language-switcher + .dropdown-menu li.is-active {
       background: #555; }
     #language-switcher + .dropdown-menu li a {
@@ -1409,6 +1411,9 @@ ul.recent-posts li {
         overflow: hidden;
         overflow-y: auto;
         max-height: 420px; }
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+          #activity-slideshow .activity-slideshow-container .slide .slide-content {
+            max-height: 400px; } }
         #activity-slideshow .activity-slideshow-container .slide .slide-content h5 {
           color: #5FC9F1; }
         #activity-slideshow .activity-slideshow-container .slide .slide-content h3 {

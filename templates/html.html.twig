@@ -41,7 +41,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <head-placeholder token="{{ placeholder_token|raw }}">
-    <title>{{ head_title|safe_join(' | ') }}</title>
+    {% set hmtlTitle = node_type %}
+    
+    {% if hmtlTitle starts with "home" %}
+    	{% set hmtlTitle = head_title['title'] %}
+    {% else %}
+        {% if language.id == 'ar' %}
+            {% set hmtlTitle = 'تاريخ ٍالتطعيمات | ' ~ head_title['title'] %}
+        {% endif %}
+        {% if language.id == 'ur' %}
+            {% set hmtlTitle = 'ویکسین کی تاریخ | ' ~ head_title['title'] %}
+        {% endif %}
+        {% if language.id == 'hi' %}
+            {% set hmtlTitle = head_title['title'] ~ ' | टीके का इतिहास' %}
+        {% endif %}
+    {% endif %}
+    
+    <title>{{hmtlTitle}}</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

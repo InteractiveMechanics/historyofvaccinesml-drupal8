@@ -28,11 +28,16 @@
     border-left: 1px solid rgba(255,255,255,0.25);
     color: white;
     border-radius: 0;
-    padding: 0 0 0 20px;
+    padding: 0 20px 0;
+
+    &:hover, &:focus, &:active {
+        background: #555;
+    }
 
     & + .dropdown-menu {
         background: #606c67;
         border-radius: 0;
+        margin-top: -1px;
 
         li {
             &.is-active {
