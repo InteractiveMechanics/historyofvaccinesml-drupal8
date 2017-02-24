@@ -12,8 +12,17 @@ html[dir="rtl"] {
         margin: 0;
         padding: 0;
     }
+    .navbar-nav {
+        float: right;
+    }
     .header-search input {
         text-align: right;
         padding-right: 45px;
+    }
+    .activity-slideshow-controls {
+        > a:first-of-type {
+            margin: 0 !important;
+            margin-left: 10px !important;
+        } 
     }
 }

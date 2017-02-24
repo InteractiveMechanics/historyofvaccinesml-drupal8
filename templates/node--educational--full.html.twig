@@ -76,9 +76,11 @@
                         {% for key, entry in content.field_activity_slides if key|first != '#' %}
                             <div class="slide">
                                 <img src="{{ base_path }}{{ file_url(entry['#paragraph'].field_activity_image.entity.fileuri) }}" alt="{{ entry['#paragraph'].field_activity_headline_one.value }}" />
-                                <h5>{{ entry['#paragraph'].field_headline_primary.value }}</h5>
-                                <h3>{{ entry['#paragraph'].field_headline_secondary.value }}</h3>
-                                <p>{{ entry['#paragraph'].field_activity_text.value }}</p>
+                                <div class="slide-content">
+                                    <h5>{{ entry['#paragraph'].field_headline_primary.value }}</h5>
+                                    <h3>{{ entry['#paragraph'].field_headline_secondary.value }}</h3>
+                                    <p>{{ entry['#paragraph'].field_activity_text.value|raw }}</p>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
