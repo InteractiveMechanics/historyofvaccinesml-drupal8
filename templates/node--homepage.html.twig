@@ -71,6 +71,8 @@
 <div class="blocks">
 	<div class="large-block pull-left">
 		{#node.field_featured_relative_path[0].value#}
+        <h2>{{node.field_featured_second_headline[0].value|raw}}</h2>
+        <h1>{{node.field_featured_primary_headline[0].value|raw}}</h1>
 		<a href="{{ base_path }}{{ node.field_featured_relative_path.value }}"><img src="{{ file_url(node.field_featured_image.entity.fileuri) }}" class="img-responsive" /></a>
 	</div>
 	
@@ -95,9 +97,12 @@
     <div class="row">
     	<div class="col-md-4 img-nav hidden-xs hidden-sm">
     		<ul class="list-unstyled">
-    					
-    			TO DO
-    					
+                {% for key, entry in content.field_sidebar_call_to_action if key|first != '#' %}
+        			<a href="{{entry['#paragraph'].field_callout_link.value}}" class="homepage-callout">
+                        <img src="{{ file_url(entry['#paragraph'].field_callout_image.entity.fileuri) }}" alt="{{entry['#paragraph'].field_callout_text.value}}" />
+                        <div class="homepage-callout-text">{{entry['#paragraph'].field_callout_text.value}}</div>
+        			</a>
+                {% endfor %}
     		</ul>
     	</div>
     	

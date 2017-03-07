@@ -291,7 +291,7 @@
 									<div>
 								{% endif %}
 									{{ entry['#node'].body.value|raw }}
-									<a href="{{front_page}}/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">
+									<a href="{{front_page}}/{{language.id}}/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">
                                         {% if language.id == 'ar' %}انظر هذا العنصر في الإطار الزمني{% endif %}
                                         {% if language.id == 'ur' %}ٹائم لائن میں اس شے کے دیکھتے ہیں{% endif %}
                                         {% if language.id == 'hi' %}इस समय में इस मद देखें{% endif %}

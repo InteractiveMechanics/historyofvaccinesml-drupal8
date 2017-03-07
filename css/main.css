@@ -44,7 +44,7 @@
   clear: both; }
 
 .image-with-caption {
-  font-size: 12px;
+  font-size: 14px;
   color: #999;
   margin-top: -10px;
   margin-right: 15px;
@@ -73,6 +73,9 @@ html[dir="rtl"] .header-search input {
 html[dir="rtl"] .activity-slideshow-controls > a:first-of-type {
   margin: 0 !important;
   margin-left: 10px !important; }
+html[dir="rtl"] .view-image {
+  float: right !important;
+  margin: 0 0 5px 10px; }
 
 html {
   overflow-x: hidden; }
@@ -111,7 +114,8 @@ body {
 .large-block {
   width: 67%;
   overflow: hidden;
-  height: 340px; }
+  height: 340px;
+  position: relative; }
   .large-block img {
     margin: 0;
     min-height: 300px;
@@ -122,6 +126,15 @@ body {
     @media (max-width: 767px) {
       .large-block img {
         min-height: 0; } }
+  .large-block h2 {
+    position: absolute;
+    left: 50px;
+    font-size: 18px;
+    top: 40px; }
+  .large-block h1 {
+    position: absolute;
+    left: 50px;
+    top: 65px; }
   @media (max-width: 1199px) {
     .large-block {
       height: 280px; } }
@@ -160,10 +173,28 @@ body {
     background-color: rgba(64, 80, 95, 0.9);
     box-shadow: inset 0 -30px 18px -20px rgba(0, 0, 0, 0.4);
     padding: 30px;
-    font-size: 13px; }
+    font-size: 14px; }
     @media (max-width: 1199px) {
       .small-block.dark-blue-block {
         padding: 25px; } }
+
+.homepage-callout {
+  position: relative;
+  display: block;
+  margin-bottom: 20px; }
+  .homepage-callout:hover .homepage-callout-text, .homepage-callout:focus .homepage-callout-text, .homepage-callout:active .homepage-callout-text {
+    background: rgba(0, 0, 0, 0.75); }
+  .homepage-callout img {
+    margin: 0 !important; }
+  .homepage-callout .homepage-callout-text {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    transition: 0.5s all; }
 
 img {
   max-width: 100%;
@@ -413,6 +444,8 @@ footer {
     color: #888; }
   footer:hover {
     color: #888; }
+  footer ul.list-inline {
+    padding: 0; }
   @media (max-width: 991px) {
     footer .pull-right,
     footer .pull-left {
@@ -1208,7 +1241,7 @@ ul.recent-posts li {
 .header-row h5 {
   color: maroon;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 2px; }
 
 .article-blurb {
