@@ -747,8 +747,6 @@ button.collapsed span.glyphicon-menu-hamburger {
     border-radius: 12px;
     right: 80px;
     top: 16px; }
-    #visualization-timeline .slider.right-start .ui-slider-handle {
-      left: 100%; }
     #visualization-timeline .slider .ui-slider-handle {
       height: 34px;
       width: 70px;
@@ -757,6 +755,7 @@ button.collapsed span.glyphicon-menu-hamburger {
       top: -11px;
       left: 0%;
       margin-left: -35px;
+      cursor: pointer;
       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
       background: #e2e2e2;
       /* Old browsers */
@@ -773,15 +772,18 @@ button.collapsed span.glyphicon-menu-hamburger {
         outline: none;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
       #visualization-timeline .slider .ui-slider-handle:hover:after {
-        color: #61C8F2; }
+        color: #676767; }
       #visualization-timeline .slider .ui-slider-handle:after {
         content: ':::::';
         font-weight: bold;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         text-align: center;
         width: 100%;
         position: absolute;
-        top: 8px;
+        opacity: 0.6;
+        left: -1px;
+        top: 5px;
+        letter-spacing: 3px;
         color: gray; }
 
 .vis-timeline {

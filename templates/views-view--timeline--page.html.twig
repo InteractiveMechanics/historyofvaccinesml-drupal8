@@ -229,12 +229,12 @@
         var timeline;
 
         var url = "";
-        url = 'http://ml.historyofvaccines.org/timeline/data?language={{ language.id }}';
+        url = 'http://ml.historyofvaccines.org/timeline.php?language={{ language.id }}';
 	   
         $.ajax({
             url: url,
             success: function(data) {
-	            //data = JSON.parse( data );
+	            data = JSON.parse( data );
                 var append = 0;
                 var append_to = 0;
 
@@ -343,15 +343,17 @@
                 slider = $('#visualization-timeline .slider').slider({
                     {% if language.direction == 'ltr' %}
                     value: (Date.parse( timelineData[0].year ) - 365000000000),
-                    min: (Date.parse( timelineData[0].year ) - 365000000000),
-                    max: (Date.parse( timelineData[timelineCount-1].year )),
                     {% else %}
                     value: (Date.parse( timelineData[timelineCount-1].year )),
-                    max: (Date.parse( timelineData[0].year ) - 365000000000),
-                    min: (Date.parse( timelineData[timelineCount-1].year )),
                     {% endif %}
+                    min: (Date.parse( timelineData[0].year ) - 365000000000),
+                    max: (Date.parse( timelineData[timelineCount-1].year )),
                     slide: function(e, ui) {
                         var newval = ui.value;
+                        {% if language.direction == 'rtl' %}
+                            // var ratio = ui.value/Date.parse( timelineData[timelineCount-1].year );
+                            // newval = 
+                        {% endif %}
                         timeline.setWindow({
                             start: newval
                         });

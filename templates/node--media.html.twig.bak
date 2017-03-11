@@ -186,7 +186,9 @@
                     {% endif %}
                     {% if node.field_timeline_categories[0] %}
                         <dt>Timeline Category:</dt>
-			{{ content.field_timeline_categories }}
+                        {% for key, content in content.field_timeline_categories if key|first != '#' %}
+                            <dd><a href="{{ content['#node'].uri }}">{{ content['#node'].title.value|raw }}</a></dd>
+                        {% endfor %}
                     {% endif %}
                     {% if node.field_source[0].value %}
                         <dt>Source:</dt>
