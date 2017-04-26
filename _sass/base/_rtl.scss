@@ -1,4 +1,16 @@
 html[dir="rtl"] {
+	
+	.list-inline.social-icons {
+		//padding-right: 40px;
+	}
+	
+	.new-articles {
+		ul {
+			li {
+				min-height: 205px;
+			}
+		}
+	}
     #language-switcher {
         border: none;
         border-right: 1px solid rgba(255,255,255,0.25);
@@ -10,9 +22,17 @@ html[dir="rtl"] {
     .main-nav {
         margin: 0;
         padding: 0;
+        
+        @include screen-xs  {
+	    	padding-right: 30px;  
+	    }
     }
     .navbar-nav > li {
         float: right;
+        
+        @include screen-xs  {
+	    	float: none;    
+	    }
     }
     .header-search input {
         text-align: right;
@@ -28,4 +48,6 @@ html[dir="rtl"] {
         float: right !important;
         margin: 0 0 5px 10px;
     }
+
+    
 }

@@ -107,23 +107,55 @@
 }
 
 .timeline-overview {
-	p {
-		text-align: right;
+	
+	.right {
+		p {
+			direction: rtl;
+		}
+		
+		h2 {
+			direction: rtl;
+		}
 	}
 	
-	h2 {
-		text-align: right;
+	.left {
+		p {
+			direction: ltr;
+		}
+		
+		h2 {
+			direction: ltr;
+		}
 	}
 }
 
 .timeline-sidebar {
-	.sidebar-item {
-		h5 {
-			text-align: right;
+	.sidebar-blurb {
+		img {
+			float:left; 
+			margin-right:15px; 
+			margin-bottom:15px;
+            width: 90px;
 		}
-	}
-	p {
-		text-align: right;
+		
+		.right {
+			img {
+				float:right; 
+				margin-left:15px; 
+                margin-right: 0;
+				margin-bottom:15px;
+                width: 90px;
+			}
+			
+			.sidebar-item {
+				h5 {
+					text-align: right;
+				}
+			}
+			p {
+				text-align: right;
+			}
+		}
 	}
 }
 

@@ -13,7 +13,7 @@ jqueryui:
   version: 1.12.1
   header: true
   js:
-    js/lib/jquery-ui.min.js: {}
+    js/lib/jquery-ui18.min.js: {}
   dependencies:
     - core/jquery
 

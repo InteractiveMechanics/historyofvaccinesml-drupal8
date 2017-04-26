@@ -39,35 +39,17 @@
             <li{{ item.attributes }}>
                 {% if item.text == 'Arabic' %}
                     <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
-                        {% if language.id == 'ar' %}
                             في العربية
-                        {% elseif language.id == 'hi' %}
-अरबी में
-                        {% elseif language.id == 'ur' %}
-عربی میں
-                        {% endif %}
                     </a>
                 {% endif %}
                 {% if item.text == 'Urdu' %}
                     <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
-                        {% if language.id == 'ar' %}
-                           في الأردو
-                        {% elseif language.id == 'hi' %}
-उर्दू में
-                        {% elseif language.id == 'ur' %}
 اردو میں
-                        {% endif %}
                     </a>
                 {% endif %}
                 {% if item.text == 'Hindi' %}
                     <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
-                        {% if language.id == 'ar' %}
-في الهندية
-                        {% elseif language.id == 'hi' %}
 हिंदी में
-                        {% elseif language.id == 'ur' %}
-ہندی میں
-                        {% endif %}
                     </a>
                 {% endif %}
             </li>

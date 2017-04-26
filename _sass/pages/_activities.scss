@@ -28,6 +28,25 @@
     }
 }
 
+.right {
+	li {
+        .views-field-field-thumbnail-image {
+			float: right;
+			margin-left: 10px;
+		}
+		
+	}
+}
+
+.left {
+	li {
+		.views-field-field-thumbnail-image {
+			float: left;
+			margin-right: 10px;
+		}
+	}
+}
+
 .related-activities {
     width: 100%;
     padding: 0;
@@ -50,6 +69,11 @@
         margin: 0;
         width: 100%;
     }
+    
+    &>div {
+	    display: flex; 
+	    flex-wrap: wrap
+    }
     li {
         list-style: none;
         width: 33%;
@@ -59,8 +83,10 @@
 
         @include screen-sm {
             width: 50%;
-            height: 150px;
+            height: auto;
+            float: none;
             padding: 0 30px;
+            margin-bottom: 30px;
         }
         @include screen-xs {
             width: 100%;
@@ -100,6 +126,16 @@
                 width: 66%;
                 float: left;
                 margin: 0;
+                
+                @include screen-sm  {
+				    width: 100%;
+				    float: none;
+			    }
+                
+                @include screen-xs  {
+				    width: 100%;
+				    float: none;
+			    }
             }
             .slide-content {
                 width: 33%;
@@ -110,8 +146,22 @@
                 max-height: 420px;
 
                 @media screen and (#{$screen-sm}) {
-                    max-height: 400px;
+                    max-height: 450px;
                 }
+                
+                @include screen-sm  {
+				    width: 100%;
+				    float: none;
+				    padding-bottom: 60px;
+					max-height: 500px;
+			    }
+                
+                @include screen-xs  {
+				    width: 100%;
+				    float: none;
+				    padding-bottom: 60px;
+					max-height: 500px;
+			    }
 
                 h5 {
                     color: #5FC9F1;
@@ -158,4 +208,10 @@
     .moveright {
         text-indent: -1px;
     }
+    
+}
+
+
+.slick-disabled {
+	opacity: .5;
 }

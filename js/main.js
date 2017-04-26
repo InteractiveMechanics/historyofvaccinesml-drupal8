@@ -115,19 +115,31 @@
         
         
         $('.gallery-image-container .show-modal').attr('data-filename', root);
-        $('.gallery-image-container p').html(caption);
-        
+        //$('.gallery-image-container p').html(caption);
+        $('.caption-area').html(caption);
         
         if (type == 'image') {
             //$('.gallery-image-container .video').addClass('hidden');
             //$('.gallery-image-container .image').removeClass('hidden');
-            $('.gallery-items img').attr('src', 'http://media.historyofvaccines.org/images/' + root + '_265.jpg');
+            //$('.gallery-items img').attr('src', 'http://media.historyofvaccines.org/images/' + root + '_540.jpg');
+            $('.gallery-item').hide();
+            $('.'+root).show();
+            
+            if($('.'+root).hasClass('hidden')) {
+	            $('.'+root).removeClass('hidden');
+            }
 
         } else if (type == 'video') {
             //$('.gallery-image-container .image').addClass('hidden');
             //$('.gallery-image-container .video').removeClass('hidden');
-            $('.gallery-items video').attr('src', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
-                .attr('poster', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
+            //$('.gallery-items video').attr('src', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
+               // .attr('poster', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
+            $('.gallery-item').hide();
+            $('.'+root).show();
+            
+            if($('.'+root).hasClass('hidden')) {
+	            $('.'+root).removeClass('hidden');
+            }
         }
     });
 
@@ -145,11 +157,15 @@
 
     var $openseadragon = null;
     
-    $('.show-modal').on('click', function(){
+    $(document).on('click', '.show-modal', function(){
         var root = $(this).attr('data-filename');
+        var hideBrowser = $(this).attr('data-hidebrowser');
+
         baseSetup();
         populateMediaInfo(root);
-        buildBrowser(root);
+        if (hideBrowser == false) {
+            buildBrowser(root);
+        }
         buildSeadragon(root);
     });
 
@@ -186,13 +202,17 @@
 
         $viewer.css({ display: 'block' })
     }
+    
+    function fixTitle(title) {
+	        return title.replace("&#039;", "'");
+    }
     function populateMediaInfo(root) {    
-        var title = data[root].title;
+        var title = fixTitle(data[root].title);
         var description = data[root].description;
         var caption = data[root].caption;
 
         if (title != '') {
-          $title.text(title);
+          $title.text(fixTitle(title));
         } 
         else {
           $title.text('');
@@ -292,11 +312,13 @@
 		var uniqueID = $invoker.data('uniqueid');
 		var caption =  $invoker.data('caption');
 		var creator =  $invoker.data('creator');
+		var copyright =  $('<textarea />').html($invoker.data('copyright')).text();
 		
 		console.log(caption, creator);
 		
+		
 		if(uniqueID) {
-			var path = "http://ml.historyofvaccines.org/timeline#EVT_" + uniqueID;
+			var path = "http://ml.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
 			window.history.pushState("object or string", "Title", path);	
 		}
 		
@@ -305,6 +327,7 @@
         
         var creator_arr = creator.split("|,|");
         var caption_arr = caption.split("|,|");
+        var copyright_arr = copyright.split("|,|");
        
         file_arr.pop();
         filetype_arr.pop();
@@ -312,10 +335,9 @@
         caption_arr.pop();
         
        var file_arr_count = formatArray(file_arr);
-       var mediaHtml = createHTML(file_arr, filetype_arr, creator_arr, caption_arr);
+       var mediaHtml = createHTML(file_arr, filetype_arr, creator_arr, caption_arr, copyright_arr);
         
-
-		$('.timeline-modal-date').html($invoker.data('year'));
+		$('.timeline-modal-date').html($invoker.data('datestr'));
 		$('.timeline-modal-title').html($invoker.data('title'));
 		$('.timeline-modal-body').html($invoker.data('body'));
 		
@@ -355,7 +377,7 @@
 		return count;
 	}
 	
-	function createHTML(file_arr, filetype_arr, creator_arr, caption_arr) {
+	/*function createHTML(file_arr, filetype_arr, creator_arr, caption_arr) {
 		var htmlString = "";
 		htmlString = '<div class="body-mediaitem"><div class="gallery-image-container"><div class="gallery-items">';
 
@@ -440,6 +462,132 @@
 		        	} else {
 			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
 			        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';
+		        	}
+				htmlString += '</div>';
+					
+			}
+			
+		}
+		htmlString += '</div>';
+		
+		htmlString += '</div></div>';
+		
+		return htmlString;
+	}*/
+	
+	function createHTML(file_arr, filetype_arr, creator_arr, caption_arr, copyright_arr) {
+		var htmlString = "";
+		htmlString = '<div class="body-mediaitem"><div class="gallery-image-container"><div class="gallery-items">';
+
+		if(file_arr.length > 0) {
+			var file = file_arr[0];
+			var filetype = filetype_arr[0];
+			
+			if(file != "") {
+		
+				var type = 'image';
+				
+				if(file.indexOf('m4v') != -1 || filetype == "37") {
+					type = 'video';	
+				}
+				
+	        	htmlString += '<div class="gallery-item '+ type +  ' ' + file +'" style="position:relative;">';
+	        	
+	        	var attr = '';
+	        	
+	        	if(type == 'image') {
+		        	var filename = "https://media.historyofvaccines.org/images/" + file + "_540.jpg";
+		        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[0] + '"><div class="show-modal" data-hidebrowser="true" '+ attr +' data-filename="' + file + '">+</div>';
+	        	} else {
+		        	var filename = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+					var poster = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+					htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" preload="none" width="100%"></video>';
+	        	}
+	        	
+	        	htmlString += '</div>';
+        	
+        	}
+		}
+		
+		
+		for(var i = 1; i < file_arr.length; i++) {
+			var file = file_arr[i];
+			var filetype = filetype_arr[i];
+			var type = 'image';
+			var class_file = file;
+			if(file.indexOf('m4v') != -1 || filetype == "37") {
+				type = 'video';	
+				class_file = file.split('.')[0];
+			}
+			
+        	htmlString += '<div class="gallery-item '+ type + ' ' + class_file +' hidden">';
+        	
+        	var attr = ' ';
+        	if(type == 'image') {
+	        	var filename = "http://media.historyofvaccines.org/images/" + file + "_540.jpg";
+	        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '"><div class="show-modal" data-hidebrowser="true" ' + attr + ' data-filename="' + file + '">+</div>';	
+        	} else {
+	        	var filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+				htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" preload="none" width="100%"></video>';
+        	}
+        	
+        	htmlString += '</div></div>';
+        }
+        
+        var creator = '';
+        var caption = '';
+        var copyright = '';
+        
+        if (caption_arr[0]){
+    	    caption = "<b> " + caption_arr[0] + "</b>";
+        }
+        
+        if (copyright_arr[0]){
+    	    copyright = "<br /><span>" + copyright_arr[0] + "</span> ";
+        }
+
+        if (copyright){
+            copyright = '<br /><span>' + creator_arr[0] + '</span> ';
+        }
+        
+        
+        
+        
+        
+        htmlString += "<p style='text-align:left; font-size: 11px; margin: 5px 0px; line-height: 16px; color: #999;' class='caption-area'>" + creator + ' ' + caption + copyright + "</p>";
+        
+        htmlString += '<div id="body-mediaitem-switcher">'
+        for(var i = 0; i < file_arr.length; i++) {
+	        var file = file_arr[i];
+	        var filetype = filetype_arr[i];
+	        
+            var creator;
+            var caption;
+
+            if (creator_arr[i]){
+	            creator = '<span>' + creator_arr[i] + '</span>';
+            }
+            if (caption_arr[i]){
+	            caption = "<b>" + caption_arr[i] + "</b>";
+            }
+	        
+	        if(file != "") {
+		    
+				var type = 'image';
+				
+				if(file.indexOf('m4v') != -1 || filetype == "37") {
+					type = 'video';	
+				}
+				
+	        	
+				htmlString += '<div class="body-mediaitem-small body-mediaitem-small-timeline '+ file +'" data-filename="'+file+'" data-type="'+ type +'" data-caption="'+ creator + ' <br /> ' + caption +'">';
+					if(type == 'image') {
+			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '">';	
+		        	} else {
+			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '">';
 		        	}
 				htmlString += '</div>';
 					

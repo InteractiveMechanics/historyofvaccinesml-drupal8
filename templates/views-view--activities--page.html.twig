@@ -68,22 +68,36 @@
 
 <div class="blocks clearfix">
 		<div class="large-block pull-left">
-			<a href="{{base_path}}node/2349">
+			<a href="{{base_path}}node/2349" style="color:white;">
+				{% if language.id == 'ar' %}
+				
+					<h2 class="text-left">اضواء على النشاطات</h2>
+					<h1 class="text-left">كيف تعمل اللقاحات</h1>
+				
+				{% endif %}
+                {% if language.id == 'ur' %}
+                	<h2 class="text-left">سرگرمی کے لئے نشان راہ</h2>
+					<h1 class="text-left">ویکسین کام</h1>
+                {% endif %}
+                {% if language.id == 'hi' %}
+                	<h2>गतिविधि स्पॉटलाइट</h2>
+					<h1>कैसे टीके काम करते है ?</h1>
+                {% endif %}
 				<img src="/themes/historyofvaccines/images/activities/Activity_Feature_01.jpg" class="img-responsive" />
 			</a>
 		</div>
 		
 		<div class="small-block pull-right dark-blue-block hidden-sm hidden-xs">
 			<p>
-				{% if language.id == 'ar' %}...{% endif %}
-                {% if language.id == 'ur' %}...{% endif %}
-                {% if language.id == 'hi' %}...{% endif %}
+				{% if language.id == 'ar' %}<span class="text-left">...</span>{% endif %}
+                {% if language.id == 'ur' %}<span class="text-left">...</span>{% endif %}
+                {% if language.id == 'hi' %}<span class="text-right">पता लगाईए  कैस टीके बना रहे हैं, और अधिक द्वारा सक्रिय रूप से जानें।</span>{% endif %}
 			</p>
 		</div>
 		
 		<div class="small-block pull-right hidden-sm hidden-xs">
-			<a href="{{base_path}}content/scientific-method">
-				<img src="" style="height:192px" class="img-responsive" width="100%" />
+			<a href="{{base_path}}node/2350">
+				<img src="/themes/historyofvaccines/images/herd-immunity-callout.jpg" style="height:192px" class="img-responsive" width="100%" />
 			</a>
 		</div>
 	</div>
@@ -91,8 +105,8 @@
 <div class="main-content">
 <div class="row">
 	<div class="col-md-12">
-        <div class="related-activities">
-		    {{ all_activities }}
+        <div class="related-activities {% if language.id == 'ar' %}right{% endif %} {% if language.id == 'ur' %}right{% endif %} {% if language.id == 'hi' %}left{% endif %}" >
+		   		{{ all_activities }}
         </div>
 	</div>
 </div>

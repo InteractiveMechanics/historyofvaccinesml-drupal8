@@ -10,6 +10,27 @@
     }
 }
 	
+.panel-body {
+    li.item {
+	    @include screen-xs  {
+	    	padding: 0 15px;
+	    }
+    }
+}
+    
+#accordionMobile > .panel > .panel-heading {
+    display: block;
+    border-bottom: 2px solid #DDD;
+    padding: 11px 15px 13px;
+    
+    h4 {
+        padding: 8px 15px;
+    }
+}
+#mobileMenuList > .panel-body > .panel-group {
+    margin: 0;
+}
+
 #filtersList {
     @include screen-xs {
         margin: 0 -16px;
@@ -32,10 +53,11 @@
 	
 .panel-group {
     @include screen-sm {
-        margin: -16px -16px 20px;
+        margin: -16px -8px 20px;
     }
+    
     @include screen-xs {
-        margin: -16px -16px 20px;
+        margin: -16px -16px 0;
     }
 
     .panel {

@@ -41,10 +41,10 @@
             margin-right:12px;
         }
 
-        table{border-collapse:collapse;border-spacing:0;font-size:1.2em; margin-bottom:30px;}
+        table{border-collapse:collapse;border-spacing:0;font-size:1.2em; margin-bottom:30px;width:100% !important;}
         table *{font-size:100%;}
         table tr{}
-        table td{border:1px solid #333; vertical-align: top; padding:10px 0 0 10px;}
+        table td{border:1px solid #333; vertical-align: top; padding:10px;}
         table td p{margin:0;}
     }	
 

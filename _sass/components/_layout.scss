@@ -42,6 +42,17 @@ body {
     height: 340px;
     position: relative;
 
+    &:after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        background: rgba(0,0,0,0.5);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
     img {
         margin: 0;
         min-height: 300px;
@@ -60,11 +71,23 @@ body {
         left: 50px;
         font-size: 18px;
         top: 40px;
+        z-index: 9;
+        color: white;
+        
+        @include screen-xs {
+	        font-size: 14px;
+	    }
     }
     h1 {
         position: absolute;
         left: 50px;
         top: 65px;
+        z-index: 9;
+        color: white;
+        
+	    @include screen-xs {
+	        font-size: 20px;
+	    }
     }
 
     @include screen-ltlg {

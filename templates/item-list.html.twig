@@ -66,7 +66,7 @@
             $('.filters ul li:eq(0)').addClass('active');
 
             var key = getParameterByName('keys');
-            var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
+            var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:educational";
             window.location = searchLink;
 		}
 		
@@ -75,7 +75,7 @@
 			var key = getParameterByName('keys');
 			
 			if(filter == 'Site') {
-				var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
+				var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:educational";
 				window.location = searchLink;
 			}
 			

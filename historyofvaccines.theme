@@ -3,11 +3,13 @@
 		
 		$node = \Drupal::routeMatch()->getParameter('node');
 		
+		
+		
 		if ($node) {
 			$nid = $node->id();			
 			$uid = $node->getOwnerId();
 			
-		    $user = \Drupal\user\Entity\User::load($uid);
+			$user = \Drupal\user\Entity\User::load($uid);
 		    $contentType = $node->getType();
 		    
 		    if (!is_null($user)) {
@@ -49,8 +51,10 @@
     		}		
 		}
 	}
+	
 
 	function historyofvaccines_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
+		
 		
         if (!isset($variables['language'])) {
             $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -62,8 +66,14 @@
         }
 
 		$view = \Drupal::request()->attributes->get('view_id');
+		$variables['view_name'] = $view;
+		
 		
 		if($view == "timeline") {
+			
+
+			
+			
             $exposed_timeline_block = \Drupal\block\Entity\Block::load('exposedformtimelinepage_1');
 			$variables['exposed_form_timeline'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_timeline_block);
 
@@ -74,7 +84,7 @@
 			if(isset($categories) && count($categories) == 1) {
 				// get overview
 				$category_id = $_GET['timeline_categories'][0];
-				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('field_timeline_categories', $category_id);
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('field_timeline_categories', $category_id)->condition('langcode', $variables['language']['id']);
 				$nids = $query->execute();
 				$nids_array = array_keys($nids);
 				
@@ -85,26 +95,66 @@
 				$variables['timeline_overview_body'] = $temp[0]['value']; 
 				
 				//get highlight
-				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', $category_id);    
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', $category_id)->condition('langcode', $variables['language']['id']);    
 				$nids = $query->execute();
 				
 				$arr = \Drupal\node\Entity\Node::loadMultiple($nids);
-				$variables['timeline_overview_highlight'] = $arr;
-			} else {
-				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('nid', 691);    
-				$nids = $query->execute();
-				$nodeItem = \Drupal\node\Entity\Node::load(691);
-				$temp = $nodeItem->body->getValue();
 				
-				$variables['timeline_overview_title'] = $nodeItem->title->value;
+				$tempArray = [];
+				
+				foreach ($nids as $nid) {
+				    $nodeItem = \Drupal\node\Entity\Node::load($nid);
+				
+					$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+					$translated_node = $nodeItem->getTranslation($language);
+					
+					array_push($tempArray, $translated_node);
+					
+				}
+				
+				$variables['timeline_overview_highlight'] = $tempArray;
+				
+				
+			} else {
+				
+				
+				//$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('nid', 691)->condition('langcode', $variables['language']['id']);  
+				//$nids = $query->execute();
+				$nodeItem = \Drupal\node\Entity\Node::load(691);
+				
+				$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+				$translated_node = $nodeItem->getTranslation($language);
+				
+				$temp = $translated_node->body->getValue();
+				
+				$variables['timeline_overview_title'] = $translated_node->title->value;
+				
+				
+				
 				$variables['timeline_overview_body'] = $temp[0]['value']; 
 				
-				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', 61);    
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', 61)->condition('langcode', $variables['language']['id']);    
 				$nids = $query->execute();
 				
 				$arr = \Drupal\node\Entity\Node::loadMultiple($nids);
-				$variables['timeline_overview_highlight'] = $arr;
+				
+				$tempArray = [];
+				
+				foreach ($nids as $nid) {
+				    $nodeItem = \Drupal\node\Entity\Node::load($nid);
+				
+					$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+					$translated_node = $nodeItem->getTranslation($language);
+					
+					array_push($tempArray, $translated_node);
+					
+				}
+				
+				
+				$variables['timeline_overview_highlight'] = $tempArray;
+				
 			}
+			
 		}
         if($view == "activities") {
             $all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
