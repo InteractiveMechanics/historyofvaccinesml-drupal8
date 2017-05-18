@@ -155,15 +155,15 @@
 		                            	{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37%}
 		                            		
 		                            		<div class="image {% if first_item_done %}hidden{% endif %} {{orig_filename}}">
-		                            			<img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{media_title}}" />
+		                            			<img src="https://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{media_title}}" />
 		                            		</div>
 		                            		
 		                            	{% else %}
 		                            	
 		                            		<div class="video {% if first_item_done %}hidden{% endif %} {{orig_filename}}">
 												<video 
-													src="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" 
-													poster="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" 
+													src="https://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" 
+													poster="https://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" 
 													controls="controls" 
 													preload="none" 
 													width="100%">
@@ -183,13 +183,16 @@
 							{% if content.field_related_media[0] %}
 							
 								<p style='line-height: 15px; margin-top: 15px; font-size: 13px;'><small>
+                                    <!--
 									{% if content.field_related_media[0]['#node'].field_creator.entity.title.value %}
-										<em>{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }} </em>
+										<em class="hidden">{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }} </em>
 									{% else %}
-										<em>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }} </em>
+										<em class="hidden">{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }} </em>
 									{% endif %}
+                                    <br />
+                                    -->
 		                            
-		                            <br /><b>{{ content.field_related_media[0]['#node'].field_caption.value }}</b>
+		                            <b>{{ content.field_related_media[0]['#node'].field_caption.value }}</b>
 		                        </small></p>
 		                        
 		                    {% endif %}
@@ -226,17 +229,15 @@
 			                    		
 			                    			{% if content.field_related_media[key]['#node'].field_creator.entity.title.value %}
 			                    				{% set text = content.field_related_media[key]['#node'].field_creator.entity.title.value|raw %}
-											{% else %}
-												{% set text = content.field_related_media[key]['#node'].field_copyright.entity.title.value|raw %}
 											{% endif %}
 			                    			
 			                    			<div 
 			                    				class="body-mediaitem-small body-mediaitem-small-article" 
 			                    				data-filename="{{ thumb_file }}" 
 			                    				data-type="image" 
-			                    				data-caption="<em>{{text}}</em><br /><b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>">
+			                    				data-caption="<b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>">
 															  <img 
-															  	src="http://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
+															  	src="https://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
 															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
 															  />
 											</div>
@@ -247,11 +248,10 @@
 			                    				class="body-mediaitem-small body-mediaitem-small-article" 
 			                    				data-filename="{{ thumb_file }}" 
 			                    				data-type="video" 
-			                    				data-caption="<em>{{ content.field_related_media[key]['#node'].field_copyright.entity.title.value|raw }}</em> 
-			                    							  <br /><b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>" 
+			                    				data-caption="<b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>" 
 			                    			>
 															  <img 
-															  	src="http://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
+															  	src="https://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
 															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
 															  />
 											</div>
@@ -324,7 +324,7 @@
 				                    	{% endif %}
 				                    	
 										<img style="margin-right:15px; margin-bottom:5px;" 
-										src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" />
+										src="https://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" />
 									</div>
 									
 								{% endif %}

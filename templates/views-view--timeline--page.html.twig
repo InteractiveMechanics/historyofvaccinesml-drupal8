@@ -167,7 +167,7 @@
 					                            {% set orig_filename = '0' ~ orig_filename %}
 					                    	{% endif %}
 					                    	
-											<img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" width="70">
+											<img src="https://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" width="70">
 											{{highlight.body.value|raw}}
 										</p>
 										
@@ -224,7 +224,7 @@
 
 		Handlebars.registerHelper('isVideo', function(filename) {
             if (filename) {
-    			var imgURL = "http://media.historyofvaccines.org/images/"+ filename + "_90.jpg"
+    			var imgURL = "https://media.historyofvaccines.org/images/"+ filename + "_90.jpg"
     			if ( filename.indexOf('m4v') == -1 && filename != "") {
     				return "<div class='image'>" +
     							"<img src='"+ imgURL +"' />" +
@@ -242,7 +242,7 @@
         var timeline;
 
         var url = "";
-        url = 'http://ml.historyofvaccines.org/timeline.php?language={{ language.id }}';
+        url = '/timeline_ml.php?language={{ language.id }}';
 	   
         $.ajax({
             url: url,

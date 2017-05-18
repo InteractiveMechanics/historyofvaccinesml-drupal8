@@ -58,7 +58,7 @@ p {
   word-wrap: break-word; }
 
 html[dir="rtl"] .new-articles ul li {
-  min-height: 205px; }
+  min-height: 250px; }
 html[dir="rtl"] #language-switcher {
   border: none;
   border-right: 1px solid rgba(255, 255, 255, 0.25); }
@@ -132,7 +132,8 @@ body {
     top: 0;
     left: 0;
     bottom: 0;
-    right: 0; }
+    right: 0;
+    pointer-events: none; }
   .large-block img {
     margin: 0;
     min-height: 300px;
@@ -1796,7 +1797,7 @@ a.rss-link {
 
 .header-search input {
   background-position: 316px 4px;
-  background-image: url("http://zulkey.com/mt-static/support/theme_static/rainier/img/search-icon.png");
+  background-image: url("../images/search-icon.png");
   background-repeat: no-repeat;
   border-color: #313834;
   background-color: #3e4642;

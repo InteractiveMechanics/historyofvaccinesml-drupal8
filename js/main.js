@@ -33,7 +33,7 @@
 
     if ($('.mollom-privacy').html()){
         var mollom_policy = $('.mollom-privacy').html().slice(0,-1);
-        $('.mollom-privacy').html(mollom_policy + ' and our <a href="http://ml.historyofvaccines.org/content/legal-and-privacy" target="_blank">moderation and blog commenting policies</a>.<br><br>');
+        $('.mollom-privacy').html(mollom_policy + ' and our <a href="https://www.historyofvaccines.org/content/legal-and-privacy" target="_blank">moderation and blog commenting policies</a>.<br><br>');
     }
         
     $('.panel-group .panel-title').click(function(){
@@ -61,13 +61,13 @@
         if (type == 'image') {
             $('.gallery-image-container .video').addClass('hidden');
             $('.gallery-image-container .image').removeClass('hidden');
-            $('.gallery-image-container img').attr('src', 'http://media.historyofvaccines.org/images/' + root + '_265.jpg');
+            $('.gallery-image-container img').attr('src', 'https://media.historyofvaccines.org/images/' + root + '_265.jpg');
 
         } else if (type == 'video') {
             $('.gallery-image-container .image').addClass('hidden');
             $('.gallery-image-container .video').removeClass('hidden');
-            $('.gallery-items video').attr('src', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
-                .attr('poster', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
+            $('.gallery-items video').attr('src', 'https://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
+                .attr('poster', 'https://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
         }*/
         
         var root = $(this).attr('data-filename');
@@ -89,7 +89,7 @@
 		        //this.currentTime = 0;
 		    });
             
-            //$('.gallery-image-container .image img').attr('src', 'http://media.historyofvaccines.org/images/' + root + '_265.jpg');
+            //$('.gallery-image-container .image img').attr('src', 'https://media.historyofvaccines.org/images/' + root + '_265.jpg');
 
         } else if (type == 'video') {
             $('.gallery-image-container .image').addClass('hidden');
@@ -102,8 +102,8 @@
 		    });
 		    
 		    
-            //$('.gallery-image-container video').attr('src', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
-            //    .attr('poster', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
+            //$('.gallery-image-container video').attr('src', 'https://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
+            //    .attr('poster', 'https://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
         }
     });
     
@@ -121,7 +121,7 @@
         if (type == 'image') {
             //$('.gallery-image-container .video').addClass('hidden');
             //$('.gallery-image-container .image').removeClass('hidden');
-            //$('.gallery-items img').attr('src', 'http://media.historyofvaccines.org/images/' + root + '_540.jpg');
+            //$('.gallery-items img').attr('src', 'https://media.historyofvaccines.org/images/' + root + '_540.jpg');
             $('.gallery-item').hide();
             $('.'+root).show();
             
@@ -132,8 +132,8 @@
         } else if (type == 'video') {
             //$('.gallery-image-container .image').addClass('hidden');
             //$('.gallery-image-container .video').removeClass('hidden');
-            //$('.gallery-items video').attr('src', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
-               // .attr('poster', 'http://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
+            //$('.gallery-items video').attr('src', 'https://media.historyofvaccines.org/mobile/video/320/' + root + '.mp4')
+               // .attr('poster', 'https://media.historyofvaccines.org/mobile/video/320/' + root + '.jpg');
             $('.gallery-item').hide();
             $('.'+root).show();
             
@@ -234,7 +234,7 @@
         if (Object.keys(data).length > 1){ 
             $.each(Object.keys(data), function(key, value) {
                 var $img = $('<img>')
-                    .attr({ src: 'http://media.historyofvaccines.org/images/' + data[value].root + '_265.jpg' })
+                    .attr({ src: 'https://media.historyofvaccines.org/images/' + data[value].root + '_265.jpg' })
                     .data('filename', data[value].root)
                     .bind('click', function() {
                         baseSetup();
@@ -253,7 +253,7 @@
         $.ajax({
           type: 'GET',
           dataType: 'xml',
-          url: 'http://media.historyofvaccines.org/images/tiles/' + root + '_img/ImageProperties.xml',
+          url: 'https://media.historyofvaccines.org/images/tiles/' + root + '_img/ImageProperties.xml',
           success: function (xml)
           {
             var $IMAGE_PROPERTIES = $('IMAGE_PROPERTIES', xml);
@@ -286,7 +286,7 @@
                 minLevel: minLevel,
     
                 getTileUrl: function (level, x, y) {
-                  var url = 'http://media.historyofvaccines.org/images/tiles/' + root + '_img/TileGroup0/' + (level - 8) + '-' + x + '-' + y + '.jpg';    
+                  var url = 'https://media.historyofvaccines.org/images/tiles/' + root + '_img/TileGroup0/' + (level - 8) + '-' + x + '-' + y + '.jpg';    
                   return url;
                 }
               }
@@ -318,7 +318,7 @@
 		
 		
 		if(uniqueID) {
-			var path = "http://ml.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
+			var path = "https://www.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
 			window.history.pushState("object or string", "Title", path);	
 		}
 		
@@ -348,7 +348,7 @@
 		}
         
         /*$.each(file_arr,function(k,v){
-            $('.timeline-modal-image').append('<img src="http://media.historyofvaccines.org/images/' + v + '_265.jpg"  />');
+            $('.timeline-modal-image').append('<img src="https://media.historyofvaccines.org/images/' + v + '_265.jpg"  />');
         });*/
 		
 		if(!file_arr_count > 0) {
@@ -396,11 +396,11 @@
 	        	htmlString += '<div class="'+ type +'">';
 	        	
 	        	if(type == 'image') {
-		        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+		        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 		        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';	
 	        	} else {
-		        	var filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
-					var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+		        	var filename = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+					var poster = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
 					htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" preload="none" width="100%"></video>';
 	        	}
 	        	
@@ -422,11 +422,11 @@
         	htmlString += '<div class="'+ type +' gallery-item hidden">';
         	
         	if(type == 'image') {
-	        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+	        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 	        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';	
         	} else {
-	        	var filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
-				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+	        	var filename = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+				var poster = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
 				htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" preload="none" width="100%"></video>';
         	}
         	
@@ -457,10 +457,10 @@
 	        	
 				htmlString += '<div class="body-mediaitem-small body-mediaitem-small-timeline" data-filename="'+file+'" data-type="'+ type +'" data-caption="'+ creator + ' <br /> ' + caption +'">';
 					if(type == 'image') {
-			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 			        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';	
 		        	} else {
-			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 			        	htmlString += '<img src="'+ filename +'" alt="Smallpox in the Revolution">';
 		        	}
 				htmlString += '</div>';
@@ -524,11 +524,11 @@
         	
         	var attr = ' ';
         	if(type == 'image') {
-	        	var filename = "http://media.historyofvaccines.org/images/" + file + "_540.jpg";
+	        	var filename = "https://media.historyofvaccines.org/images/" + file + "_540.jpg";
 	        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '"><div class="show-modal" data-hidebrowser="true" ' + attr + ' data-filename="' + file + '">+</div>';	
         	} else {
-	        	var filename = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
-				var poster = "http://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
+	        	var filename = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".mp4";
+				var poster = "https://media.historyofvaccines.org/mobile/video/320/" + file.split('.')[0] + ".jpg";
 				htmlString += '<video src="'+ filename + '" poster="'+ poster +'" controls="controls" preload="none" width="100%"></video>';
         	}
         	
@@ -583,10 +583,10 @@
 	        	
 				htmlString += '<div class="body-mediaitem-small body-mediaitem-small-timeline '+ file +'" data-filename="'+file+'" data-type="'+ type +'" data-caption="'+ creator + ' <br /> ' + caption +'">';
 					if(type == 'image') {
-			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 			        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '">';	
 		        	} else {
-			        	var filename = "http://media.historyofvaccines.org/images/" + file + "_265.jpg";
+			        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 			        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '">';
 		        	}
 				htmlString += '</div>';

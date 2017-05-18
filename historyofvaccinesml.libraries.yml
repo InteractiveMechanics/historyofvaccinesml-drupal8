@@ -35,7 +35,7 @@ jqueryuitouch:
     js/lib/jquery.ui.touch-punch.min.js: {}
   dependencies:
     - core/jquery
-    - historyofvaccines/jqueryui
+    - historyofvaccinesml/jqueryui
 
 openseadragon:
   version: 2.2.1

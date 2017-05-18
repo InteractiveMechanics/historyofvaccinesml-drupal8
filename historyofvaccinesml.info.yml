@@ -1,6 +1,6 @@
-name: History Of Vaccines 2
+name: History Of Vaccines Multilanguage
 type: theme
-description: 'The base theme for History Of Vaccines 2, built on the Stark theme.'
+description: 'The base theme for History Of Vaccines Multilanguage, built on the Stark theme.'
 package: Core
 version: 1.x
 core: 8.x
@@ -9,12 +9,12 @@ base theme: stable
 
 # Libraries
 libraries:
-  - historyofvaccines/jqueryui
-  - historyofvaccines/jqueryuitouch
-  - historyofvaccines/bootstrap
-  - historyofvaccines/openseadragon
-  - historyofvaccines/slick
-  - historyofvaccines/global-styling
+  - historyofvaccinesml/jqueryui
+  - historyofvaccinesml/jqueryuitouch
+  - historyofvaccinesml/bootstrap
+  - historyofvaccinesml/openseadragon
+  - historyofvaccinesml/slick
+  - historyofvaccinesml/global-styling
 
 
 # Regions

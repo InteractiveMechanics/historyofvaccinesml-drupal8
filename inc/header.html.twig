@@ -14,13 +14,13 @@
                         {% if language.id == 'hi' %}आदान प्रदान करना{% endif %}
 					</li>
 					<li>
-						<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
+						<a href="javascript:void(0);"><img src="/themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
 					</li>
 					<li>
-						<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/twitter.svg" alt="Twitter" class="twitter" /></a>
+						<a href="javascript:void(0);"><img src="/themes/historyofvaccines/images/twitter.svg" alt="Twitter" class="twitter" /></a>
 					</li>
 					<li>
-						<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/google.svg" alt="Google+" class="google" /></a>
+						<a href="javascript:void(0);"><img src="/themes/historyofvaccines/images/google.svg" alt="Google+" class="google" /></a>
 					</li>
 				</ul>
 
@@ -46,12 +46,12 @@
 			<div class="row">
 			
 				<div class="pull-left">
-                    <a href="{{ front_page }}" id="site-logo">
+                    <a href="/{{ language.id }}/" id="site-logo">
                         {% if language.id == 'ar' %}تاريخ التطعيمات{% endif %}
                         {% if language.id == 'ur' %}ویکسین کی تاریخ{% endif %}
                         {% if language.id == 'hi' %}टीके का इतिहास{% endif %}
                     </a>
-                    <div><a id="a_project_of" class="hidden-sm hidden-xs" href="{{ front_page }}" rel="external" target="_blank" title="
+                    <div><a id="a_project_of" class="hidden-sm hidden-xs" href="/{{ language.id }}/" rel="external" target="_blank" title="
                         {% if language.id == 'ar' %}مورد و مرجع تعليمي لجمعية الأطباء في فيلادلفيا{% endif %}
                         {% if language.id == 'ur' %}فلاڈیلفیا کے کالج آف فزیشنز کی طرف سے ایک تعلیمی وسائل{% endif %}
                         {% if language.id == 'hi' %}एक शिक्षा संसाधन फिलाडेल्फिया के चिकित्सकों के कॉलेज द्वारा{% endif %}
@@ -73,7 +73,7 @@
 				<div class="">
 	                <div class="dropdown">
 	                    <button class="btn btn-default dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-	                        <img src="{{base_path}}themes/historyofvaccines/images/translate-icon.png" style="width: 21px;">
+	                        <img src="/themes/historyofvaccinesml/images/translate-icon.png" style="width: 21px;">
 	                        <span class="caret"></span>
 	                    </button>
 	                    <ul class="dropdown-menu {% if language.direction == "ltr" %}dropdown-menu-left{% endif %}" aria-labelledby="languageSwitcher" style="float:left;">
@@ -87,7 +87,7 @@
 	       		<div class="">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <img src="{{base_path}}themes/historyofvaccines/images/translate-icon.png" style="width: 21px;"> 
+                            <img src="/themes/historyofvaccinesml/images/translate-icon.png" style="width: 21px;"> 
 	                        <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu {% if language.direction == "rtl" %}dropdown-menu-right{% endif %}" aria-labelledby="languageSwitcher">
@@ -101,7 +101,7 @@
     	<nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="pull-left mobile-logo hidden-md hidden-lg">
-                    <a href="{{ front_page }}" id="site-logo">
+                    <a href="/{{ language.id }}/" id="site-logo">
                         {% if language.id == 'ar' %}تاريخ التطعيمات{% endif %}
                         {% if language.id == 'ur' %}ویکسین کی تاریخ{% endif %}
                         {% if language.id == 'hi' %}टीके का इतिहास{% endif %}
@@ -122,7 +122,7 @@
 	                        <div class="pull-right">
 	                            <div class="dropdown">
 	                                <button class="btn btn-default dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-	                                    <img src="{{base_path}}themes/historyofvaccines/images/translate-icon.png" style="width: 21px;">
+	                                    <img src="/themes/historyofvaccinesml/images/translate-icon.png" style="width: 21px;">
 	                        
 	                                    <span class="caret"></span>
 	                                </button>
@@ -154,13 +154,13 @@
 		                        {% if language.id == 'hi' %}आदान प्रदान करना{% endif %}
 							</li>
 							<li>
-						<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
+						<a href="javascript:void(0);"><img src="/themes/historyofvaccinesml/images/facebook.svg" alt="Facebook" class="facebook" /></a>
 					</li>
 					<li>
-						<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/twitter.svg" alt="Twitter" class="twitter" /></a>
+						<a href="javascript:void(0);"><img src="/themes/historyofvaccinesml/images/twitter.svg" alt="Twitter" class="twitter" /></a>
 					</li>
 					<li>
-						<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/google.svg" alt="Google+" class="google" /></a>
+						<a href="javascript:void(0);"><img src="/themes/historyofvaccinesml/images/google.svg" alt="Google+" class="google" /></a>
 					</li>
 						</ul>
                     {% endif %}
@@ -169,7 +169,7 @@
 	                        <div class="pull-left">
 	                            <div class="dropdown">
 	                                <button class="btn btn-default dropdown-toggle" type="button" id="language-switcher" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-	                                   <img src="{{base_path}}themes/historyofvaccines/images/translate-icon.png" style="width: 21px;">
+	                                   <img src="/themes/historyofvaccinesml/images/translate-icon.png" style="width: 21px;">
 	                        	                                    <span class="caret"></span>
 	                                </button>
 	                                <ul class="dropdown-menu {% if language.direction == "ltr" %}dropdown-menu-right{% endif %}" aria-labelledby="languageSwitcher">
@@ -200,13 +200,13 @@
 		                        {% if language.id == 'hi' %}आदान प्रदान करना{% endif %}
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/facebook.svg" alt="Facebook" class="facebook" /></a>
+								<a href="javascript:void(0);"><img src="/themes/historyofvaccinesml/images/facebook.svg" alt="Facebook" class="facebook" /></a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/twitter.svg" alt="Twitter" class="twitter" /></a>
+								<a href="javascript:void(0);"><img src="/themes/historyofvaccinesml/images/twitter.svg" alt="Twitter" class="twitter" /></a>
 							</li>
 							<li>
-								<a href="javascript:void(0);"><img src="{{base_path}}themes/historyofvaccines/images/google.svg" alt="Google+" class="google" /></a>
+								<a href="javascript:void(0);"><img src="/themes/historyofvaccinesml/images/google.svg" alt="Google+" class="google" /></a>
 							</li>
 						</ul>
                     {% endif %}
