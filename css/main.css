@@ -128,7 +128,7 @@ body {
     content: '';
     position: absolute;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.35);
     top: 0;
     left: 0;
     bottom: 0;
@@ -1583,6 +1583,8 @@ ul.recent-posts li {
           color: white; }
         #activity-slideshow .activity-slideshow-container .slide .slide-content p {
           color: white; }
+        #activity-slideshow .activity-slideshow-container .slide .slide-content img {
+          max-width: 222px; }
   #activity-slideshow .activity-slideshow-controls {
     position: absolute;
     bottom: 20px;

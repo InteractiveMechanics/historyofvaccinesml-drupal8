@@ -38,17 +38,17 @@
         {% if item.text != 'English' %}
             <li{{ item.attributes }}>
                 {% if item.text == 'Arabic' %}
-                    <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
+                    <a href="/arabic/{{ item.link['#url'].internalPath }}">
                             في العربية
                     </a>
                 {% endif %}
                 {% if item.text == 'Urdu' %}
-                    <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
+                    <a href="/urdu/{{ item.link['#url'].internalPath }}">
 اردو میں
                     </a>
                 {% endif %}
                 {% if item.text == 'Hindi' %}
-                    <a href="/{{ item.link['#options'].language.id }}/{{ item.link['#url'].internalPath }}">
+                    <a href="/hindi/{{ item.link['#url'].internalPath }}">
 हिंदी में
                     </a>
                 {% endif %}

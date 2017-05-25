@@ -1,5 +1,19 @@
 (function ($) {
 	
+    $(".main-content h2").each(function(){
+        if ($(this).text() == 'Search results'){
+            if (lang_id == 'arabic'){
+                $(this).text('نتائج البحث');
+            }
+            if (lang_id == 'urdu'){
+                $(this).text('تلاش کے نتائج');
+            }
+            if (lang_id == 'hindi'){
+                $(this).text('खोज परिणाम');
+            }
+        }
+    });
+
 	$(".article .body a").each(function(){
 		
 		var url = $(this).attr('href');
@@ -204,7 +218,11 @@
     }
     
     function fixTitle(title) {
+        if (title){
 	        return title.replace("&#039;", "'");
+        } else {
+            return '';
+        }
     }
     function populateMediaInfo(root) {    
         var title = fixTitle(data[root].title);
@@ -318,7 +336,7 @@
 		
 		
 		if(uniqueID) {
-			var path = "https://www.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
+			var path = "http://staging.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
 			window.history.pushState("object or string", "Title", path);	
 		}
 		
@@ -340,6 +358,7 @@
 		$('.timeline-modal-date').html($invoker.data('datestr'));
 		$('.timeline-modal-title').html($invoker.data('title'));
 		$('.timeline-modal-body').html($invoker.data('body'));
+        $('.timeline-modal-edit-button').attr('href', '/multilanguage/' + lang_id + '/node/' + $invoker.data('nid') + '/edit/');
 		
 		if(file_arr.length == 0) {
 			$('.timeline-modal-image').html("");

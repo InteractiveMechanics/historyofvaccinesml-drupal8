@@ -3,9 +3,6 @@
 		
 		$node = \Drupal::routeMatch()->getParameter('node');
 		
-		
-		
-		
 		if ($node) {
 			$nid = $node->id();			
 			$uid = $node->getOwnerId();
@@ -52,7 +49,25 @@
     		}		
 		}
 	}
-	
+	function historyofvaccinesml_preprocess_page(&$variables) {
+        if (!isset($variables['lang'])) {
+            $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $dir = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
+
+            $variables['lang'];
+            $variables['lang']['id'] = $lang;
+            $variables['lang']['direction'] = $dir;
+            if ($lang == 'ar'){
+                $variables['lang']['prefix'] = 'arabic';
+            }
+            if ($lang == 'hi'){
+                $variables['lang']['prefix'] = 'hindi';
+            }
+            if ($lang == 'ur'){
+                $variables['lang']['prefix'] = 'urdu';
+            }
+        }
+    }
 
 	function historyofvaccinesml_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
 		
@@ -63,11 +78,25 @@
 
             $variables['language'] = [];
             $variables['language']['id'] = $lang;
+
+            if ($lang == 'ar'){
+                $variables['language']['prefix'] = 'arabic';
+            }
+            if ($lang == 'hi'){
+                $variables['language']['prefix'] = 'hindi';
+            }
+            if ($lang == 'ur'){
+                $variables['language']['prefix'] = 'urdu';
+            }
             $variables['language']['direction'] = $dir;
         }
 
 		$view = \Drupal::request()->attributes->get('view_id');
 		$variables['view_name'] = $view;
+
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $variables['is_admin'] = in_array('administrator', $roles);
 		
 		
 		if($view == "timeline") {
@@ -214,6 +243,15 @@
             $variables['language'];
             $variables['language']['id'] = $lang;
             $variables['language']['direction'] = $dir;
+            if ($lang == 'ar'){
+                $variables['language']['prefix'] = 'arabic';
+            }
+            if ($lang == 'hi'){
+                $variables['language']['prefix'] = 'hindi';
+            }
+            if ($lang == 'ur'){
+                $variables['language']['prefix'] = 'urdu';
+            }
         }
     }
 
@@ -225,7 +263,15 @@
 		if($node->field_uid) {
 			
 			$uid = $node->field_uid->getValue()[0]['value'];
-			$link = "https://www.historyofvaccines.org/$lang/timeline#EVT_" . $uid;
+            if ($lang == 'ar'){
+                $link = "https://www.historyofvaccines.org/arabic/timeline#EVT_" . $uid;
+            }
+            if ($lang == 'hi'){
+                $link = "https://www.historyofvaccines.org/hindi/timeline#EVT_" . $uid;
+            }
+            if ($lang == 'ur'){
+                $link = "https://www.historyofvaccines.org/urdu/timeline#EVT_" . $uid;
+            }
 			$variables['url'] = $link;
 			
 		}

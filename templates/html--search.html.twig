@@ -42,73 +42,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <head-placeholder token="{{ placeholder_token|raw }}">
-    {% set hmtlTitle = node_type %}
     
     
-    {% if view_name == 'timeline' or view_name == 'articles' or view_name == 'activities' %}
-    
-    	{% if view_name == 'timeline' %}
-    	
-    		{% if language.id == 'ar' %} 
-	            {% set hmtlTitle = 'تاريخ التطعيمات | الإطار الزمني' %}
-	        {% endif %}
-	        {% if language.id == 'ur' %}
-	            {% set hmtlTitle = 'ویکسین کی تاریخ | ٹائم لائن' %}
-	        {% endif %}
-	        {% if language.id == 'hi' %}
-	            {% set hmtlTitle = 'टाइमलाइन`` | टीके का इतिहास' %}
-	        {% endif %}
-			<title>{{hmtlTitle}}</title>
-    	{% endif %}
-    	
-    	{% if view_name == 'articles' %}
-    	
-    		{% if language.id == 'ar' %} 
-	            {% set hmtlTitle = 'تاريخ التطعيمات | مضامین' %}
-	        {% endif %}
-	        {% if language.id == 'ur' %}
-	            {% set hmtlTitle = 'ویکسین کی تاریخ | مقالات وبحوث' %}
-	        {% endif %}
-	        {% if language.id == 'hi' %}
-	            {% set hmtlTitle = 'सामग्री | टीके का इतिहास' %}
-	        {% endif %}
-			<title>{{hmtlTitle}}</title>
-    	{% endif %}
-    	
-    	{% if view_name == 'activities' %}
-    	
-    		{% if language.id == 'ar' %} 
-	            {% set hmtlTitle = 'تاريخ التطعيمات | نشاطات' %}
-	        {% endif %}
-	        {% if language.id == 'ur' %}
-	            {% set hmtlTitle = 'ویکسین کی تاریخ | سرگرمیاں' %}
-	        {% endif %}
-	        {% if language.id == 'hi' %}
-	            {% set hmtlTitle = 'क्रियाएँ | टीके का इतिहास' %}
-	        {% endif %}
-			<title>{{hmtlTitle}}</title>
-    	{% endif %}
-    
-    {% else %}
-    
-    	{% if hmtlTitle starts with "home" %}
-	    	{% set hmtlTitle = head_title['title'] %}
-	    	<title>{{hmtlTitle}}</title>
-	    {% else %}
-	        {% if language.id == 'ar' %} 
-	            {% set hmtlTitle = 'تاريخ التطعيمات | ' ~ head_title['title'] %}
-	        {% endif %}
-	        {% if language.id == 'ur' %}
-	            {% set hmtlTitle = 'ویکسین کی تاریخ | ' ~ head_title['title'] %}
-	        {% endif %}
-	        {% if language.id == 'hi' %}
-	            {% set hmtlTitle = head_title['title'] ~ ' | टीके का इतिहास' %}
-	        {% endif %}
-	        
-	        <title>{{hmtlTitle}}</title>
-	    {% endif %}
-    	
+    {% set term = head_title['title']|replace({'Search for': ''}) %}
+    {% if language.id == 'ar' %} 
+        {% set hmtlTitle = 'تاريخ التطعيمات | ' ~ term ~ ' نتائج البحث' %}
     {% endif %}
+    {% if language.id == 'ur' %}
+        {% set hmtlTitle = 'ویکسین کی تاریخ | ' ~ term ~ ' تلاش کے نتائج' %}
+    {% endif %}
+    {% if language.id == 'hi' %}
+        {% set hmtlTitle = 'खोज परिणाम ' ~ term ~ ' | टीके का इतिहास' %}
+    {% endif %}
+    
+    <title>{{hmtlTitle}}</title>
     
     
     
