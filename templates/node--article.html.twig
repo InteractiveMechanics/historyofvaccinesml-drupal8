@@ -187,8 +187,8 @@
                                     <strong>{{ content.field_related_media[0]['#node'].field_caption.value }}</strong><br />
 
                                     {% set mediatitle = content.field_related_media[0]['#node'].getTitle() %}
-                                    {% set copyright = content.field_related_media[0]['#node'].field_copyright.entity.getTitle() %}
-                                    {% set creator = content.field_related_media[0]['#node'].field_creator.entity.getTitle() %}
+                                    {% set copyright = content.field_related_media[0]['#node'].field_copyright.entity.getTranslation(language.id).getTitle() %}
+                                    {% set creator = content.field_related_media[0]['#node'].field_creator.entity.getTranslation(language.id).getTitle() %}
 
 									{% if copyright != mediatitle %}
 										<em>{{ copyright }}</em>
@@ -230,8 +230,8 @@
 		                            	{% endif %}
 		                    		
                                         {% set mediatitle = content.field_related_media[key]['#node'].getTitle() %}
-                                        {% set copyright = content.field_related_media[key]['#node'].field_copyright.entity.getTitle() %}
-                                        {% set creator = content.field_related_media[key]['#node'].field_creator.entity.getTitle() %}
+                                        {% set copyright = content.field_related_media[key]['#node'].field_copyright.entity.getTranslation(language.id).getTitle() %}
+                                        {% set creator = content.field_related_media[key]['#node'].field_creator.entity.getTranslation(language.id).getTitle() %}
 
 		                    		
 			                    		{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37 %}
