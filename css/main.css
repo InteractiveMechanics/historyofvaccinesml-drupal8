@@ -864,6 +864,9 @@ button.collapsed span.glyphicon-menu-hamburger {
 .timeline-overview .left h2 {
   direction: ltr; }
 
+.vis-tooltip {
+  display: none !important; }
+
 .timeline-sidebar .sidebar-blurb img {
   float: left;
   margin-right: 15px;
@@ -897,7 +900,9 @@ button.collapsed span.glyphicon-menu-hamburger {
 
 .timeline-modal-body {
   font-size: 12px;
-  text-align: right; }
+  text-align: right;
+  max-height: 350px;
+  overflow: auto; }
 
 .timeline-modal-image .body-mediaitem p {
   width: 94%;

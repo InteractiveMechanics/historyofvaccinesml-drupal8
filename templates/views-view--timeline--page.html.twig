@@ -272,7 +272,11 @@
 	                        var dateStr = d[i].year;
 	                        var year = '';
 	                        if(dateStr.indexOf('/') == -1) {
-		                        year = dateStr;
+		                        if (dateStr.indexOf(',') == -1) {
+                                    year = dateStr;
+                                } else {
+                                    year = dateStr.substr(dateStr.indexOf(",") + 1);
+                                }
 	                        } else {
 		                        year = dateStr.split('/')[2];
 	                        }

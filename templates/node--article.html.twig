@@ -183,16 +183,21 @@
 							{% if content.field_related_media[0] %}
 							
 								<p style='line-height: 15px; margin-top: 15px; font-size: 13px;'><small>
-                                    <!--
-									{% if content.field_related_media[0]['#node'].field_creator.entity.title.value %}
-										<em class="hidden">{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }} </em>
+                                    
+                                    <strong>{{ content.field_related_media[0]['#node'].field_caption.value }}</strong><br />
+
+                                    {% set mediatitle = content.field_related_media[0]['#node'].getTitle() %}
+                                    {% set copyright = content.field_related_media[0]['#node'].field_copyright.entity.getTitle() %}
+                                    {% set creator = content.field_related_media[0]['#node'].field_creator.entity.getTitle() %}
+
+									{% if copyright != mediatitle %}
+										<em>{{ copyright }}</em>
 									{% else %}
-										<em class="hidden">{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }} </em>
+										{% if creator != mediatitle %}
+											<em>{{ creator }}</em>
+										{% endif %}
 									{% endif %}
-                                    <br />
-                                    -->
-		                            
-		                            <b>{{ content.field_related_media[0]['#node'].field_caption.value }}</b>
+
 		                        </small></p>
 		                        
 		                    {% endif %}
@@ -224,6 +229,10 @@
 		                                    {% set thumb_file = '0' ~ thumb_file %}
 		                            	{% endif %}
 		                    		
+                                        {% set mediatitle = content.field_related_media[key]['#node'].getTitle() %}
+                                        {% set copyright = content.field_related_media[key]['#node'].field_copyright.entity.getTitle() %}
+                                        {% set creator = content.field_related_media[key]['#node'].field_creator.entity.getTitle() %}
+
 		                    		
 			                    		{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37 %}
 			                    		
@@ -235,7 +244,18 @@
 			                    				class="body-mediaitem-small body-mediaitem-small-article" 
 			                    				data-filename="{{ thumb_file }}" 
 			                    				data-type="image" 
-			                    				data-caption="<b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>">
+			                    				data-caption="
+                                                    <small>
+                                                    <strong>{{ content.field_related_media[key]['#node'].field_caption.value }}</strong>
+                                                    <br />
+                                                    {% if copyright != mediatitle %}
+                										<em>{{ copyright }}</em>
+                									{% else %}
+                										{% if creator != mediatitle %}
+                											<em>{{ creator }}</em>
+                										{% endif %}
+                									{% endif %}
+                                                    </small>">
 															  <img 
 															  	src="https://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
 															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
@@ -248,8 +268,18 @@
 			                    				class="body-mediaitem-small body-mediaitem-small-article" 
 			                    				data-filename="{{ thumb_file }}" 
 			                    				data-type="video" 
-			                    				data-caption="<b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>" 
-			                    			>
+			                    				data-caption="
+                                                    <small>
+                                                    <strong>{{ content.field_related_media[key]['#node'].field_caption.value }}</strong>
+                                                    <br />
+                                                    {% if copyright != mediatitle %}
+                										<em>{{ copyright }}</em>
+                									{% else %}
+                										{% if creator != mediatitle %}
+                											<em>{{ creator }}</em>
+                										{% endif %}
+                									{% endif %}
+                                                    </small>">
 															  <img 
 															  	src="https://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
 															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
