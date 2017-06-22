@@ -336,7 +336,7 @@
 		
 		
 		if(uniqueID) {
-			var path = "https://www.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
+			var path = "http://staging.historyofvaccines.org/"+ lang_id +"/timeline#EVT_" + uniqueID;
 			window.history.pushState("object or string", "Title", path);	
 		}
 		
