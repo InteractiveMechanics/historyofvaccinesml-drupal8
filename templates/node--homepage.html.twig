@@ -100,7 +100,6 @@
                 
                 {% for key, entry in content.field_sidebar_call_to_action if key|first != '#' %}
                 
-                	
         			<a href="/{{ language.prefix }}/{{ entry['#paragraph'].field_callout_link[0].uri|replace({'internal:/': ''}) }}" class="homepage-callout">
                         <img src="{{ file_url(entry['#paragraph'].field_callout_image.entity.fileuri) }}" alt="{{entry['#paragraph'].field_callout_text.value}}" />
                         <div class="homepage-callout-text">{{entry['#paragraph'].field_callout_text.value}}</div>
