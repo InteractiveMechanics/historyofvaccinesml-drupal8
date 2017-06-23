@@ -68,65 +68,47 @@
 
 <div class="blocks clearfix">
 		<div class="large-block pull-left">
-			<a href="{{front_page}}content/how-vaccines-work">
-				<img src="{{front_page}}themes/historyofvaccines/images/activities/bkg_how_vaccines_work.jpg" class="img-responsive" />
+			<a href="/{{language.prefix}}/node/2349" style="color:white;">
+				{% if language.id == 'ar' %}
+				
+					<h2 class="text-left">اضواء على النشاطات</h2>
+					<h1 class="text-left">كيف تعمل اللقاحات</h1>
+				
+				{% endif %}
+                {% if language.id == 'ur' %}
+                	<h2 class="text-left">سرگرمی کے لئے نشان راہ</h2>
+					<h1 class="text-left">ویکسین کام</h1>
+                {% endif %}
+                {% if language.id == 'hi' %}
+                	<h2>गतिविधि स्पॉटलाइट</h2>
+					<h1>कैसे टीके काम करते है ?</h1>
+                {% endif %}
+				<img src="/themes/historyofvaccinesml/images/activities/Activity_Feature_01.jpg" class="img-responsive" />
 			</a>
 		</div>
 		
 		<div class="small-block pull-right dark-blue-block hidden-sm hidden-xs">
 			<p>
-				Learn actively by finding out how vaccines work, how vaccines are made, how to visualize risk, and more. Click through these activities to explore the past, present, and future of vaccination and infectious disease.
+				{% if language.id == 'ar' %}<span class="text-left">تعلم تفاعلياً بالتعرف على كيف تعمل اللقاحات, وكيف تصنع, ومزيداً</span>{% endif %}
+                {% if language.id == 'ur' %}<span class="text-left">ویکسین کس طرح کام کرتی ہے ، کیسے ویکسین بنا رہے ہیں، اور اس سے زیادہ معلومات حاصل کریں.</span>{% endif %}
+                {% if language.id == 'hi' %}<span class="text-right">सक्रिय रूप से जानें कि टीके कैसे काम करती हैं, कैसे टीके बनती हैं, और अधिक।</span>{% endif %}
 			</p>
 		</div>
 		
 		<div class="small-block pull-right hidden-sm hidden-xs">
-			<a href="{{front_page}}content/scientific-method">
-				<img src="{{front_page}}themes/historyofvaccines/images/activities/activities_scientific_method.jpg" style="height:192px" class="img-responsive" width="100%" />
+			<a href="/{{language.prefix}}/node/2350">
+				<img src="/themes/historyofvaccinesml/images/herd-immunity-callout.jpg" style="height:192px" class="img-responsive" width="100%" />
 			</a>
 		</div>
 	</div>
 	
 <div class="main-content">
 <div class="row">
-	<div class="col-md-3 img-nav hidden-xs hidden-sm">
-		<ul class="list-unstyled">
-					
-			<li>
-				<a href="./activities">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/ImgNav_Activities.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-			<li>
-				<a href="./gallery">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/ImgNav_Gallery.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-			<li>
-				<a href="./content/parents">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/IngNav_Families.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-			<li>
-				<a href="./content/educators">
-					<img src="{{front_page}}themes/historyofvaccines/images/homepage/ImgNav_Educators.jpg" class="img-responsive">
-				</a>
-			</li>
-					
-		</ul>
-	</div>
-	
-	<div class="col-md-9">
-		
-    	<div class="related-activities">
-    		
-    			{{all_simulations}}
-    			
+	<div class="col-md-12">
+        <div class="related-activities {% if language.id == 'ar' %}right{% endif %} {% if language.id == 'ur' %}right{% endif %} {% if language.id == 'hi' %}left{% endif %}" >
+		   		{{ all_activities }}
         </div>
-    </div>
-
+	</div>
 </div>
 
 

@@ -11,6 +11,9 @@ footer {
    	&:hover {
 		color: #888;
  	}
+    ul.list-inline {
+        padding: 0;
+    }
 
     @include screen-ltmd {
         .pull-right, 

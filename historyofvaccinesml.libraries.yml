@@ -13,7 +13,18 @@ jqueryui:
   version: 1.12.1
   header: true
   js:
-    js/lib/jquery-ui.min.js: {}
+    js/lib/jquery-ui18.min.js: {}
+  dependencies:
+    - core/jquery
+
+slick:
+  version: 1.6.0
+  header: true
+  css:
+    theme:
+      //cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css: { external: true }
+  js:
+    //cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js: { external: true }
   dependencies:
     - core/jquery
 
@@ -24,7 +35,7 @@ jqueryuitouch:
     js/lib/jquery.ui.touch-punch.min.js: {}
   dependencies:
     - core/jquery
-    - historyofvaccines/jqueryui
+    - historyofvaccinesml/jqueryui
 
 openseadragon:
   version: 2.2.1

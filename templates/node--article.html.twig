@@ -117,12 +117,7 @@
 	
 		<div class="col-md-9 col-sm-12">			
 			<div class="article">
-                {% if translations %}
-                    {{ languageswitcher }}
-                {% endif %}
-
 				<h1>{{ label }}</h1>
-				
 				
 				<div class="body">
 				
@@ -160,15 +155,15 @@
 		                            	{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37%}
 		                            		
 		                            		<div class="image {% if first_item_done %}hidden{% endif %} {{orig_filename}}">
-		                            			<img src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{media_title}}" />
+		                            			<img src="https://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" alt="{{media_title}}" />
 		                            		</div>
 		                            		
 		                            	{% else %}
 		                            	
 		                            		<div class="video {% if first_item_done %}hidden{% endif %} {{orig_filename}}">
 												<video 
-													src="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" 
-													poster="http://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" 
+													src="https://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.mp4" 
+													poster="https://media.historyofvaccines.org/mobile/video/320/{{ orig_filename }}.jpg" 
 													controls="controls" 
 													preload="none" 
 													width="100%">
@@ -188,13 +183,21 @@
 							{% if content.field_related_media[0] %}
 							
 								<p style='line-height: 15px; margin-top: 15px; font-size: 13px;'><small>
-									{% if content.field_related_media[0]['#node'].field_creator.entity.title.value %}
-										<em>{{ content.field_related_media[0]['#node'].field_creator.entity.title.value|raw }} </em>
+                                    
+                                    <strong>{{ content.field_related_media[0]['#node'].field_caption.value }}</strong><br />
+
+                                    {% set mediatitle = content.field_related_media[0]['#node'].getTitle() %}
+                                    {% set copyright = content.field_related_media[0]['#node'].field_copyright.entity.getTranslation(language.id).getTitle() %}
+                                    {% set creator = content.field_related_media[0]['#node'].field_creator.entity.getTranslation(language.id).getTitle() %}
+
+									{% if copyright != mediatitle %}
+										<em>{{ copyright }}</em>
 									{% else %}
-										<em>{{ content.field_related_media[0]['#node'].field_copyright.entity.title.value|raw }} </em>
+										{% if creator != mediatitle %}
+											<em>{{ creator }}</em>
+										{% endif %}
 									{% endif %}
-		                            
-		                            <br /><b>{{ content.field_related_media[0]['#node'].field_caption.value }}</b>
+
 		                        </small></p>
 		                        
 		                    {% endif %}
@@ -226,22 +229,35 @@
 		                                    {% set thumb_file = '0' ~ thumb_file %}
 		                            	{% endif %}
 		                    		
+                                        {% set mediatitle = content.field_related_media[key]['#node'].getTitle() %}
+                                        {% set copyright = content.field_related_media[key]['#node'].field_copyright.entity.getTranslation(language.id).getTitle() %}
+                                        {% set creator = content.field_related_media[key]['#node'].field_creator.entity.getTranslation(language.id).getTitle() %}
+
 		                    		
 			                    		{% if content.field_related_media[key]['#node'].field_taxonomy.target_id != 37 %}
 			                    		
 			                    			{% if content.field_related_media[key]['#node'].field_creator.entity.title.value %}
 			                    				{% set text = content.field_related_media[key]['#node'].field_creator.entity.title.value|raw %}
-											{% else %}
-												{% set text = content.field_related_media[key]['#node'].field_copyright.entity.title.value|raw %}
 											{% endif %}
 			                    			
 			                    			<div 
 			                    				class="body-mediaitem-small body-mediaitem-small-article" 
 			                    				data-filename="{{ thumb_file }}" 
 			                    				data-type="image" 
-			                    				data-caption="<em>{{text}}</em><br /><b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>">
+			                    				data-caption="
+                                                    <small>
+                                                    <strong>{{ content.field_related_media[key]['#node'].field_caption.value }}</strong>
+                                                    <br />
+                                                    {% if copyright != mediatitle %}
+                										<em>{{ copyright }}</em>
+                									{% else %}
+                										{% if creator != mediatitle %}
+                											<em>{{ creator }}</em>
+                										{% endif %}
+                									{% endif %}
+                                                    </small>">
 															  <img 
-															  	src="http://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
+															  	src="https://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
 															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
 															  />
 											</div>
@@ -252,11 +268,20 @@
 			                    				class="body-mediaitem-small body-mediaitem-small-article" 
 			                    				data-filename="{{ thumb_file }}" 
 			                    				data-type="video" 
-			                    				data-caption="<em>{{ content.field_related_media[key]['#node'].field_copyright.entity.title.value|raw }}</em> 
-			                    							  <br /><b>{{ content.field_related_media[key]['#node'].field_caption.value }}</b>" 
-			                    			>
+			                    				data-caption="
+                                                    <small>
+                                                    <strong>{{ content.field_related_media[key]['#node'].field_caption.value }}</strong>
+                                                    <br />
+                                                    {% if copyright != mediatitle %}
+                										<em>{{ copyright }}</em>
+                									{% else %}
+                										{% if creator != mediatitle %}
+                											<em>{{ creator }}</em>
+                										{% endif %}
+                									{% endif %}
+                                                    </small>">
 															  <img 
-															  	src="http://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
+															  	src="https://media.historyofvaccines.org/images/{{ thumb_file }}_265.jpg" 
 															  	alt="{{ content.field_related_media[key]['#node'].title.value }}" 
 															  />
 											</div>
@@ -280,7 +305,11 @@
 				{% if content.field_related_timeline_entries[0] %}
 					{% for key, entry in content.field_related_timeline_entries if key|first != '#' %}
 						<div class="timeline-entry border-box">
-							<p class="date">Timeline Entry: {{ entry['#node'].field_event_date.value }}</p>
+							<p class="date">
+                            {% if language.id == 'ar' %}مدخل الإطار الزمني{% endif %}
+                            {% if language.id == 'ur' %}ٹائم لائن اندراج{% endif %}
+                            {% if language.id == 'hi' %}इस समय प्रवेश:{% endif %}
+                            {{ entry['#node'].field_event_date.value }}</p>
 						
 							<p class="title">{{ entry['#node'].title.value }}</p>
 							
@@ -292,7 +321,11 @@
 									<div>
 								{% endif %}
 									{{ entry['#node'].body.value|raw }}
-									<a href="{{front_page}}/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">See this item in the timeline</a>
+									<a href="{{front_page}}/{{language.id}}/timeline#EVT_{{ entry['#node'].field_uid.value }}" class="btn btn-green">
+                                        {% if language.id == 'ar' %}انظر هذا العنصر في الإطار الزمني{% endif %}
+                                        {% if language.id == 'ur' %}ٹائم لائن میں اس شے کے دیکھتے ہیں{% endif %}
+                                        {% if language.id == 'hi' %}इस समय में इस मद देखें{% endif %}
+                                    </a>
 								</div>
 								
 								{% if entry['#node'].field_related_media[0].entity.field_orig_filename.value %}
@@ -321,7 +354,7 @@
 				                    	{% endif %}
 				                    	
 										<img style="margin-right:15px; margin-bottom:5px;" 
-										src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" />
+										src="https://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" />
 									</div>
 									
 								{% endif %}
@@ -331,34 +364,6 @@
 							
 						</div>
 					{% endfor %}
-				{% endif %}
-				
-				{% if content.field_rel_assessment[0] %}
-					<div class="assessment border-box">
-						<h2><span class="glyphicon glyphicon-ok-sign" style="color: #36AA6B;"></span> Assessment Questions</h2>
-						
-						{% for key, assessment in content.field_rel_assessment if key|first != '#' %}
-						
-						
-							<div class="question" data-answer="{{assessment['#node'].field_answer.value}}" data-assessmentid="{{assessment['#node'].id}}">
-								<p>
-									<strong>{{ assessment['#node'].field_question.value|raw }} </strong>
-								</p>
-								<ul>
-									{% for answer in assessment['#node'].field_choice %}
-									
-										<li>
-											{{ answer.value }} 
-										</li>
-										
-									{% endfor %}
-								</ul>
-							</div>
-							
-						{% endfor %}
-						
-						<a href="http://www.historyofvaccines.org/content/assessments">View Progress</a>
-					</div>
 				{% endif %}
 			</div>
 		
@@ -401,76 +406,4 @@
 		
 	});
 
-</script>
-
-
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-		$('.question ul li').click(function(){
-			
-			if(!$(this).parent().parent().hasClass('answered')) {
-			
-				var answer = $(this).parent().parent().data('answer');
-				
-				var id = $(this).parent().parent().data('assessmentid');
-				var n = $(this).index();
-				
-				var chr = String.fromCharCode(97 + n);
-				var correctIndex = null;
-				if(chr == answer) {
-					$(this).addClass('correct');
-				} else {
-					$(this).addClass('incorrect');
-					
-					var correctIndex = answer.charCodeAt(0) - 97;
-					var value = $(this).parent().parent().find('ul > li:eq(' + correctIndex +')').text();
-					$(this).parent().parent().find('ul > li:eq(' + correctIndex +')').text(value + ' (correct)');
-					$(this).parent().parent().find('ul > li:eq(' + correctIndex +')').addClass('correct');
-				}
-				$(this).parent().parent().addClass('answered');
-				
-				var assessments = JSON.parse(localStorage.getItem("assessments"));
-				
-				if(!assessments) {
-					assessments = [];
-				}
-				
-				assessments.push({
-					nid: id,
-					indexSelected: n,
-					correctIndex: correctIndex
-					
-				});
-				
-				localStorage.setItem("assessments", JSON.stringify(assessments));
-			}
-		});
-		
-		$('.choices ul li').click(function(){
-			if(!$(this).parent().parent().hasClass('answered')) {
-			
-				var answer = $(this).parent().parent().data('answer');
-				var n = $(this).index();
-				
-				var chr = String.fromCharCode(97 + n);
-				
-				if(chr == answer) {
-					$('span.answer').text('Correct');
-				} else {
-					$('span.answer').text('Incorrect');
-				}
-				$(this).parent().parent().addClass('answered');
-				
-				$('.more-info').show();
-				
-				
-				
-				
-			}
-			
-		});
-		
-	});
-	
 </script>

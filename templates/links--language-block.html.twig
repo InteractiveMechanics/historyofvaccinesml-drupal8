@@ -27,29 +27,32 @@
  *   screen reader and keyboard only users to navigate to or skip the links.
  *   See http://juicystudio.com/article/screen-readers-display-none.php and
  *   http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
+ *   item.link['#options'].language.id
  *
  * @see template_preprocess_links()
  */
 #}
+
 {% if links -%}
-  {%- if heading -%}
-    {%- if heading.level -%}
-      <{{ heading.level }}{{ heading.attributes }}>{{ heading.text }}</{{ heading.level }}>
-    {%- else -%}
-      <h2{{ heading.attributes }}>{{ heading.text }}</h2>
-    {%- endif -%}
-  {%- endif -%}
-  <ul class="links list-inline pull-right">
     {%- for item in links -%}
-      <li{{ item.attributes }}>
-        {%- if item.link -%}
-          {{ item.link }}
-        {%- elseif item.text_attributes -%}
-          <span{{ item.text_attributes }}>{{ item.text }}</span>
-        {%- else -%}
-          {{ item.text }}
-        {%- endif -%}
-      </li>
+        {% if item.text != 'English' %}
+            <li{{ item.attributes }}>
+                {% if item.text == 'Arabic' %}
+                    <a href="/arabic/{{ item.link['#url'].internalPath }}">
+                            في العربية
+                    </a>
+                {% endif %}
+                {% if item.text == 'Urdu' %}
+                    <a href="/urdu/{{ item.link['#url'].internalPath }}">
+اردو میں
+                    </a>
+                {% endif %}
+                {% if item.text == 'Hindi' %}
+                    <a href="/hindi/{{ item.link['#url'].internalPath }}">
+हिंदी में
+                    </a>
+                {% endif %}
+            </li>
+        {% endif %}
     {%- endfor -%}
-  </ul>
 {%- endif %}

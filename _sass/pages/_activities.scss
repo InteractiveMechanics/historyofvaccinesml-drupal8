@@ -28,6 +28,25 @@
     }
 }
 
+.right {
+	li {
+        .views-field-field-thumbnail-image {
+			float: right;
+			margin-left: 10px;
+		}
+		
+	}
+}
+
+.left {
+	li {
+		.views-field-field-thumbnail-image {
+			float: left;
+			margin-right: 10px;
+		}
+	}
+}
+
 .related-activities {
     width: 100%;
     padding: 0;
@@ -50,6 +69,11 @@
         margin: 0;
         width: 100%;
     }
+    
+    &>div {
+	    display: flex; 
+	    flex-wrap: wrap
+    }
     li {
         list-style: none;
         width: 33%;
@@ -59,8 +83,10 @@
 
         @include screen-sm {
             width: 50%;
-            height: 150px;
+            height: auto;
+            float: none;
             padding: 0 30px;
+            margin-bottom: 30px;
         }
         @include screen-xs {
             width: 100%;
@@ -80,18 +106,115 @@
     }
 }
 
-#swiffy-wrapper {
+#activity-slideshow {
+    position: relative;
     height: auto;
-    margin: 0 auto;
-}
-#swiffycontainer {
-    height: 596px;
-    width: 100%;
+    background: rgb(83,99,114); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(83,99,114,1) 0%, rgba(83,99,114,1) 62%, rgba(66,78,92,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(83,99,114,1) 0%,rgba(83,99,114,1) 62%,rgba(66,78,92,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(83,99,114,1) 0%,rgba(83,99,114,1) 62%,rgba(66,78,92,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#536372', endColorstr='#424e5c',GradientType=0 ); /* IE6-9 */
 
-    @include screen-sm {
-        height: 340px;
+    .activity-slideshow-container {
+        height: 100%;
+
+        .slide {
+            height: 100%;
+            vertical-align: top;
+
+            img {
+                width: 66%;
+                float: left;
+                margin: 0;
+                
+                @include screen-sm  {
+				    width: 100%;
+				    float: none;
+			    }
+                
+                @include screen-xs  {
+				    width: 100%;
+				    float: none;
+			    }
+            }
+            .slide-content {
+                width: 33%;
+                vertical-align: top;
+                padding: 20px;
+                overflow: hidden;
+                overflow-y: auto;
+                max-height: 420px;
+
+                @media screen and (#{$screen-sm}) {
+                    max-height: 450px;
+                }
+                
+                @include screen-sm  {
+				    width: 100%;
+				    float: none;
+				    padding-bottom: 60px;
+					max-height: 500px;
+			    }
+                
+                @include screen-xs  {
+				    width: 100%;
+				    float: none;
+				    padding-bottom: 60px;
+					max-height: 500px;
+			    }
+
+                h5 {
+                    color: #5FC9F1;
+                }
+                h3 {
+                    color: white;
+                }
+                p {
+                    color: white;
+                }
+                img {
+                    max-width: 222px;
+                }
+            }
+        }
     }
-    @include screen-xs {
-        height: 240px;
+    .activity-slideshow-controls {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+
+        > a:first-of-type {
+            margin-right: 10px;
+        } 
     }
+
+    .moveright,
+    .moveleft {
+        color: white;
+        background: #61C8F2;
+        border-radius: 0;
+        border: 1px solid white;
+        width: 34px;
+        text-align: center;
+        position: relative;
+        top: 0;
+        transition: 0.5s all;
+
+        &:hover, &:focus, &:active {
+            top: -3px;
+            box-shadow: 0 2px 2px rgba(0,0,0,0.35);
+        }
+    }
+    .moveleft {
+        text-indent: -3px;
+    }
+    .moveright {
+        text-indent: -1px;
+    }
+    
+}
+
+
+.slick-disabled {
+	opacity: .5;
 }

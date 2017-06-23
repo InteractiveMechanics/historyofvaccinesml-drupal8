@@ -1,0 +1,280 @@
+<?php
+	function historyofvaccinesml_theme_suggestions_node_alter(array &$suggestions, array &$variables)  {
+		
+		$node = \Drupal::routeMatch()->getParameter('node');
+		
+		if ($node) {
+			$nid = $node->id();			
+			$uid = $node->getOwnerId();
+			
+			$user = \Drupal\user\Entity\User::load($uid);
+		    $contentType = $node->getType();
+		    
+		    if (!is_null($user)) {
+		        $username = $user->getDisplayName();
+		        $variables['username'] = $username;
+		    }
+			
+			if($contentType == 'homepage') {
+				$featured_articles = \Drupal\block\Entity\Block::load('views_block__homepage_featured_articles_block_1');
+		        $variables['featured_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($featured_articles);
+
+		        $popular_articles = \Drupal\block\Entity\Block::load('views_block__popular_articles_block_1');
+				$variables['popular_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_articles);
+				
+				$homepage_featured_image = \Drupal\block\Entity\Block::load('views_block__homepage_featured_image_block_1');
+				$variables['homepage_featured_image'] = render($homepage_featured_image);	
+			}
+			
+			if($contentType == 'educational') {	
+                $all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+    			$variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+			}
+			
+			if($contentType == 'article') {
+    			$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
+    			$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
+    			
+    			$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
+    			$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
+    			
+    			$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');
+    			$variables['history_society_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($history_society_articles);
+    			
+    			$vaccine_information_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_information_articles_block_1');
+    			$variables['vaccine_information_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_information_articles);
+    			
+    			$common_questions_articles = \Drupal\block\Entity\Block::load('views_block__common_questions_articles_block_1');
+    			$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
+    		}		
+		}
+	}
+	function historyofvaccinesml_preprocess_page(&$variables) {
+        if (!isset($variables['lang'])) {
+            $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $dir = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
+
+            $variables['lang'];
+            $variables['lang']['id'] = $lang;
+            $variables['lang']['direction'] = $dir;
+            if ($lang == 'ar'){
+                $variables['lang']['prefix'] = 'arabic';
+            }
+            if ($lang == 'hi'){
+                $variables['lang']['prefix'] = 'hindi';
+            }
+            if ($lang == 'ur'){
+                $variables['lang']['prefix'] = 'urdu';
+            }
+        }
+    }
+
+	function historyofvaccinesml_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
+		
+		
+        if (!isset($variables['language'])) {
+            $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $dir = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
+
+            $variables['language'] = [];
+            $variables['language']['id'] = $lang;
+
+            if ($lang == 'ar'){
+                $variables['language']['prefix'] = 'arabic';
+            }
+            if ($lang == 'hi'){
+                $variables['language']['prefix'] = 'hindi';
+            }
+            if ($lang == 'ur'){
+                $variables['language']['prefix'] = 'urdu';
+            }
+            $variables['language']['direction'] = $dir;
+        }
+
+		$view = \Drupal::request()->attributes->get('view_id');
+		$variables['view_name'] = $view;
+
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+        $variables['is_admin'] = in_array('administrator', $roles);
+		
+		
+		if($view == "timeline") {
+			
+
+			
+			
+            $exposed_timeline_block = \Drupal\block\Entity\Block::load('exposedformtimelinepage_1');
+			$variables['exposed_form_timeline'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_timeline_block);
+
+            if (isset($_GET['timeline_categories'])){
+			    $categories = $_GET['timeline_categories'];
+			}
+			
+			if(isset($categories) && count($categories) == 1) {
+				// get overview
+				$category_id = $_GET['timeline_categories'][0];
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('field_timeline_categories', $category_id)->condition('langcode', $variables['language']['id']);
+				$nids = $query->execute();
+				$nids_array = array_keys($nids);
+				
+				$nodeItem = \Drupal\node\Entity\Node::load($nids_array[0]);
+				$temp = $nodeItem->body->getValue();
+				
+				$variables['timeline_overview_title'] = $nodeItem->title->value;
+				$variables['timeline_overview_body'] = $temp[0]['value']; 
+				
+				//get highlight
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', $category_id)->condition('langcode', $variables['language']['id']);    
+				$nids = $query->execute();
+				
+				$arr = \Drupal\node\Entity\Node::loadMultiple($nids);
+				
+				$tempArray = [];
+				
+				foreach ($nids as $nid) {
+				    $nodeItem = \Drupal\node\Entity\Node::load($nid);
+				
+					$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+					$translated_node = $nodeItem->getTranslation($language);
+					
+					array_push($tempArray, $translated_node);
+					
+				}
+				
+				$variables['timeline_overview_highlight'] = $tempArray;
+				
+				
+			} else {
+				
+				
+				//$query = \Drupal::entityQuery('node')->condition('type', 'timeline_overview')->condition('nid', 691)->condition('langcode', $variables['language']['id']);  
+				//$nids = $query->execute();
+				$nodeItem = \Drupal\node\Entity\Node::load(691);
+				
+				$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+				$translated_node = $nodeItem->getTranslation($language);
+				
+				$temp = $translated_node->body->getValue();
+				
+				$variables['timeline_overview_title'] = $translated_node->title->value;
+				
+				
+				
+				$variables['timeline_overview_body'] = $temp[0]['value']; 
+				
+				$query = \Drupal::entityQuery('node')->condition('type', 'timeline_highlight')->condition('field_timeline_categories', 61)->condition('langcode', $variables['language']['id']);    
+				$nids = $query->execute();
+				
+				$arr = \Drupal\node\Entity\Node::loadMultiple($nids);
+				
+				$tempArray = [];
+				
+				foreach ($nids as $nid) {
+				    $nodeItem = \Drupal\node\Entity\Node::load($nid);
+				
+					$language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+					$translated_node = $nodeItem->getTranslation($language);
+					
+					array_push($tempArray, $translated_node);
+					
+				}
+				
+				
+				$variables['timeline_overview_highlight'] = $tempArray;
+				
+			}
+			
+		}
+        if($view == "activities") {
+            $all_activities = \Drupal\block\Entity\Block::load('views_block__all_activities_block_1');
+            $variables['all_activities'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($all_activities);
+        }
+		if($view == "taxonomy_term") {
+            $popular_posts = \Drupal\block\Entity\Block::load('views_block__popular_posts_block_1');
+            $variables['popular_posts'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_posts);
+
+            $recent_post = \Drupal\block\Entity\Block::load('views_block__recent_posts_block_1_3');
+            $variables['recent_post'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_post);
+        }
+		
+		if($view == 'articles') {
+			$recent_articles = \Drupal\block\Entity\Block::load('views_block__recent_articles_block_1');
+			$variables['recent_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($recent_articles);
+	
+	        $featured_articles = \Drupal\block\Entity\Block::load('views_block__homepage_featured_articles_block_1');
+	        $variables['featured_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($featured_articles);
+	        
+	        $popular_articles = \Drupal\block\Entity\Block::load('views_block__popular_articles_block_1');
+			$variables['popular_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($popular_articles);
+			
+			$vaccine_preventable_diseases = \Drupal\block\Entity\Block::load('views_block__vaccine_preventable_diseases_block_1');
+			$variables['vaccine_preventable_diseases'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_preventable_diseases);
+			
+			$vaccine_science_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_science_articles_block_1');
+			$variables['vaccine_science_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_science_articles);
+			
+			$history_society_articles = \Drupal\block\Entity\Block::load('views_block__history_society_articles_block_1');
+			$variables['history_society_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($history_society_articles);
+			
+			$vaccine_information_articles = \Drupal\block\Entity\Block::load('views_block__vaccine_information_articles_block_1');
+			$variables['vaccine_information_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($vaccine_information_articles);
+			
+			$common_questions_articles = \Drupal\block\Entity\Block::load('views_block__common_questions_articles_block_1');
+			$variables['common_questions_articles'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($common_questions_articles);
+		}
+		
+		$primarylinksmenu = \Drupal\block\Entity\Block::load('primarylinks');
+		$variables['primarylinksmenu'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($primarylinksmenu);
+
+        $footerlinksmenu = \Drupal\block\Entity\Block::load('historyofvaccines_footer');
+		$variables['footerlinksmenu'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($footerlinksmenu);
+		
+		$langswitcher = \Drupal\block\Entity\Block::load('languageswitcher');
+        $variables['languageswitcher'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($langswitcher);
+        
+	}
+
+    function historyofvaccinesml_preprocess_links(&$variables) {
+        if (!isset($variables['language'])) {
+            $lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+            $dir = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
+
+            $variables['language'];
+            $variables['language']['id'] = $lang;
+            $variables['language']['direction'] = $dir;
+            if ($lang == 'ar'){
+                $variables['language']['prefix'] = 'arabic';
+            }
+            if ($lang == 'hi'){
+                $variables['language']['prefix'] = 'hindi';
+            }
+            if ($lang == 'ur'){
+                $variables['language']['prefix'] = 'urdu';
+            }
+        }
+    }
+
+	function historyofvaccinesml_preprocess_search_result(&$variables) {
+		$lang = \Drupal::languageManager()->getCurrentLanguage()->getId();
+		
+		$node = $variables['result']['node'];
+		
+		if($node->field_uid) {
+			
+			$uid = $node->field_uid->getValue()[0]['value'];
+            if ($lang == 'ar'){
+                $link = "https://www.historyofvaccines.org/arabic/timeline#EVT_" . $uid;
+            }
+            if ($lang == 'hi'){
+                $link = "https://www.historyofvaccines.org/hindi/timeline#EVT_" . $uid;
+            }
+            if ($lang == 'ur'){
+                $link = "https://www.historyofvaccines.org/urdu/timeline#EVT_" . $uid;
+            }
+			$variables['url'] = $link;
+			
+		}
+		
+	}
+?>

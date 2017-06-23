@@ -20,14 +20,6 @@
  */
 #}
 <br />
-<div class="filters">
-	
-	<ul class="nav nav-tabs">
-		<li><a>Site</a></li>
-		<li><a>Blog</a></li>
-		<li><a>Media</a></li>
-	</ul>
-</div>
 <section class="page search-page" style="background:white;">
     <div class="row">
         <div class="col-md-12">
@@ -74,7 +66,7 @@
             $('.filters ul li:eq(0)').addClass('active');
 
             var key = getParameterByName('keys');
-            var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
+            var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:educational";
             window.location = searchLink;
 		}
 		
@@ -83,7 +75,7 @@
 			var key = getParameterByName('keys');
 			
 			if(filter == 'Site') {
-				var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:simulation";
+				var searchLink = window.location.origin + window.location.pathname + "?keys=" + key + "&f[0]=type:article&f[1]=type:page&f[2]=type:educational";
 				window.location = searchLink;
 			}
 			

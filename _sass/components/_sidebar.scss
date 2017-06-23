@@ -42,6 +42,7 @@
 
     .sidebar-item {
         margin-bottom:35px;
+        
     		
     	h5 {
     		color:maroon;
@@ -51,7 +52,8 @@
     	ul {
     		padding-left:0px;	
     		padding-top:0px;
-    
+			padding: 0;
+			
             li {
     			list-style:none;
     		}

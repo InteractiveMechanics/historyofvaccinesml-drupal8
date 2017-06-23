@@ -69,30 +69,36 @@
 		
 {% verbatim %}
 <script id="item-template" type="text/x-handlebars-template">
-<div style="width:220px; !important;">
-			<div class="year">
-				{{year}}
-			</div>
-			<div class="timeline-entry" data-caption="{{#each caption}}{{this}}|,|{{/each}}" data-creator="{{#each creator}}{{this}}|,|{{/each}}" id="{{id}}" data-year="{{year}}" data-uniqueid="{{id}}" data-title="{{title}}" data-body='{{description}}' 
-				data-filename="{{#each filename}}{{this}}|,|{{/each}}" data-filetype="{{#each filetype}}{{this}}|,|{{/each}}" data-toggle="modal" data-target="#myModal">
-					
-					{{#isVideo filename.[0]}}{{/isVideo}}
+    <div style="width:220px; !important;">
+		<div class="year">
+			{{year}}
+		</div>
+		<div class="timeline-entry" data-caption="{{#each caption}}{{this}}|,|{{/each}}" data-creator="{{#each creator}}{{this}}|,|{{/each}}" id="{{id}}" data-datestr="{{datestr}}" data-year="{{year}}" data-uniqueid="{{id}}" data-nid="{{nid}}" data-title="{{title}}" data-body='{{description}}' 
+			data-filename="{{#each filename}}{{this}}|,|{{/each}}" data-filetype="{{#each filetype}}{{this}}|,|{{/each}}" data-toggle="modal" data-target="#myModal">
 				
-				<div class="title">
-					{{title}}
-				</div>
-				
-				<br style="clear:both" />
+				{{#isVideo filename.[0]}}{{/isVideo}}
+			
+			<div class="title">
+				{{title}}
 			</div>
-</div>
+			
+			<br style="clear:both" />
+		</div>
+    </div>
 </script>
 {% endverbatim %}
+
 <div id="visualization">
-    <div id="visualization-filters"><span class="expand">FILTER</span>{{ exposed_form_timeline }}</div>
     <div id="visualization-timeline" class="">
-        <a class="moveleft btn btn-default">&#9664;</a>
-        <a class="moveright btn btn-default pull-right">&#9654;</a>
-        <div class="slider"></div>
+        {% if language.direction == 'ltr' %}
+            <a class="moveleft btn btn-default pull-left">&#9664;</a>
+            <a class="moveright btn btn-default pull-right">&#9654;</a>
+            <div class="slider"></div>
+        {% elseif language.direction == 'rtl' %}
+            <a class="moveleft btn btn-default pull-right">&#9654;</a>
+            <a class="moveright btn btn-default pull-left">&#9664;</a>
+            <div class="slider right-start"></div>
+        {% endif %}
     </div>
 </div>
 
@@ -100,58 +106,70 @@
 	<div class="row">
 		<div class="col-md-8 timeline-overview">
 			
-			<h2>{{timeline_overview_title}}</h2>
-			
-			<p class="timeline-overview">
-				{{timeline_overview_body|raw}}
-			</p>
-			
+			<div class="{% if language.direction == 'rtl' %} right {% endif %}">
+				<h2>{{timeline_overview_title}}</h2>
+				
+				<p class="timeline-overview">
+					{{timeline_overview_body|raw}}
+				</p>
+			</div>
 		</div>
 		
 		<div class="col-md-4">
-			<div class="sidebar">
+			<div class="sidebar timeline-sidebar">
 				<div class="sidebar-item">
-					<h5>HIGHLIGHTS</h5>
+					<h5>
+                        {% if language.id == 'ar' %}توضيحات{% endif %}
+                        {% if language.id == 'ur' %}جھلکیاں{% endif %}
+                        {% if language.id == 'hi' %}झलकियाँ {% endif %}
+                    </h5>
 				
 					<ul>
 						{% for key, highlight in timeline_overview_highlight if key|first != '#' %}
 							
 							<li>
 								<div class="sidebar-blurb">
-									<p class="title" style="color: #369; font-size: 13px; font-weight: bold;">
-										{{highlight.title.value}}
-									</p>
+								
+									<div class="{% if language.direction == 'rtl' %} right {% endif %}">
 									
-									
-									<p>
-										{% if highlight.field_related_media[0].entity.field_orig_filename.value ends with "m4v" %}
-				                            {% set orig_filename = highlight.field_related_media[0].entity.field_orig_filename.value|split('.')[0] %}
-				                        {% else %}
-				                            {% set orig_filename = highlight.field_related_media[0].entity.field_orig_filename.value %}
-				                        {% endif %}
-				                    
-				                        {% if orig_filename|length == 1 %}
-				                    		{% set orig_filename = '00000' ~ orig_filename %}
-				                    
-				                        {% elseif orig_filename|length == 2 %}
-				                            {% set orig_filename = '0000' ~ orig_filename %}
-				                    
-				                        {% elseif orig_filename|length == 3 %}
-				                            {% set orig_filename = '000' ~ orig_filename %}
-				                    
-				                        {% elseif orig_filename|length == 4 %}
-				                            {% set orig_filename = '00' ~ orig_filename %}
-				                    
-				                        {% elseif orig_filename|length == 5 %}
-				                            {% set orig_filename = '0' ~ orig_filename %}
-				                    	{% endif %}
-				                    	
-										<img style="float:left; margin-right:15px; margin-bottom:5px;" 
-										src="http://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" width="70">
-										{{highlight.body.value|raw}}
-									</p>
-									
-									<br style="clear:both;" />
+										<p class="title " style="color: #369; font-size: 13px; font-weight: bold;">
+											<a href="javascript: void(0);" onclick="showTimelineItem({{highlight.field_related_timeline_entries.entity.field_uid.value}})">{{highlight.title.value}}</a>
+											<br />
+											
+											
+										</p>
+										
+										
+										<p>
+											{% if highlight.field_related_media[0].entity.field_orig_filename.value ends with "m4v" %}
+					                            {% set orig_filename = highlight.field_related_media[0].entity.field_orig_filename.value|split('.')[0] %}
+					                        {% else %}
+					                            {% set orig_filename = highlight.field_related_media[0].entity.field_orig_filename.value %}
+					                        {% endif %}
+					                    
+					                        {% if orig_filename|length == 1 %}
+					                    		{% set orig_filename = '00000' ~ orig_filename %}
+					                    
+					                        {% elseif orig_filename|length == 2 %}
+					                            {% set orig_filename = '0000' ~ orig_filename %}
+					                    
+					                        {% elseif orig_filename|length == 3 %}
+					                            {% set orig_filename = '000' ~ orig_filename %}
+					                    
+					                        {% elseif orig_filename|length == 4 %}
+					                            {% set orig_filename = '00' ~ orig_filename %}
+					                    
+					                        {% elseif orig_filename|length == 5 %}
+					                            {% set orig_filename = '0' ~ orig_filename %}
+					                    	{% endif %}
+					                    	
+											<img src="https://media.historyofvaccines.org/images/{{ orig_filename }}_265.jpg" width="70">
+											{{highlight.body.value|raw}}
+										</p>
+										
+										<br style="clear:both;" />
+										
+									</div>
 								</div>
 							</li>
 						{% endfor %}					
@@ -163,89 +181,46 @@
 
 </div>
 
-<script type="text/javascript">
-        var allCheckbox = $('#views-exposed-form-timeline-page-1 .form-select:eq(0)');
-        $('#views-exposed-form-timeline-page-1 .form-select:eq(0)').parent().html(allCheckbox).append('<b>All</b>');
+<script type="text/javascript">		
+
         
-        $('#views-exposed-form-timeline-page-1 .form-select').each(function(index){
-            var text = $(this).parent().text();
-            var input = $(this);
-
-            if (text.startsWith(" -")){
-                $(this).parent().html(input).append(text.substr(2,text.length));
-                $(this).parent().parent().addClass('child');
-            }
-        });
-
-        $('#visualization-filters .expand').on('click tap', function () {
-            $(this).toggleClass('active').parent().find('form').toggleClass('in');
-        });
-        $('#views-exposed-form-timeline-page-1').on('change', function(){
-	        //alert($(this).val());
-            //$(this).closest('form').submit();
-            
-            var filters = document.getElementsByName('timeline_categories');
-			for(var i = 0; i < filters.length; ++i)
-			{
-			    if(filters[i].checked) {
-				    console.log(filters[i]);
-			    }
-			}
-        });
-        
-        $('#views-exposed-form-timeline-page-1 .form-select').on('change', function(){
-			//alert($(this).val() + " " + $(this).is(':checked'));
-			
-			var val = $(this).val();
-			if(val == 'All' && $(this).is(':checked')) {
-				$('#views-exposed-form-timeline-page-1 .form-select').prop('checked', false);
-				$('#views-exposed-form-timeline-page-1 .form-select:eq(0)').prop('checked', true);
-			} else {
-				console.log($('#views-exposed-form-timeline-page-1 .form-select:eq(0)'));
-				$('#views-exposed-form-timeline-page-1 .form-select:eq(0)').prop('checked', false);
-			}
-			
-			filterTimeline();
-		});
-		
-		function filterTimeline() {
-			var path = "http://www.historyofvaccines.org/timeline";
-			var filters = document.getElementsByName('timeline_categories');
-			
-			if(filters[0].checked) {
-				window.location = path;
-			}
-			
-			var filterQuery = '';
-			for(var i = 1; i < filters.length; i++) {
-				if(filters[i].checked) {
-					filterQuery += 'timeline_categories[]=' + filters[i].value + '&';
-				}	
-			} 
-			
-			if(filterQuery) {
-				filterQuery = filterQuery.replace(/&+$/, "");
-				var url = path + "?" + filterQuery;
-				window.location = url;
-			} else {
-				window.location = path;
-			}
-			
-		}
-
-        function getQueryVariable(variable){
-            var query = window.location.search.substring(1);
-            var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-            }
-            return(false);
+        function fixTitle(title) {
+	        return title.replace("&#039;", "'");
         }
+        
+        function getURLParam(key,target){
+	        var values = [];
+	        if(!target){
+	            target = location.href;
+	        }
+	
+	        key = key.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	
+	        var pattern = key + '=([^&#]+)';
+	        var o_reg = new RegExp(pattern,'ig');
+	        while(true){
+	            var matches = o_reg.exec(target);
+	            if(matches && matches[1]){
+	                values.push(matches[1]);
+	            }
+	            else{
+	                break;
+	            }
+	        }
+	
+	        if(!values.length){
+	             return null;   
+	         }
+	        else{
+	           return values;
+	        }
+	
+	    }
+
 
 		Handlebars.registerHelper('isVideo', function(filename) {
             if (filename) {
-    			var imgURL = "http://media.historyofvaccines.org/images/"+ filename + "_90.jpg"
+    			var imgURL = "https://media.historyofvaccines.org/images/"+ filename + "_90.jpg"
     			if ( filename.indexOf('m4v') == -1 && filename != "") {
     				return "<div class='image'>" +
     							"<img src='"+ imgURL +"' />" +
@@ -258,38 +233,24 @@
 
         var timelineData = [];
         var timelineCount;
+        var data = [];
         var slider;
-        var query = getQueryVariable('timeline_categories[]');
         var timeline;
-        
-        if (query) {
-            var ids = query;
-        } else {
-            var ids = 'all';
-        }
-        
-        if(ids == 'All') {
-	        ids = 'all';
-        }
-        
-        var pathArray = window.location.pathname.split( '/' );
-        if (pathArray[1] == 'es'){
-            var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=1';
-        } else {
-            var url = 'http://www.historyofvaccines.org/timeline.php?category_ids='+ ids + '&is_espanol=0';
-        }
-        console.log(url);
+
+        var url = "";
+        url = '/timeline_ml.php?language={{ language.prefix }}';
+	   
         $.ajax({
             url: url,
-            success: function(data) {
-	            data = JSON.parse(data);
+            success: function(d) {
+	            d = JSON.parse(d);
                 var append = 0;
                 var append_to = 0;
 
-                for(i = 0; i < data.length; i++) {
+                for(i = 0; i < d.length; i++) {
         			append = 0;
         			for(x = 0; x < timelineData.length; x++) {
-        				if(timelineData[x].title == data[i].title && timelineData[x].year == data[i].year){
+        				if(timelineData[x].title == d[i].title){
         					append = 1;
         					append_to = x;
         				}
@@ -297,26 +258,50 @@
         
         			if(append == 1) {
         				append = 0;
-        				timelineData[append_to].filename.push(data[i].filename);
-                        timelineData[append_to].filetype.push(data[i].filetype);
-                        timelineData[append_to].creator.push(data[i].field_creator);
-                        timelineData[append_to].caption.push(data[i].field_caption);
+        				//timelineData[append_to].title.push(d[i].title);
+        				timelineData[append_to].filename.push(d[i].filename);
+                        timelineData[append_to].filetype.push(d[i].filetype);
+                        timelineData[append_to].creator.push(d[i].field_creator);
+                        timelineData[append_to].caption.push(d[i].field_caption);
+                        timelineData[append_to].copyright.push(d[i].field_copyright);
         			} else {
-                        if (data[i].year) {
-            				timelineData.push(
-            					{
-            						id: data[i].id,
-            						year: data[i].year,
-            						title: data[i].title,
-            						filename: [data[i].filename],
-                                    filetype: [data[i].filetype],
-                                    creator: [data[i].field_creator],
-                                    caption: [data[i].field_caption],
-            						category: data[i].category,
-            						description: data[i].description,
-            						start: data[i].year
-            					}
-            				);
+                        if (d[i].year) {
+	                        
+	                        console.log(d[i].year);
+	                        
+	                        var dateStr = d[i].year;
+	                        var year = '';
+	                        if(dateStr.indexOf('/') == -1) {
+		                        if (dateStr.indexOf(',') == -1) {
+                                    year = dateStr;
+                                } else {
+                                    year = dateStr.substr(dateStr.indexOf(",") + 1);
+                                }
+	                        } else {
+		                        year = dateStr.split('/')[2];
+	                        }
+	                        
+	                        if(year) {
+		                        timelineData.push(
+	            					{
+	            						id: d[i].id,
+	            						year: year,
+	            						title: d[i].title,
+	            						filename: [d[i].filename],
+	                                    filetype: [d[i].filetype],
+	                                    filetitle: [d[i].filetitle],
+	                                    filebody: [d[i].filebody],
+	                                    creator: [d[i].field_creator],
+	                                    caption: [d[i].field_caption],
+	                                    copyright: [d[i].field_copyright],
+	            						category: d[i].category,
+	            						description: d[i].description,
+	            						datestr: d[i].year,
+	            						start: year,
+                                        nid: d[i].nid
+	            					}
+	            				);
+            				}
                         }
         			}
         		}
@@ -334,7 +319,20 @@
 				     } 
 				}
 				
-				timelineData.sort(sort_by('year', false, parseInt));                
+				timelineData.sort(sort_by('year', false, parseInt));    
+				
+				// Create an array of all media items
+                $.each(timelineData, function(i){
+                    for (i = 0; i < this.filename.length; i++){
+                        data[this.filename[i]] = {
+                            root: this.filename[i],
+                            title: this.title,
+                            description: this.description,
+                            caption: this.caption[i],
+                            creator: this.creator[i]
+                        };
+                    }
+                });            
 
         		//test
         		var source   = $("#item-template").html();
@@ -365,7 +363,10 @@
                     start: '1200',
                     zoomMax: (473353890000),
                     zoomMin: (473353890000),
-                    timeAxis: {scale: 'year', step: 25}
+                    {% if language.direction == 'rtl' %}
+                    rtl: true,
+                    {% endif %}
+                    timeAxis: {scale: 'year', step: 20}
         		};
         		
         		// Create a Timeline
@@ -389,6 +390,9 @@
                     value: (Date.parse( timelineData[0].year ) - 365000000000),
                     min: (Date.parse( timelineData[0].year ) - 365000000000),
                     max: (Date.parse( timelineData[timelineCount-1].year )),
+                    {% if language.direction == 'rtl' %}
+                    isRTL: true,
+                    {% endif %}
                     slide: function(e, ui) {
                         var newval = ui.value;
                         timeline.setWindow({
@@ -400,7 +404,11 @@
                     var range = timeline.getWindow();
                     var interval = range.end - range.start;
         
+                    {% if language.direction == 'ltr' %}
                     slider.slider('value', range.start.valueOf() - interval * 1.15);
+                    {% else %}
+                    slider.slider('value', range.start.valueOf() - interval * -1.15);
+                    {% endif %}
         
                     timeline.setWindow({
                         start: range.start.valueOf() - interval * 1.15,
@@ -411,7 +419,11 @@
                     var range = timeline.getWindow();
                     var interval = range.end - range.start;
         
+                    {% if language.direction == 'ltr' %}
                     slider.slider('value', range.start.valueOf() - interval * -1.15);
+                    {% else %}
+                    slider.slider('value', range.start.valueOf() - interval * 1.15);
+                    {% endif %}
             
                     timeline.setWindow({
                         start: range.start.valueOf() - interval * -1.15,
@@ -423,6 +435,11 @@
                 console.log('Failed to load timeline data');
             }
         });
+        
+        function showTimelineItem(eventLocationID) {
+			timeline.setSelection(eventLocationID, {focus: true});
+			$("#" + eventLocationID).click();
+        }
 </script>
 
 <!-- Modal -->
@@ -433,7 +450,7 @@
       <div class="modal-body">
       	
       	<div style="cursor:pointer;" class="pull-right" data-dismiss="modal">
-      		<span class="glyphicon glyphicon-remove"></span>
+      		<span class="glyphicon glyphicon-remove" style="z-index:10;"></span>
       	</div>
       	
       	<div class="row">
@@ -444,6 +461,9 @@
 			</div>
         
 			<div class="col-md-7 timeline-modal-right">
+                {% if is_admin %}
+                    <a href="" class="btn timeline-modal-edit-button">Edit</a>
+                {% endif %}
 				<p class="timeline-modal-date"></p>
 				<p class="timeline-modal-title"></p>
 				<p class="timeline-modal-body"></p>
