@@ -902,7 +902,8 @@ button.collapsed span.glyphicon-menu-hamburger {
   font-size: 12px;
   text-align: right;
   max-height: 350px;
-  overflow: auto; }
+  overflow: auto;
+  font-family: Helvetica,Arial,sans-serif; }
 
 .timeline-modal-image .body-mediaitem p {
   width: 94%;

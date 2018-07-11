@@ -563,33 +563,35 @@
         }
         
         if (copyright_arr[0]){
-    	    copyright = "<br /><span>" + copyright_arr[0] + "</span> ";
+    	    copyright = "<span>" + copyright_arr[0] + "</span> ";
         }
 
-        if (copyright){
-            copyright = '<br /><span>' + creator_arr[0] + '</span> ';
+        if (creator_arr[0]){
+            creator = '<span>' + creator_arr[0] + '</span> ';
         }
         
-        
-        
-        
-        
-        htmlString += "<p style='text-align:left; font-size: 11px; margin: 5px 0px; line-height: 16px; color: #999;' class='caption-area'>" + creator + ' ' + caption + copyright + "</p>";
+        htmlString += "<p style='text-align:left; font-size: 11px; margin: 5px 0px; line-height: 16px; color: #999;' class='caption-area'>" + caption + copyright + creator + "</p>";
         
         htmlString += '<div id="body-mediaitem-switcher">'
         for(var i = 0; i < file_arr.length; i++) {
 	        var file = file_arr[i];
 	        var filetype = filetype_arr[i];
 	        
-            var creator;
-            var caption;
+            var creator = '';
+	        var caption = '';
+	        var copyright = '';
 
-            if (creator_arr[i]){
-	            creator = '<span>' + creator_arr[i] + '</span>';
-            }
             if (caption_arr[i]){
-	            caption = "<b>" + caption_arr[i] + "</b>";
-            }
+	    	    caption = "<b> " + caption_arr[i] + "</b>";
+	        }
+	        
+	        if (copyright_arr[i]){
+	    	    copyright = "<span>" + copyright_arr[i] + "</span> ";
+	        }
+	
+	        if (creator_arr[i]){
+	            creator = '<span>' + creator_arr[i] + '</span> ';
+	        }
 	        
 	        if(file != "") {
 		    
@@ -600,7 +602,7 @@
 				}
 				
 	        	
-				htmlString += '<div class="body-mediaitem-small body-mediaitem-small-timeline '+ file +'" data-filename="'+file+'" data-type="'+ type +'" data-caption="'+ creator + ' <br /> ' + caption +'">';
+				htmlString += '<div class="body-mediaitem-small body-mediaitem-small-timeline '+ file +'" data-filename="'+file+'" data-type="'+ type +'" data-caption="'+ caption + copyright + creator + '">';
 					if(type == 'image') {
 			        	var filename = "https://media.historyofvaccines.org/images/" + file + "_265.jpg";
 			        	htmlString += '<img src="'+ filename +'" alt="' + caption_arr[i] + '">';	
