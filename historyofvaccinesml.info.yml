@@ -17,6 +17,11 @@ libraries:
   - historyofvaccinesml/global-styling
 
 
+libraries-override:
+  # Replace an entire library.
+  core/jquery: historyofvaccinesml/jquery-custom
+
+
 # Regions
 regions:
   primary_menu: 'Primary Menu'
