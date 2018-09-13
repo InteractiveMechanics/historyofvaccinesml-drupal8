@@ -1223,15 +1223,15 @@ button.collapsed span.glyphicon-menu-hamburger {
   padding: 10px;
   position: relative; }
   .vis-timeline.right .vis-segment-item:nth-child(3n + 1) {
-    margin-left: 40px; }
+    margin-left: 0; }
   .vis-timeline.right .vis-segment-item:nth-child(3n + 3) {
-    margin-left: -40px; }
+    margin-left: 0; }
   .vis-timeline.right .vis-segment-item:nth-child(1) {
     margin-left: 0; }
   .vis-timeline.right .vis-segment-item:nth-child(2) {
-    margin-left: -40px; }
+    margin-left: 0; }
   .vis-timeline.right .vis-segment-item:nth-child(3) {
-    margin-left: -80px; }
+    margin-left: 0; }
 
 .quiz-item {
   background-image: url(../images/poll_btm.png);

@@ -526,15 +526,25 @@
 	        	
                 // Controls the arrows at the bottom slider
                 $('.moveleft').on('click', function(){
-                    var x = $('#visualization-container').scrollLeft() - screenWidth;
-                    if (x < 0){ x == 0; }
+                    {% if language.direction == 'ltr' %}
+                        var x = $('#visualization-container').scrollLeft() - screenWidth;
+                        if (x < 0){ x == 0; }
+                    {% elseif language.direction == 'rtl' %}
+                        var x = $('#visualization-container').scrollLeft() + screenWidth;
+                        if (x > timelineWidth){ x == timelineWidth; }
+                    {% endif %}
                     
                     $('#visualization-container').animate({scrollLeft: x}, 500);
                 });
         		$('.moveright').on('click', function(){
-                    var x = $('#visualization-container').scrollLeft() + screenWidth;
-                    if (x > timelineWidth){ x == timelineWidth; }
-                    
+                    {% if language.direction == 'ltr' %}
+                        var x = $('#visualization-container').scrollLeft() + screenWidth;
+                        if (x > timelineWidth){ x == timelineWidth; }
+                    {% elseif language.direction == 'rtl' %}
+                        var x = $('#visualization-container').scrollLeft() - screenWidth;
+                        if (x < 0){ x == 0; }
+                    {% endif %}                    
+
                     $('#visualization-container').animate({scrollLeft: x}, 500);
                 });
                 $('#visualization-container').on('scroll', function(){
