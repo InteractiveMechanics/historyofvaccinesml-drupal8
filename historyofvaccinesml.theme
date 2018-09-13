@@ -101,9 +101,6 @@
 		
 		if($view == "timeline") {
 			
-
-			
-			
             $exposed_timeline_block = \Drupal\block\Entity\Block::load('exposedformtimelinepage_1');
 			$variables['exposed_form_timeline'] = \Drupal::entityTypeManager()->getViewBuilder('block')->view($exposed_timeline_block);
 
